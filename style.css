@@ -135,6 +135,8 @@ body {
   border-radius: 5px;
   border-color: #d1d1d1;
   border: 1px solid #d1d1d1;
+  text-indent: 10px;
+  font-family: "Inter";
 }
 
 #email::placeholder {
