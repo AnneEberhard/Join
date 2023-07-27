@@ -12,18 +12,38 @@ body {
   height: 100vh;
 }
 
+.signup-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  position: absolute;
+  top: 30px;
+  right: 30px;
+}
+
+.sign-btn {
+  border-radius: 8px;
+  width: 100px;
+  height: 45px;
+  background: #2a3647;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+}
+
 .loading-screen {
   top: 30px;
   left: 30px;
   background-color: #f6f7f8;
-  width: 100vw;
-  height: 100vh;
+  width: 96vw;
+  height: 96vh;
   opacity: 1;
   visibility: visible;
   z-index: 9999;
   transition: opacity 200ms ease-out, visibility 200ms ease-out;
   position: absolute;
-  animation: resizeLogo 4s ease-in-out forwards;
+  animation: resizeLogo 3s ease-in-out forwards 700ms;
 }
 
 .logo {
@@ -80,7 +100,8 @@ body {
 }
 
 #login:hover,
-#guest-login:hover {
+#guest-login:hover,
+.sign-btn:hover {
   cursor: pointer;
 }
 
