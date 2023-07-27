@@ -23,3 +23,11 @@ function addSubTask() {
 function assignPrio(prio) {
     //assign Prio
 }
+
+function clearTask() {
+    //empty form
+}
+
+function createTask() {
+    //create Task
+}

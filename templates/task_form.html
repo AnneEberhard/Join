@@ -1,71 +1,92 @@
-
+<form class="addTaskContainer">
   <h2>Add Task</h2>
-  <div class="addTaskContainer">
-  <div class="addTaskContainerSide">
-    <div class="addTaskContainerBoxes">
-      <p class="addTaskLabels">Title</p>
-      <input class="inputsAddTask height51" required placeholder="Enter a title" />
-    </div>
-    <div class="addTaskContainerBoxes">
-      <p class="addTaskLabels">Description</p>
-      <textarea
-        class="inputsAddTask"
-        required
-        placeholder="Enter a Description"
-      ></textarea>
-    </div>
-    <div class="addTaskContainerBoxes">
-      <p class="addTaskLabels">Category</p>
-      <select class="inputsAddTask height51" name="taskCategory" id="taskCategory">
-        <option value="" disabled selected hidden>Select task category</option>
-        <option value="backoffice">Backoffice</option>
-        <option value="design">Design</option>
-        <option value="marketing">Marketing</option>
-        <option value="media">Media</option>
-        <option value="sales">Sales</option>
-      </select>
-    </div>
-    <div class="addTaskContainerBoxes">
-      <p class="addTaskLabels"></p>
-      <select class="inputsAddTask height51" name="contactToAssign" id="contactToAssign">
-        <option value="" disabled selected hidden>
-          Select contacts to assign
-        </option>
-        <option value="tbd">tbd</option>
-      </select>
-    </div>
-  </div>
-  <div class="divider"></div>
-  <div class="addTaskContainerSide">
-    <div class="addTaskContainerBoxes">
-      <p class="addTaskLabels">Due Date</p>
-      <input
-        class="inputsAddTask height51"
-        type="date"
-        required
-        placeholder="dd/mm/yyyy"
-      />
-    </div>
-    <div class="addTaskContainerBoxes">
-      <p class="addTaskLabels">Prio</p>
-      <div class="prioContainer">
-        <button onclick="assignPrio(urgent)" class="prio height51">Urgent <img /></button>
-        <button onclick="assignPrio(medium)" class="prio height51">Medium <img /></button>
-        <button onclick="assignPrio(low)" class="prio height51">Low <img /></button>
+  <div class="addTaskSubContainer">
+    <div class="addTaskContainerSides">
+      <div class="addTaskContainerBoxes">
+        <p class="addTaskLabels">Title</p>
+        <input
+          class="inputsAddTask height51"
+          required
+          placeholder="Enter a title"
+        />
+      </div>
+      <div class="addTaskContainerBoxes">
+        <p class="addTaskLabels">Description</p>
+        <textarea
+          class="inputsAddTask"
+          required
+          placeholder="Enter a Description"
+        ></textarea>
+      </div>
+      <div class="addTaskContainerBoxes">
+        <p class="addTaskLabels">Category</p>
+        <select
+          class="inputsAddTask height51"
+          name="taskCategory"
+          id="taskCategory"
+        >
+          <option value="" disabled selected hidden>
+            Select task category
+          </option>
+          <option value="backoffice">Backoffice</option>
+          <option value="design">Design</option>
+          <option value="marketing">Marketing</option>
+          <option value="media">Media</option>
+          <option value="sales">Sales</option>
+        </select>
+      </div>
+      <div class="addTaskContainerBoxes">
+        <p class="addTaskLabels"></p>
+        <select
+          class="inputsAddTask height51"
+          name="contactToAssign"
+          id="contactToAssign"
+        >
+          <option value="" disabled selected hidden>
+            Select contacts to assign
+          </option>
+          <option value="tbd">tbd</option>
+        </select>
       </div>
     </div>
-    <div class="addTaskContainerBoxes">
-      <p class="addTaskLabels">Subtasks</p>
-      <div class="height51">
-        <input placeholder="Add new subtask" />
-        <button onclick="addSubTask()">+</button>
-        <div id="subTasks"></div>
+    <div class="divider"></div>
+    <div class="addTaskContainerSides">
+      <div class="addTaskContainerBoxes">
+        <p class="addTaskLabels">Due Date</p>
+        <input
+          class="inputsAddTask height51"
+          type="date"
+          required
+          placeholder="dd/mm/yyyy"
+        />
+      </div>
+      <div class="addTaskContainerBoxes">
+        <p class="addTaskLabels">Prio</p>
+        <div class="prioContainer">
+          <button onclick="assignPrio(urgent)" class="prio height51">
+            Urgent <img src="../assets/img/double-up.png" />
+          </button>
+          <button onclick="assignPrio(medium)" class="prio height51">
+            Medium <img src="../assets/img/equal-sign.png" />
+          </button>
+          <button onclick="assignPrio(low)" class="prio height51">
+            Low <img src="../assets/img/double-down.png" />
+          </button>
+        </div>
+      </div>
+      <div class="addTaskContainerBoxes">
+        <p class="addTaskLabels">Subtasks</p>
+        <div class="addSubTask height51">
+          <input class="inputSubtask" placeholder="Add new subtask" />
+          <button onclick="addSubTask()">+</button>
+          <div id="subTasks"></div>
+        </div>
       </div>
     </div>
   </div>
-</div>
-</div>
-<div class="finalizeTask">
-    <button class="buttonAddTask clear">Clear x</button>
-    <button class="buttonAddTask create">Create Task <img></button>
-</div>
+
+  <div class="finalizeTask">
+    <button onclick="clearTask()" class="buttonAddTask clear">Clear <img src="../assets/img/x.png"></button>
+    <button onclick="createTask()" class="buttonAddTask create">Create Task <img src="../assets/img/correct.png"></button>
+  </div>
+</form>

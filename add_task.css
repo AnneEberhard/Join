@@ -1,56 +1,159 @@
 body {
-    background-color: rgb(245, 245, 245);
-    font-family: "inter";
+  background-color: rgb(245, 245, 245);
+  font-family: "inter";
+}
+h2 {
+  font-size: 61px;
+  font-weight: 700;
+}
+button:hover {
+    cursor: pointer;
 }
 
 .addTaskContainer {
-    display: flex;
+  padding-top: 111px;
+  padding-left: 96px;
+  padding-right: 96px;
+  padding-bottom: 111px;
 }
 
-.addTaskContainerSide {
-    width: 422px;
+.addTaskSubContainer {
+  display: flex;
 }
 
-.addTaskContainerBoxes{
-    width: 100%;
+.addTaskContainerSides {
+  width: 422px;
+  height: 551px;
+}
+
+.addTaskContainerBoxes {
+  width: 100%;
+}
+
+.addTaskContainer textarea {
+  height: 119px;
+  padding: 18px 21px 18px 21px;
+  box-sizing: border-box;
+  font-family: "inter" !important;
 }
 
 .addTaskLabels {
-    font-size: 20px;
+  font-size: 20px;
 }
 
 .height51 {
-    height: 51px;
+  height: 51px;
 }
 .inputsAddTask {
-    width:100%;
-    border-radius: 10px;
-    Padding: 13px, 21px, 13px, 21px;
-    gap: 10px;
+  width: 100%;
+  border-radius: 10px;
+  padding: 13px 21px 13px 21px;
+  gap: 10px;
+  border: 1px solid rgb(209, 209, 209);
+  font-size: 20px;
+  box-sizing: border-box;
+  font-family: "inter" !important;
 }
 
 .divider {
-    width: 1px;
-    background-color: rgb(209,209,209);
-    margin-left: 59px;
-    margin-right:59px;
-    height: 551px;
-    
+  width: 1px;
+  background-color: rgb(209, 209, 209);
+  margin-left: 59px;
+  margin-right: 59px;
+  height: 551px;
 }
 
 .prioContainer {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.prio {
+  padding: 18px 10px 18px 10px;
+  border-radius: 10px;
+  border: 1px solid rgb(209, 209, 209);
+  width: calc(33% - 10px);
+  box-sizing: border-box;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: white;
+}
+
+.prio img {
+  width: 20px;
+  height: 14.51px;
+}
+
+.addSubTask {
+  width: 100%;
+  border-radius: 10px;
+  gap: 10px;
+  border: 1px solid rgb(209, 209, 209);
+  font-size: 20px;
+  box-sizing: border-box;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.inputSubtask {
+  border: none;
+  border-radius: 10px;
+  padding: 13px 21px 13px 21px;
+  flex-grow:2;
+}
+
+.inputSubtask:focus-visible {
+    outline:rgb(245, 245, 245);
+}
+
+.addSubTask button {
+  background-color: transparent;
+  border: none;
+  height: 24px;
+  width: 24px;
+  font-size: 20px;
 }
 
 .finalizeTask {
-    display:flex;
-    justify-content: flex-end ;
-    gap:4px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.buttonAddTask {
+  height: 55px;
+  padding: 18px 10px 18px 10px;
+  box-sizing: border-box;
+  font-size: 20px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.clear {
+  border: 1px solid rgb(42, 54, 71);
+  width: 136px;
+  font-weight: 400;
+  font-size: 20px;
 }
 
 .create {
-    background-color: rgb(42,54,71);
-    color: white;
+  background-color: rgb(42, 54, 71);
+  color: white;
+  width: 181px;
+  font-weight: 700;
+  font-size: 21px;
+}
+
+.buttonAddTask img {
+  height: 20px;
+  width: 20px;
 }
