@@ -101,23 +101,25 @@ button:hover {
   align-items: center;
 }
 
-.inputSubtask {
+#inputSubtask {
   border: none;
   border-radius: 10px;
   padding: 13px 21px 13px 21px;
   flex-grow:2;
 }
 
-.inputSubtask:focus-visible {
+#inputSubtask:focus-visible {
     outline:rgb(245, 245, 245);
 }
 
-.addSubTask button {
-  background-color: transparent;
-  border: none;
+.buttonAddSubTask {
   height: 24px;
   width: 24px;
   font-size: 20px;
+}
+
+.buttonAddSubTask:hover {
+  cursor: pointer;
 }
 
 .finalizeTask {
@@ -136,6 +138,11 @@ button:hover {
   justify-content: center;
   align-items: center;
   gap: 10px;
+}
+
+.buttonAddSubTask img {
+  width: 24px;
+  height: 24px;
 }
 
 .clear {

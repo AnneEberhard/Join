@@ -1,4 +1,4 @@
-<form class="addTaskContainer">
+<form class="addTaskContainer" onsubmit="createTask()">
   <h2>Add Task</h2>
   <div class="addTaskSubContainer">
     <div class="addTaskContainerSides">
@@ -76,9 +76,11 @@
       </div>
       <div class="addTaskContainerBoxes">
         <p class="addTaskLabels">Subtasks</p>
-        <div class="addSubTask height51">
-          <input class="inputSubtask" placeholder="Add new subtask" />
-          <button onclick="addSubTask()">+</button>
+        <div >
+          <div class="addSubTask height51">
+          <input id="inputSubtask" placeholder="Add new subtask" />
+          <div class="buttonAddSubTask" onclick="addSubTask()"><img src="../assets/img/plus.png"></div>
+        </div>
           <div id="subTasks"></div>
         </div>
       </div>
@@ -86,7 +88,7 @@
   </div>
 
   <div class="finalizeTask">
-    <button onclick="clearTask()" class="buttonAddTask clear">Clear <img src="../assets/img/x.png"></button>
-    <button onclick="createTask()" class="buttonAddTask create">Create Task <img src="../assets/img/correct.png"></button>
+    <button type="button" onclick="clearTask()" class="buttonAddTask clear">Clear <img src="../assets/img/x.png"></button>
+    <button type="submit" class="buttonAddTask create">Create Task <img src="../assets/img/correct.png"></button>
   </div>
 </form>

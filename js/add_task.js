@@ -18,16 +18,26 @@ async function includeHTML() {
 
 function addSubTask() {
     //fill field subTasks
+    let subTask = document.getElementById('inputSubtask').value;
+    console.log(subTask);
+    document.getElementById('subTasks').innerHTML= /*html*/ `
+    <div>
+        <div class="square">+</div>
+        <div>${subTask}</div>
+    </div>`;
 }
 
 function assignPrio(prio) {
     //assign Prio
+    console.log(prio);
 }
 
 function clearTask() {
     //empty form
+    console.log('clearTask');
 }
 
 function createTask() {
     //create Task
+    console.log('createTask');
 }
