@@ -16,14 +16,14 @@ body {
   top: 0;
   left: 0;
   background-color: #f6f7f8;
-  /* width: 100vw; */
-  /* height: 100vh; */
+  width: 100vw;
+  height: 100vh;
   opacity: 1;
   visibility: visible;
   z-index: 9999;
-  /* transition: opacity 200ms ease-out, visibility 200ms ease-out; */
+  transition: opacity 200ms ease-out, visibility 200ms ease-out;
   position: absolute;
-  /* animation: resizeLogo 3s ease-in-out forwards; */
+  animation: resizeLogo 3s ease-in-out forwards;
 }
 
 .logo {
@@ -52,16 +52,117 @@ body {
 .login-container {
   background-color: #ffffff;
   padding: 48px 115px;
+  border-radius: 30px;
 }
 
 .login-container h1 {
   text-align: center;
+  font-size: 45px;
 }
 
 .line {
-  width: 30px;
+  width: 100px;
   height: 2px;
-  background-color: black;
+  background-color: #29abe2;
   margin-top: -10px;
   margin-bottom: 20px;
+}
+
+#login {
+  border-radius: 8px;
+  height: 45px;
+  width: 120px;
+  background: #2a3647;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+#login:hover,
+#guest-login:hover {
+  cursor: pointer;
+}
+
+#guest-login {
+  border-radius: 8px;
+  height: 45px;
+  width: 120px;
+  background: #ffffff;
+  color: black;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+#remember-link {
+  text-decoration: none;
+  color: #29abe2;
+}
+
+.options {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
+.login-buttons {
+  display: flex;
+  gap: 40px;
+}
+
+#remember {
+  width: 16px;
+  height: 16px;
+  color: #2a3647;
+}
+
+.remember-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+#email,
+#password {
+  padding: 8px;
+  width: 100%;
+  border-radius: 5px;
+  border-color: #d1d1d1;
+  border: 1px solid #d1d1d1;
+}
+
+#email::placeholder {
+  color: #d1d1d1;
+  opacity: 0.9;
+  font-weight: 400;
+}
+
+#email {
+  background-image: url("img/mail.png");
+  background-repeat: no-repeat;
+  background-position: center right 10px;
+}
+
+#password {
+  background-image: url("img/lock.png");
+  background-repeat: no-repeat;
+  background-position: center right 10px;
+}
+
+#password::placeholder {
+  color: #d1d1d1;
+  opacity: 0.9;
+  font-weight: 400;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
 }

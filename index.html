@@ -17,15 +17,19 @@
         <h1>Log in</h1>
         <form id="login-form">
           <div class="line"></div>
-          <input id="email" type="email" required />
-          <input id="password" type="password" required />
+          <div class="input-container">
+            <input id="email" type="email" placeholder="Email" />
+            <input id="password" type="password" placeholder="Password" />
+          </div>
           <div class="options">
-            <input id="remember" type="checkbox" />
-            <label for="remember">Remember me</label>
-            <a href="#">I forgot my password</a>
+            <div class="remember-container">
+              <input id="remember" type="checkbox" />
+              <label for="remember">Remember me</label>
+            </div>
+            <a href="#" id="remember-link">I forgot my password</a>
           </div>
           <div class="login-buttons">
-            <button id="Login">Log in</button>
+            <button id="login">Log in</button>
             <button id="guest-login">Guest Log in</button>
           </div>
         </form>
