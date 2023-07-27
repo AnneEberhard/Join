@@ -23,7 +23,7 @@ body {
   z-index: 9999;
   transition: opacity 200ms ease-out, visibility 200ms ease-out;
   position: absolute;
-  animation: resizeLogo 3s ease-in-out forwards;
+  animation: resizeLogo 4s ease-in-out forwards;
 }
 
 .logo {
@@ -96,6 +96,8 @@ body {
 #remember-link {
   text-decoration: none;
   color: #29abe2;
+  font-weight: 400;
+  font-size: 16px;
 }
 
 .options {
@@ -116,6 +118,8 @@ body {
   width: 16px;
   height: 16px;
   color: #2a3647;
+  font-weight: 400;
+  font-size: 16px;
 }
 
 .remember-container {
@@ -127,7 +131,7 @@ body {
 
 #email,
 #password {
-  padding: 8px;
+  padding: 10px;
   width: 100%;
   border-radius: 5px;
   border-color: #d1d1d1;
@@ -138,6 +142,8 @@ body {
   color: #d1d1d1;
   opacity: 0.9;
   font-weight: 400;
+  text-indent: 10px;
+  font-size: 14px;
 }
 
 #email {
@@ -156,6 +162,8 @@ body {
   color: #d1d1d1;
   opacity: 0.9;
   font-weight: 400;
+  text-indent: 10px;
+  font-size: 14px;
 }
 
 .input-container {
