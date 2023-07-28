@@ -4,7 +4,7 @@
     <div class="addTaskContainerSides">
       <div class="addTaskContainerBoxes">
         <p class="addTaskLabels">Title</p>
-        <input
+        <input id="title"
           class="inputsAddTask height51"
           required
           placeholder="Enter a title"
@@ -12,7 +12,7 @@
       </div>
       <div class="addTaskContainerBoxes">
         <p class="addTaskLabels">Description</p>
-        <textarea
+        <textarea id="description"
           class="inputsAddTask"
           required
           placeholder="Enter a Description"
@@ -20,7 +20,7 @@
       </div>
       <div class="addTaskContainerBoxes">
         <p class="addTaskLabels">Category</p>
-        <select
+        <select 
           class="inputsAddTask height51"
           name="taskCategory"
           id="taskCategory"
@@ -36,8 +36,8 @@
         </select>
       </div>
       <div class="addTaskContainerBoxes">
-        <p class="addTaskLabels"></p>
-        <select
+        <p class="addTaskLabels">Assigned to</p>
+        <select 
           class="inputsAddTask height51"
           name="contactToAssign"
           id="contactToAssign"
@@ -53,7 +53,7 @@
     <div class="addTaskContainerSides">
       <div class="addTaskContainerBoxes">
         <p class="addTaskLabels">Due Date</p>
-        <input
+        <input id ='dueDate'
           class="inputsAddTask height51"
           type="date"
           required
@@ -62,15 +62,15 @@
       </div>
       <div class="addTaskContainerBoxes">
         <p class="addTaskLabels">Prio</p>
-        <div class="prioContainer">
-          <button onclick="assignPrio(urgent)" class="prio height51">
-            Urgent <img src="../assets/img/double-up.png" />
+        <div id="prioContainer">
+          <button id="urgent" type="button" onclick="assignPrio('urgent')" class="prio height51">
+            Urgent <img src="../assets/img/urgent.png" />
           </button>
-          <button onclick="assignPrio(medium)" class="prio height51">
-            Medium <img src="../assets/img/equal-sign.png" />
+          <button id="medium" type="button" onclick="assignPrio('medium')" class="prio height51">
+            Medium <img src="../assets/img/medium.png" />
           </button>
-          <button onclick="assignPrio(low)" class="prio height51">
-            Low <img src="../assets/img/double-down.png" />
+          <button id="low" type="button" onclick="assignPrio('low')" class="prio height51">
+            Low <img src="../assets/img/low.png" />
           </button>
         </div>
       </div>
