@@ -26,7 +26,7 @@
     width:100%;
     font-size: 20px;
     margin: 160px 0;
-    gap: 12px;
+    gap: 15px;
 }
 
 .sidebar_category{
@@ -55,7 +55,7 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    gap: 12px;  
+    gap: 8px;  
 }
 
 .sidebar_category_line a{
@@ -77,7 +77,7 @@
 }
 
 #sidebar_policies{
-    flex:1;
+    flex: 1;
     font-size: 18px;
     display: flex;
     flex-direction: column;
@@ -95,3 +95,77 @@
 #sidebar_policies a:hover{
     color: #FFFFFF;
 }
+
+#topbar{
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 16%;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 20px;
+    box-shadow: 2px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+#topbar_text{
+    padding-left: 8%;
+
+}
+
+#topbar_icons{
+    padding-right: 40px;
+    display: flex;
+    gap: 24px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+#topbar_Icons_Username{
+    width: 50px;
+    height: 50px;
+    border: 3px solid black;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    color: aqua;
+    cursor: pointer;
+}
+
+
+
+/* Ab hier Style_Summary
+*
+*
+*
+*/
+#sumamry{
+    background-color: #F6F7F8;
+}
+
+#summary_container_top{
+    display: flex;
+    gap: 30px;
+}
+
+#summary_top_text{
+    font-size: 60px;
+    font-weight: bold;    
+}
+
+#summary_top_stroke{
+    height: 100%;
+    border-right: 4px solid black;
+}
+
+#summary_top_title{
+    height: 100%;
+    align-items: center;
+    font-size: 28px;
+}
+
+
