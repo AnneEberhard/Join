@@ -97,12 +97,23 @@ body {
   color: white;
   font-weight: bold;
   font-size: 16px;
+  transition: 0s background-color;
+}
+
+#login:hover {
+  background: #29abe2;
+  transition-delay: 0.08s;
 }
 
 #login:hover,
 #guest-login:hover,
 .sign-btn:hover {
   cursor: pointer;
+}
+
+#login:hover,
+.sign-btn:hover {
+  background: #29abe2;
 }
 
 #guest-login {
