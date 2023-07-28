@@ -34,13 +34,22 @@ async function includeHTML() {
 
 function addSubTask() {
   let subTask = document.getElementById("inputSubtask").value;
+  subTasksArray.push(subTask);
+  let index = findIndexOfItem (subTasksArray, subTask);
   document.getElementById("subTasks").innerHTML += /*html*/ `
     <div class="subTaskBox">
-        <div class="square"></div>
+        <div id="checkBox${index}" class="checkBox" onclick="addCheck(${index})"></div>
         <div class="subtask">${subTask}</div>
     </div>`;
-  subTasksArray.push(subTask);
   document.getElementById("inputSubtask").value = "";
+}
+
+function findIndexOfItem (array, item) {
+    return array.indexOf(item);
+}
+
+function addCheck(index) {
+    document.getElementById(`checkBox${index}`).innerHTML = /*html*/ `<img src="../assets/img/done-30.png">`;
 }
 
 function assignPrio(chosenPrio) {

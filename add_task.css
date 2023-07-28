@@ -160,11 +160,19 @@ button:hover {
   height: 24px;
 }
 
-.square {
+.checkBox {
   border: solid black 1px;
   height: 16px;
   width: 16px;
   border-radius: 3px;
+  overflow: visible;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.checkBox img {
+   height: 24px;
 }
 
 .subtask {

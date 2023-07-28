@@ -1,4 +1,4 @@
-<form class="addTaskContainer" onsubmit="createTask()">
+<form class="addTaskContainer" onsubmit="createTask(); return false;">
   <h2>Add Task</h2>
   <div class="addTaskSubContainer">
     <div class="addTaskContainerSides">
@@ -89,6 +89,6 @@
 
   <div class="finalizeTask">
     <button type="button" onclick="clearTask()" class="buttonAddTask clear">Clear <img src="../assets/img/x.png"></button>
-    <button type="submit" class="buttonAddTask create">Create Task <img src="../assets/img/correct.png"></button>
+    <button type="submit" class="buttonAddTask create">Create Task <img src="../assets/img/done_white.png"></button>
   </div>
 </form>
