@@ -1,21 +1,12 @@
-let tasks = [
-  {
-    title: "",
-    description: "",
-    category: "",
-    assignedContacts: [],
-    dueDate: "",
-    prio: "",
-    subtasks: [],
-  },
-];
-
+let tasks = [];
+let categories = ['Sales', 'Backoffice']
 let prios = ['urgent', 'medium', 'low'];
-let chosenPrio;
+let assignedPrio;
 let subTasksArray = [];
 
 async function initTask() {
   await includeHTML();
+  renderCategories();
 }
 
 async function includeHTML() {
@@ -30,6 +21,10 @@ async function includeHTML() {
       element.innerHTML = "Page not found";
     }
   }
+}
+
+function renderCategories() {
+    
 }
 
 function addSubTask() {
@@ -53,7 +48,8 @@ function addCheck(index) {
 }
 
 function assignPrio(chosenPrio) {
-  capitalPrio = chosenPrio.charAt(0).toUpperCase() + chosenPrio.slice(1);
+  let capitalPrio = chosenPrio.charAt(0).toUpperCase() + chosenPrio.slice(1);
+  assignedPrio = chosenPrio;
   for (let i = 0; i < prios.length; i++) {
     const prio = prios[i];
     prioBox = document.getElementById(`${prio}`);
@@ -74,7 +70,6 @@ function clearTask() {
   document.getElementById("taskCategory").value = "";
   document.getElementById("contactToAssign").value = "";
   document.getElementById("dueDate").value = "";
-  document.getElementById("inputSubtask").value = "";
   document.getElementById("inputSubtask").value = "";
   document.getElementById("subTasks").innerHTML = "";
   document.getElementById("urgent").classList.remove("urgent");
@@ -99,6 +94,23 @@ function renderPrio() {
 }
 
 function createTask() {
-  //create Task
-  console.log("createTask");
+    let title = document.getElementById("title").value;
+    let description = document.getElementById("description").value;
+    let taskCategory = document.getElementById("taskCategory").value;
+    let dueDate = document.getElementById("dueDate").value;
+    let task = {
+        'title': title,
+        'description': description,
+        'category': taskCategory,
+        'assignedContacts': [],
+        'dueDate': dueDate,
+        'prio': assignedPrio,
+        'subtasks': subTasksArray,
+          }
+    tasks.push(task);
+    saveTask();
+}
+
+function saveTask() {
+    //save to Server
 }

@@ -1,6 +1,7 @@
 body {
   background-color: rgb(245, 245, 245);
   font-family: "inter";
+  display: flex;
 }
 h2 {
   font-size: 61px;
@@ -44,6 +45,7 @@ button:hover {
 .height51 {
   height: 51px;
 }
+
 .inputsAddTask {
   width: 100%;
   border-radius: 10px;
@@ -53,6 +55,18 @@ button:hover {
   font-size: 20px;
   box-sizing: border-box;
   font-family: "inter" !important;
+}
+
+#taskCategory {
+  border-radius: 10px !important;
+}
+
+select:focus-visible {
+  outline-offset: none;
+}
+
+#taskCategory * {
+  border-radius: 10px !important;
 }
 
 .divider {
