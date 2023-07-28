@@ -1,7 +1,7 @@
 body {
   margin: 0;
   background-color: #f6f7f8;
-  font-family: "inter";
+  font-family: "Inter";
 }
 
 .main-page {
@@ -198,4 +198,17 @@ body {
   gap: 25px;
   width: 100%;
   margin-bottom: 10px;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  position: absolute;
+  bottom: 30px;
+}
+
+.footer a {
+  text-decoration: none;
+  color: #a8a8a8;
 }
