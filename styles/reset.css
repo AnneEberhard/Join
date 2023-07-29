@@ -70,7 +70,7 @@ body {
 #login {
   border-radius: 8px;
   height: 45px;
-  width: 220px;
+  width: 150px;
   background: #2a3647;
   color: white;
   font-weight: bold;
@@ -133,4 +133,15 @@ body {
   cursor: pointer;
   background-color: #f6f7f8;
   border-radius: 25px;
+}
+
+#password,
+#confirmpassword {
+  padding: 10px;
+  width: 60%;
+  border-radius: 5px;
+  border-color: #d1d1d1;
+  border: 1px solid #d1d1d1;
+  text-indent: 10px;
+  font-family: "Inter";
 }
