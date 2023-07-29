@@ -9,7 +9,7 @@
     <script src="js/storage.js"></script>
     <script src="script.js"></script>
   </head>
-  <body>
+  <body onload="init();">
     <div class="main-page">
       <div class="loading-screen">
         <img class="logo" src="assets/img/logo.svg" />
@@ -22,7 +22,7 @@
       </div>
       <div class="login-container">
         <h1>Log in</h1>
-        <form id="login-form" onsubmit="loadUser(); return false;">
+        <form id="login-form" onsubmit="loginUser(); return false;">
           <div class="line"></div>
           <div class="input-container">
             <input id="email" type="email" placeholder="Email" />
@@ -36,8 +36,10 @@
             <a href="#" id="remember-link">I forgot my password</a>
           </div>
           <div class="login-buttons">
-            <button id="login">Log in</button>
-            <button id="guest-login">Guest Log in</button>
+            <button type="submit" id="login">Log in</button>
+            <button type="button" id="guest-login" onclick="guestUser();">
+              Guest Log in
+            </button>
           </div>
         </form>
       </div>

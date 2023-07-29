@@ -23,14 +23,6 @@ async function addUser() {
   }
 }
 
-async function loadUsers() {
-  try {
-    users = JSON.parse(await getItem("users"));
-  } catch (e) {
-    console.error("Loading error:", e);
-  }
-}
-
 function resetForm() {
   username.value = "";
   email.value = "";
