@@ -36,14 +36,14 @@ body {
   top: 30px;
   left: 30px;
   background-color: #f6f7f8;
-  width: 96vw;
-  height: 96vh;
+  /* width: 96vw; */
+  /* height: 96vh; */
   opacity: 1;
   visibility: visible;
   z-index: 9999;
-  transition: opacity 200ms ease-out, visibility 200ms ease-out;
+  /* transition: opacity 200ms ease-out, visibility 200ms ease-out; */
   position: absolute;
-  animation: resizeLogo 2s ease-in-out forwards 700ms;
+  /* animation: resizeLogo 2s ease-in-out forwards 700ms; */
 }
 
 .logo {
