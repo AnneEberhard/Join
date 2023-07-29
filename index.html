@@ -6,6 +6,7 @@
     <title>Join</title>
     <link rel="stylesheet" href="styles/fonts.css" />
     <link rel="stylesheet" href="styles/main.css" />
+    <script src="js/storage.js"></script>
     <script src="script.js"></script>
   </head>
   <body>
@@ -21,7 +22,7 @@
       </div>
       <div class="login-container">
         <h1>Log in</h1>
-        <form id="login-form">
+        <form id="login-form" onsubmit="loadUser(); return false;">
           <div class="line"></div>
           <div class="input-container">
             <input id="email" type="email" placeholder="Email" />

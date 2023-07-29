@@ -67,7 +67,7 @@ body {
   margin-bottom: 20px;
 }
 
-#login {
+#signup {
   border-radius: 8px;
   height: 45px;
   width: 150px;
@@ -77,12 +77,12 @@ body {
   font-size: 16px;
 }
 
-#login:hover {
+#signup:hover {
   cursor: pointer;
   background: #29abe2;
 }
 
-.login-buttons {
+.signup-buttons {
   display: flex;
   gap: 40px;
 }
