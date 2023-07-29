@@ -1,12 +1,14 @@
 let tasks = [];
-let categories = ['Sales', 'Backoffice']
 let prios = ['urgent', 'medium', 'low'];
+let categories = ['Backoffice', 'Design', 'Marketing', 'Media', 'Sales'];
+let contacts = ['Anton Mayer', 'Anja Schulz'];
 let assignedPrio;
 let subTasksArray = [];
 
 async function initTask() {
   await includeHTML();
   renderCategories();
+  renderContacts();
 }
 
 async function includeHTML() {
@@ -24,7 +26,38 @@ async function includeHTML() {
 }
 
 function renderCategories() {
-    
+  document.getElementById('categoryOptions').innerHTML = '';
+  for (let i = 0; i < categories.length; i++) {
+    const category = categories[i];
+    document.getElementById('categoryOptions').innerHTML += /*html*/`
+  <div id="category${i}" class="option" onclick="selectCategory(${i})">
+  <div>${category}</div>
+  <div class="circle colorCategory${i}"></div>
+</div>`;
+  }
+}
+
+function renderContacts() {
+  document.getElementById('contactsOptions').innerHTML = '';
+  for (let i = 0; i < contacts.length; i++) {
+    const contact = contacts[i];
+    document.getElementById('contactsOptions').innerHTML += /*html*/`
+  <div id="contact${i}" class="options contactList" onclick="selectContact(${i})">
+  <div>${contact}</div>
+  <div class="checkBox"></div>
+</div>`;
+  }
+}
+
+function toggleOptions(id) {
+  const optionsDiv = document.getElementById(`${id}`);
+  optionsDiv.classList.toggle('hidden');
+}
+
+function selectOption(option) { //noch bearbeiten
+  const selectedOptionDiv = document.querySelector('.selected-option');
+  selectedOptionDiv.textContent = option;
+  toggleOptions(); 
 }
 
 function addSubTask() {
