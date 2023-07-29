@@ -43,7 +43,7 @@ body {
   z-index: 9999;
   transition: opacity 200ms ease-out, visibility 200ms ease-out;
   position: absolute;
-  animation: resizeLogo 3s ease-in-out forwards 700ms;
+  animation: resizeLogo 2s ease-in-out forwards 700ms;
 }
 
 .logo {
