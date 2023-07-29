@@ -1,6 +1,7 @@
 let users = [];
 let username = document.getElementById("name");
 let email = document.getElementById("email");
+let confirm = document.getElementById("confirmpassword");
 let password = document.getElementById("password");
 
 async function addUser() {
@@ -17,6 +18,7 @@ async function addUser() {
     });
     await setItem("users", JSON.stringify(users));
     resetForm();
+    window.location.href = "index.html";
   } else {
   }
 }
@@ -30,7 +32,9 @@ async function loadUsers() {
 }
 
 function resetForm() {
+  username.value = "";
   email.value = "";
+  confirm.value = "";
   password.value = "";
   signup.disabled = false;
 }
