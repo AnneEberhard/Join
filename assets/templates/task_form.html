@@ -22,22 +22,23 @@
       </div>
       <div class="addTaskContainerBoxes">
         <p class="addTaskLabels">Category</p>
-        <div class="category inputsAddTask" onclick="toggleOptions('categoryOptions')">
-          <div id="selection">
+        <div class="category inputsAddTask">
+          <div id="selection" class="selection">
             <p>Select task category</p>
-            <img src="assets/img/down-30.png" />
+            <img src="assets/img/down-30.png" onclick="toggleOptions('categoryOptions')"/>
           </div>
-          <div class="categoryOptions hidden" id="categoryOptions"></div>
+          <div class="hidden" id="categoryOptions"></div>
         </div>
+        <div id="newCategoryDotsContainer"></div>
       </div>
       <div class="addTaskContainerBoxes">
         <p class="addTaskLabels">Assigned to</p>
-        <div class="inputsAddTask category " onclick="toggleOptions('contactsOptions')">
-          <div class="selectContactToAssign">
+        <div class="inputsAddTask category" >
+          <div class="selectContactToAssign selection">
             <p>Select contacts to assign</p>
-            <img src="assets/img/down-30.png" />
+            <img src="assets/img/down-30.png" onclick="toggleOptions('contactsOptions')"/>
           </div>
-          <div class="categoryOptions hidden" id="contactsOptions"></div>
+          <div class="hidden" id="contactsOptions"></div>
         </div>
       </div>
     </div>
@@ -60,7 +61,7 @@
             id="urgent"
             type="button"
             onclick="assignPrio('urgent')"
-            class="prio height51"
+            class="prio height51 hover"
           >
             Urgent <img src="assets/img/urgent.png" />
           </button>
@@ -68,7 +69,7 @@
             id="medium"
             type="button"
             onclick="assignPrio('medium')"
-            class="prio height51"
+            class="prio height51 hover"
           >
             Medium <img src="assets/img/medium.png" />
           </button>
@@ -76,7 +77,7 @@
             id="low"
             type="button"
             onclick="assignPrio('low')"
-            class="prio height51"
+            class="prio height51 hover"
           >
             Low <img src="assets/img/low.png" />
           </button>
@@ -87,7 +88,7 @@
         <div>
           <div class="addSubTask height51">
             <input id="inputSubtask" placeholder="Add new subtask" />
-            <div class="buttonAddSubTask" onclick="addSubTask()">
+            <div class="buttonAddSubTask hover" onclick="addSubTask()">
               <img src="assets/img/plus.png" />
             </div>
           </div>
@@ -98,10 +99,10 @@
   </div>
 
   <div class="finalizeTask">
-    <button type="button" onclick="clearTask()" class="buttonAddTask clear">
+    <button type="button" onclick="clearTask()" class="buttonAddTask clear hover">
       Clear <img src="assets/img/x.png" />
     </button>
-    <button type="submit" class="buttonAddTask create">
+    <button type="submit" class="buttonAddTask create hover">
       Create Task <img src="assets/img/done_white.png" />
     </button>
   </div>
