@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
     <script src="/js/script_Templates.js"></script>
     <title>Document</title>
 </head>
+
 <body onload="init()">
     <div w3-include-html="assets/templates/desktop_template.html"></div>
     <div id="summary">
@@ -18,61 +20,70 @@
             <div id="summary_top_title">Everything in a nutshell!</div>
         </div>
         <div id="summary_container_bottom">
-            <div id="summary_bottom_stats">
-                <div id="summary_bottom_stats_top">
-                    <div id="tasks_in_Board" class="summary_bottom_stats_container">
-                        <div id="tasks_in_Board_number" class="summary_number">5</div>
-                        <div id="tasks_in_Board_text" class="summary_bottom_stats_container_text">Tasks in Board</div>
+            <div id="summary_container_bottom_left">
+                <div id="summary_bottom_stats">
+                    <div id="summary_bottom_stats_top">
+                        <div id="tasks_in_Board" class="summary_bottom_stats_container">
+                            <div id="tasks_in_Board_number" class="summary_number">5</div>
+                            <div id="tasks_in_Board_text" class="summary_bottom_stats_container_text">Tasks in Board
+                            </div>
+                        </div>
+                        <div id="tasks_in_progress" class="summary_bottom_stats_container">
+                            <div id="tasks_in_progress_number" class="summary_number">2</div>
+                            <div id="tasks_in_progress_text" class="summary_bottom_stats_container_text">Tasks in
+                                Progress
+                            </div>
+                        </div>
+                        <div id="awaiting_feedback" class="summary_bottom_stats_container">
+                            <div id="awaiting_feedback_number" class="summary_number">2</div>
+                            <div id="awaiting_feedback_text" class="summary_bottom_stats_container_text">Awaiting
+                                Feedback
+                            </div>
+                        </div>
                     </div>
-                    <div id="tasks_in_progress" class="summary_bottom_stats_container">
-                        <div id="tasks_in_progress_number" class="summary_number">2</div>
-                        <div id="tasks_in_progress_text" class="summary_bottom_stats_container_text">Tasks in Progress</div>
+                </div>
+                <div id="summary_bottom_stats_mid">
+                    <div id="summary_bottom_stats_mid_left">
+                        <img src="assets/img/Icon_Double_Arrow.png" alt="">
+                        <div id="summary_bottom_stats_mid_left_container">
+                            <div id="summary_bottom_stats_mid_left_container_number" class="summary_number">1</div>
+                            <div id="summary_bottom_stats_mid_left_container_text">Urgent</div>
+                        </div>
                     </div>
-                    <div id="awaiting_feedback" class="summary_bottom_stats_container">
-                        <div id="awaiting_feedback_number" class="summary_number">2</div>
-                        <div id="awaiting_feedback_text" class="summary_bottom_stats_container_text">Awaiting Feedback</div>
+                    <div id="summary_bottom_stats_mid_mid"></div>
+                    <div id="summary_bottom_stats_mid_right">
+                        <div id="summary_bottom_stats_mid_right_date">October 16, 2022</div>
+                        <div id="summary_bottom_stats_mid_right_text"> Upcoming Deadline</div>
+                    </div>
+                </div>
+                <div id="summary_bottom_stats_bottom">
+                    <div id="summary_bottom_stats_bottom_left" class="summary_bottom_stats_bottom_container">
+                        <img src="assets/img/Icon_Pencil.png" alt="">
+                        <div id="summary_bottom_stats_bottom_left_todo" class="summary_bottom_stats_bottom_stat">
+                            <div id="summary_bottom_stats_bottom_left_todo_number" class="summary_number">1</div>
+                            <div id="summary_bottom_stats_bottom_left_todo_text" class="summary_text">To_do</div>
+                        </div>
+                    </div>
+                    <div id="summary_bottom_stats_bottom_right" class="summary_bottom_stats_bottom_container">
+                        <img src="assets/img/Icon_hook.png" alt="">
+                        <div id="summary_bottom_stats_bottom_right_done" class="summary_bottom_stats_bottom_stat">
+                            <div id="summary_bottom_stats_bottom_right_done_number" class="summary_number">1</div>
+                            <div id="summary_bottom_stats_bottom_right_done_text" class="summary_text">Done</div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div id="summary_bottom_stats_mid">
-                <div id="summary_bottom_stats_mid_left">
-                    <img src="assets/img/Icon_Double_Arrow.png" alt="">
-                    <div id="summary_bottom_stats_mid_left_container">
-                        <div id="summary_bottom_stats_mid_left_container_number" class="summary_number">1</div>
-                        <div id="summary_bottom_stats_mid_left_container_text">Urgent</div>
-                    </div>
+            <div id="summary_container_bottom_right">
+                <div id="summary_container_bottom_right_greeting">
+                    Good morning,
                 </div>
-                <div id="summary_bottom_stats_mid_mid"></div>
-                <div id="summary_bottom_stats_mid_right">
-                    <div id="summary_bottom_stats_mid_right_date">October 16, 2022</div>
-                    <div id="summary_bottom_stats_mid_right_text"> Upcoming Deadline</div>
+                <div id="summary_container_bottom_right_Name">
+                    Klemens Naue
                 </div>
-            </div>
-            <div id="summary_bottom_stats_bottom">
-                <div id="summary_bottom_stats_bottom_left" class="summary_bottom_stats_bottom_container">
-                    <img src="assets/img/Icon_Pencil.png" alt="">
-                    <div id="summary_bottom_stats_bottom_left_todo" class="summary_bottom_stats_bottom_stat">
-                        <div id="summary_bottom_stats_bottom_left_todo_number" class="summary_number">1</div>
-                        <div id="summary_bottom_stats_bottom_left_todo_text" class="summary_text">To_do</div>
-                    </div>
-                </div>
-                <div id="summary_bottom_stats_bottom_right" class="summary_bottom_stats_bottom_container">
-                    <img src="assets/img/Icon_hook.png" alt="">
-                    <div id="summary_bottom_stats_bottom_right_done" class="summary_bottom_stats_bottom_stat">
-                        <div id="summary_bottom_stats_bottom_right_done_number" class="summary_number">1</div>
-                        <div id="summary_bottom_stats_bottom_right_done_text" class="summary_text">Done</div>
-                    </div>
-                </div>
-            </div>
-            <div id="summary_bottom_greeting">
-                <div id="summary_bottom_gretting_daytime">Good morning,</div>
-                <div id="summary_bottom_greeting_name">Klemens Naue</div>
             </div>
         </div>
     </div>
-    
+
 </body>
+
 </html>
-
-
-

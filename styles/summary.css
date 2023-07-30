@@ -1,6 +1,5 @@
 #summary{
     font-family: "Inter";
-    padding-left: calc(5% + 96px);
     height: 100vh;
     background-color: #F6F7F8;
     display: flex;
@@ -10,9 +9,10 @@
 
 #summary_container_top{
     display: flex;
+    align-items: center;
     gap: 30px;
-    padding-left: 200px;
-    padding-top: 200px;
+    padding-left: 328px;
+    padding-top: 206px;
 }
 
 #summary_top_text{
@@ -22,20 +22,27 @@
 
 #summary_top_stroke{
     height: 100%;
-    border-right: 4px solid black;
+    border-right: 4px solid rgb(197, 32, 230);
 }
 
 #summary_top_title{
     height: 100%;
+    display: flex;
     align-items: center;
     font-size: 28px;
 }
 
 #summary_container_bottom{
     display: flex;
+    align-items: center;
+    padding-left: 328px;
+    gap: 80px;
+}
+
+#summary_container_bottom_left{
+    display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding-left: 200px;
     width: 560px;
     height: 560px;
 }
@@ -165,4 +172,27 @@
 
 .summary_text{
     font-size: 20px;
+}
+
+#summary_container_bottom_right{
+    display: flex;
+    flex-direction: column;
+    width: 385px;
+    height: 136px;
+    gap: 3px;
+
+}
+
+#summary_container_bottom_right_greeting{
+    font-size: 47px;
+    font-weight: 500;
+    line-height: 56px;
+}
+
+#summary_container_bottom_right_Name{
+    font-size: 64px;
+    font-weight: 700;
+    color: rgb(197, 32, 230);
+    display: flex;
+    white-space: nowrap;
 }
