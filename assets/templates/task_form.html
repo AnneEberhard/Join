@@ -1,4 +1,4 @@
-<form class="addTaskContainer" onsubmit="createTask(); return false;">
+<form class="addTaskContainer" onsubmit="createTask(event); return false;">
   <h2 id="test">Add Task</h2>
   <div class="addTaskSubContainer">
     <div class="addTaskContainerSides">
@@ -22,8 +22,8 @@
       </div>
       <div class="addTaskContainerBoxes">
         <p class="addTaskLabels">Category</p>
-        <div class="category inputsAddTask">
-          <div id="selection" class="selection">
+        <div id="category" class="category inputsAddTask">
+          <div id="categorySelection" class="selection">
             <p>Select task category</p>
             <img src="assets/img/down-30.png" onclick="toggleOptions('categoryOptions')"/>
           </div>

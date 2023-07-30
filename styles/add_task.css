@@ -80,6 +80,10 @@ h2 {
   cursor: pointer;
 }
 
+.dropdown {
+  height:24px;
+}
+
 .hidden {
   display: none;
 }
@@ -192,10 +196,27 @@ h2 {
   justify-content: space-between;
 }
 
-.newCategoryDots {
+.iconsNewCategory img {
+  height: 20px;
+  width: 20px;
+}
+
+.dividerSmall {
+  width: 1px;
+  background-color: rgb(209, 209, 209);
+  margin-left: 8px;
+  margin-right: 8px;
+  height: 30px;
+}
+
+#newCategoryDots {
   display: flex;
   margin: 16px;
   gap: 16px;
+}
+
+.selected {
+  box-shadow: 0px 4px rgba(0, 0, 0, 0.1);
 }
 
 .contactList {
@@ -207,6 +228,12 @@ h2 {
   padding: 0px 20px 4px 21px !important;
 }
 
+.checkBoxChecked {
+ background-color: black;
+  height: 12px;
+  width: 12px;
+}
+
 .divider {
   width: 1px;
   background-color: rgb(209, 209, 209);
@@ -215,13 +242,6 @@ h2 {
   height: 551px;
 }
 
-.dividerSmall {
-  width: 1px;
-  background-color: rgb(209, 209, 209);
-  margin-left: 8px;
-  margin-right: 8px;
-  height: 30px;
-}
 
 #prioContainer {
   display: flex;
