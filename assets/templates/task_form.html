@@ -6,7 +6,7 @@
         <p class="addTaskLabels">Title</p>
         <input
           id="title"
-          class="inputsAddTask height51"
+          class="inputsAddTask height51 padding"
           required
           placeholder="Enter a title"
         />
@@ -15,30 +15,20 @@
         <p class="addTaskLabels">Description</p>
         <textarea
           id="description"
-          class="inputsAddTask"
+          class="inputsAddTask padding"
           required
           placeholder="Enter a Description"
         ></textarea>
       </div>
       <div class="addTaskContainerBoxes">
         <p class="addTaskLabels">Category</p>
-        <div id="category" class="category inputsAddTask">
-          <div id="categorySelection" class="selection">
-            <p>Select task category</p>
-            <img src="assets/img/down-30.png" onclick="toggleOptions('categoryOptions')"/>
-          </div>
-          <div class="hidden" id="categoryOptions"></div>
+        <div id="category" class="inputsAddTask">
         </div>
         <div id="newCategoryDotsContainer"></div>
       </div>
       <div class="addTaskContainerBoxes">
         <p class="addTaskLabels">Assigned to</p>
-        <div class="inputsAddTask category" >
-          <div class="selectContactToAssign selection">
-            <p>Select contacts to assign</p>
-            <img src="assets/img/down-30.png" onclick="toggleOptions('contactsOptions')"/>
-          </div>
-          <div class="hidden" id="contactsOptions"></div>
+        <div id="contactContainer" class="inputsAddTask">
         </div>
       </div>
     </div>
@@ -48,7 +38,7 @@
         <p class="addTaskLabels">Due Date</p>
         <input
           id="dueDate"
-          class="inputsAddTask height51"
+          class="inputsAddTask height51 padding"
           type="date"
           required
           placeholder="dd/mm/yyyy"

@@ -13,6 +13,7 @@ let freeColors = [6,7,8,9];
 let prios = ['urgent', 'medium', 'low'];
 let newCategoryName;
 let newCategoryColor;
+let inputDone = false; //use as safety for priority and category
 
 //these are needed to fill task
 let assignedCategory;
@@ -44,14 +45,26 @@ async function includeHTML() {
 
 function renderCategories() {
   document.getElementById("newCategoryDotsContainer").innerHTML = "";
-  document.getElementById('category').innerHTML = /*html*/`<div id="categorySelection" class="selection">
-  <p>Select task category</p>
+  document.getElementById('category').innerHTML = templateCategory();
+  document.getElementById('categorySelection').setAttribute('disabled', 'true');
+  renderCategoryOptions();
+  resetCategories();
+}
+
+function templateCategory() {
+  let templateCategory = /*html*/`
+  <div class="inputWithList">
+  <input id="categorySelection" class="selection" required placeholder="Select task category">
+ <div id="categorySelectionCircle"></div> 
+ <div id="categorySelectionLeft"></div>
+ <div id="dividerSmall"></div>
+ <div id="categorySelectionRight">
   <img src="assets/img/down-30.png" class="hover dropdown" onclick="toggleOptions('categoryOptions')"/>
+ </div>
 </div>
 <div class="hidden" id="categoryOptions"></div>
 </div>`;
-renderCategoryOptions();
-resetCategories();
+  return templateCategory;
 }
 
 function renderCategoryOptions() {
@@ -90,29 +103,26 @@ function toggleOptions(id) {
 function selectCategory(i) {
   const category = categories[i]['name'];
   assignedCategory = category;
- document.getElementById('categorySelection').innerHTML = templateSelectedCategory(i, category);
+ document.getElementById('categorySelection').value = category;
+ document.getElementById('categorySelectionCircle').innerHTML = /*html*/ `
+ <div class="circle colorCategory${i}"></div>`;
   toggleOptions('categoryOptions');
-}
-
-function templateSelectedCategory(i, category) {
-  let templateSelectedCategory = /*html*/ `  
-  <div class='selectedCategoryBox'>
-    <div id="category${i}" class="selectedCategory" onclick="selectCategory(${i})">
-      <div>${category}</div>
-      <div class="circle colorCategory${i}"></div>
-    </div>
-    <img src="assets/img/down-30.png" class="hover dropdown" onclick="toggleOptions('categoryOptions')"/>
- </div>`;
- return templateSelectedCategory;
 }
 
 function resetCategories () {
  newCategoryName = '';
-newCategoryColor = '';
+  newCategoryColor = '';
 }
 
 function addNewCategory() {
-  document.getElementById('categorySelection').innerHTML = templateCreateNewCategory();
+  document.getElementById('categorySelection').value='';
+  document.getElementById('categorySelection').removeAttribute('disabled');
+  document.getElementById('categorySelection').setAttribute('placeholder', 'New category Name');
+  document.getElementById('categorySelection').setAttribute('onkeydown', 'checkIfNewCategoryReady()');
+  document.getElementById('categorySelectionCircle').innerHTML = '';
+  document.getElementById('categorySelectionLeft').innerHTML = templateCategorySelectionLeft();
+  document.getElementById('dividerSmall').innerHTML = templatedividerSmall();
+  document.getElementById('categorySelectionRight').innerHTML = templateCategorySelectionRight();
   document.getElementById('newCategoryDotsContainer').innerHTML = `<div id="newCategoryDots"></div>`;
   for (let i = 0; i < freeColors.length; i++) {
     document.getElementById('newCategoryDots').innerHTML += templateNewCategoryDots(i);
@@ -120,18 +130,21 @@ function addNewCategory() {
   toggleOptions('categoryOptions');
 }
 
-function templateCreateNewCategory() {
- let templateCreateNewCategory = /*html*/ `  <div class='selectedCategoryBox'>
- <div  class="selectedCategory">
-   <input id="newCategoryName" onkeydown="checkIfNewCategoryReady()" placeholder="New category name">
- </div>
- <div class="iconsNewCategory">
- <img src="assets/img/x.png" class="hover" onclick="renderCategories()"/>
- <div class="dividerSmall"></div>
- <img src="assets/img/done-30.png" id="addCategory" />
-</div>
-</div>`;
- return templateCreateNewCategory;
+function templateCategorySelectionLeft() {
+  let templateCategorySelectionLeft = `
+  <img src="assets/img/x.png" class="hover iconsNewCategory" onclick="renderCategories()"/>`;
+  return templateCategorySelectionLeft;
+}
+
+function templatedividerSmall() {
+  let templatedividerSmall = `<div class="dividerSmall"></div>`;
+  return templatedividerSmall;
+}
+
+function templateCategorySelectionRight() {
+  let templateCategorySelectionRight = `
+  <img src="assets/img/done-30.png" class="iconsNewCategory" id="addCategory" />`;
+  return templateCategorySelectionRight;
 }
 
 function templateNewCategoryDots(i) { 
@@ -143,7 +156,7 @@ function templateNewCategoryDots(i) {
 
 
 function checkIfNewCategoryReady() {
-  newCategoryName = document.getElementById('newCategoryName').value;
+  newCategoryName = document.getElementById('categorySelection').value;
   if (newCategoryName !== '' && newCategoryColor !== null) {
     const addCategoryButton = document.getElementById('addCategory');
     addCategoryButton.addEventListener('click', addCategory);
@@ -163,16 +176,27 @@ function addColor(i) {
 function addCategory() {
   const newCategoryObject = { 'name': newCategoryName, 'colorCode': newCategoryColor };
   categories.push(newCategoryObject);
+  let lastItem = categories.length -1;
+  console.log(categories);
+  console.log(lastItem);
   const indexToRemove = freeColors.indexOf(newCategoryColor);
 if (indexToRemove !== -1) {
   freeColors.splice(indexToRemove, 1);
 }
-renderCategories();
+  renderCategories();
+  selectCategory(lastItem);
+  toggleOptions('categoryOptions');
 }
 
-
+//invite new contact
+//if contact added required gone
 function renderContacts() {
-  document.getElementById('contactsOptions').innerHTML = '';
+  document.getElementById('contactContainer').innerHTML = /*html*/`
+  <div class="inputWithList">
+  <input id="contactSelection" class="selection" required disabled placeholder="Select contacts to assign">
+  <img src="assets/img/down-30.png" class="hover dropdown" onclick="toggleOptions('contactsOptions')"/>
+  </div>
+  <div class="hidden" id="contactsOptions"></div>`;
   for (let i = 0; i < contacts.length; i++) {
     const contact = contacts[i];
     document.getElementById('contactsOptions').innerHTML += /*html*/`
@@ -215,6 +239,7 @@ function updateAssignedContacts() {
   }
 }
 
+//add getDate function and assign mm/yyyy" to id="dueDate"
 
   function renderPrio() {
     document.getElementById("prioContainer").innerHTML = /*html*/`
