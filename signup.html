@@ -24,14 +24,14 @@
           <form id="forgot-form" onsubmit="addUser(); return false;">
             <div class="line"></div>
             <div class="input-container">
-              <input id="name" type="text" placeholder="Name" />
-              <input id="email" type="email" placeholder="Email" />
-              <input id="password" type="password" placeholder="Password" />
-              <input id="confirmpassword" type="password" placeholder="Confirm password" />
+              <input id="name" type="text" placeholder="Name" required/>
+              <input id="email" type="email" placeholder="Email" required/>
+              <input id="password" type="password" placeholder="Password" required/>
+              <input id="confirmpassword" type="password" placeholder="Confirm password" required/>
             </div>
             <div class="options">
                 <div class="privacy-container">
-                  <input id="privacy" type="checkbox" />
+                  <input id="privacy" type="checkbox" required/>
                   <label class="label" for="privacy">I accept the <a href="#">Privacy Policy</a></label>
                 </div>
               </div>

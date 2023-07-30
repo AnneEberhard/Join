@@ -3,6 +3,7 @@ let username = document.getElementById("name");
 let email = document.getElementById("email");
 let confirm = document.getElementById("confirmpassword");
 let password = document.getElementById("password");
+let signup = document.getElementById("signup");
 
 async function addUser() {
   signup.disabled = true;
