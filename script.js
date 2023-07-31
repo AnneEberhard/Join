@@ -14,13 +14,18 @@ async function loadUsers() {
 }
 
 function loginUser() {
+  let error = document.getElementById("error");
   loadUsers();
   if (users[0].email == email.value && users[0].password == password.value) {
+    password.classList.remove("border-red");
+    error.style = "display: none;";
     window.location.href = "summary.html";
     currentUser = users[0].name;
     cacheData();
   } else {
-    alert(`Wrong Email or Password. Please check your Credentials.`);
+    password.classList.add("border-red");
+    error.style = "display: flex;";
+    password.value = "";
   }
 }
 

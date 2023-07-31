@@ -223,3 +223,16 @@ body {
   text-decoration: none;
   color: #a8a8a8;
 }
+
+.border-red {
+  border-color: red !important;
+}
+
+#error {
+  display: flex;
+  color: red;
+  margin-top: -20px;
+  margin-left: -10px;
+  align-self: flex-start;
+  font-size: 12px;
+}
