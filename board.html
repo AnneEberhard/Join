@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/style_template.css">
+    <link rel="stylesheet" href="styles/board.css">
+    <link rel="stylesheet" href="styles/fonts.css">
+    <script src="/js/script_Templates.js"></script>
+    <title>JOIN | Board</title>
+</head>
+
+<body onload="init()">
+    <div w3-include-html="assets/templates/desktop_template.html"></div>
+    <div id="board">
+        <div id="board_container_top">
+            <div id="board_container_title">Board</div>
+            <div id="board_container_search">
+                <div id="board_container_search_searchfield">
+                    <div id="board_container_search_searchfield_inner">
+                        <input id="board_input" type="text" placeholder="Find Task">
+                        <button id="board_search_btn">
+                            <div id="board_search_stroke"></div>
+                            <div id="board_search_icon"><img src="/assets/img/Icon_search.png" alt=""></div>                            
+                        </button>
+                    </div>
+
+                </div>
+                <button id="board_container_search_addtask">
+                    <div id="board_container_search_addtask_text">Add task</div>
+                    <img src="/assets/img/Icon_plus_white.png" alt="">
+                </button>
+            </div>
+        </div>
+        <div id="board_container_bottom">
+            <div id="board_container_bottom_todo" class="board_container_bottom_category">
+                <div class="board_container_bottom_category_title">
+                    <div class="board_container_bottom_category_name">To do</div>
+                    <div class="board_container_bottom_category_icon"><img src="/assets/img/Icons_plus_Board_categorie.png" alt=""></div>
+                </div>
+                <!-- eigentlich per js einfügen, nach designer noch programmieren -->
+                <div class="board_task_container">
+                    <div class="board_task_container_inner">
+                        <div class="board_task_container">
+                            <div class="board_task_container_inner">
+                                <div class="board_task_container_category">Design</div>
+                                <div class="board_task_container_title_and_description">
+                                    <div class="board_task_container_title">Webdesign redesign</div>
+                                    <div class="board_task_container_description">Modify the Content of the main website</div>
+                                </div>
+                                <div class="board_task_progress">
+                                    <div class="board_task_progressbar"></div>
+                                    <div class="board_task_progress_text">1/2 Done</div>
+                                </div>
+                                <div class="board_task_assignments">
+                                    <div class="board_task_working">
+                                        <div class="board_Icons_Username">KN</div>
+                                        <img src="/assets/img/medium.png" alt="">
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="board_container_bottom_inprogress" class="board_container_bottom_category">
+                <div class="board_container_bottom_category_title">
+                    <div class="board_container_bottom_category_name">In progress</div>
+                    <div class="board_container_bottom_category_icon"><img src="/assets/img/Icons_plus_Board_categorie.png" alt=""></div>
+                </div>
+                <div class="board_task_container">
+                    <div class="board_task_container_inner">
+                        <div class="board_task_container">
+                            <div class="board_task_container_inner">
+                                <div class="board_task_container_category">Design</div>
+                                <div class="board_task_container_title_and_description">
+                                    <div class="board_task_container_title">Webdesign redesign</div>
+                                    <div class="board_task_container_description">Modify the Content of the main website</div>
+                                </div>
+                                <div class="board_task_progress">
+                                    <div class="board_task_progressbar"></div>
+                                    <div class="board_task_progress_text">1/2 Done</div>
+                                </div>
+                                <div class="board_task_assignments">
+                                    <div class="board_task_working">
+                                        <div class="board_Icons_Username">KN</div>
+                                        <img src="/assets/img/medium.png" alt="">
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="board_container_bottom_awaitingfeedback" class="board_container_bottom_category">
+                <div class="board_container_bottom_category_title">
+                    <div class="board_container_bottom_category_name">Awaiting Feedback</div>
+                    <div class="board_container_bottom_category_icon"><img src="/assets/img/Icons_plus_Board_categorie.png" alt=""></div>
+                </div>
+                <div class="board_task_container">
+                    <div class="board_task_container_inner">
+                        <div class="board_task_container">
+                            <div class="board_task_container_inner">
+                                <div class="board_task_container_category">Design</div>
+                                <div class="board_task_container_title_and_description">
+                                    <div class="board_task_container_title">Webdesign redesign</div>
+                                    <div class="board_task_container_description">Modify the Content of the main website</div>
+                                </div>
+                                <div class="board_task_progress">
+                                    <div class="board_task_progressbar"></div>
+                                    <div class="board_task_progress_text">1/2 Done</div>
+                                </div>
+                                <div class="board_task_assignments">
+                                    <div class="board_task_working">
+                                        <div class="board_Icons_Username">KN</div>
+                                        <img src="/assets/img/medium.png" alt="">
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="board_container_bottom_done" class="board_container_bottom_category">
+                <div class="board_container_bottom_category_title">
+                    <div class="board_container_bottom_category_name">Done</div>
+                    <div class="board_container_bottom_category_icon"><img src="/assets/img/Icons_plus_Board_categorie.png" alt=""></div>
+                </div>
+                <div class="board_task_container">
+                    <div class="board_task_container_inner">
+                        <div class="board_task_container_category">Design</div>
+                        <div class="board_task_container_title_and_description">
+                            <div class="board_task_container_title">Webdesign redesign</div>
+                            <div class="board_task_container_description">Modify the Content of the main website</div>
+                        </div>
+                        <div class="board_task_progress">
+                            <div class="board_task_progressbar"></div>
+                            <div class="board_task_progress_text">1/2 Done</div>
+                        </div>
+                        <div class="board_task_assignments">
+                            <div class="board_task_working">
+                                <div class="board_Icons_Username">KN</div>
+                                <img src="/assets/img/medium.png" alt="">
+                            </div>                            
+                        </div>
+                    </div>
+                </div>
+                <div class="board_task_container">
+                    <div class="board_task_container_inner">
+                        <div class="board_task_container_category">Design</div>
+                        <div class="board_task_container_title_and_description">
+                            <div class="board_task_container_title">Webdesign redesign</div>
+                            <div class="board_task_container_description">Modify the Content of the main website</div>
+                        </div>
+                        <div class="board_task_progress">
+                            <div class="board_task_progressbar"></div>
+                            <div class="board_task_progress_text">1/2 Done</div>
+                        </div>
+                        <div class="board_task_assignments">
+                            <div class="board_task_working">
+                                <div class="board_Icons_Username">KN</div>
+                                <img src="/assets/img/medium.png" alt="">
+                            </div>                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

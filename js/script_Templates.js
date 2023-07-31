@@ -1,4 +1,4 @@
-async function init(){
+async function init() {
     includeHTML();
 }
 
@@ -14,4 +14,23 @@ async function includeHTML() {
             element.innerHTML = 'Page not found';
         }
     }
+}
+
+
+
+
+
+
+
+
+function togglePopupBar() {
+    let popupBar = document.getElementById('popupBar');
+    if (popupBar.classList.contains('d-none')) {
+        popupBar.classList.remove('d-none');
+        popupBar.classList.add('d-flex');
+    } else{
+        popupBar.classList.remove('d-flex');
+        popupBar.classList.add('d-none');
+    }
+
 }
