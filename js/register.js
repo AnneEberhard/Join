@@ -6,11 +6,14 @@ let password = document.getElementById("password");
 let signup = document.getElementById("signup");
 
 async function addUser() {
+  confirm.classList.remove("border-red");
+  error.style = "display: none;";
   signup.disabled = true;
   if (
     username.value.length >= 1 &&
     email.value.length >= 1 &&
-    password.value.length >= 1
+    password.value.length >= 1 &&
+    password.value == confirm.value
   ) {
     users.push({
       name: username.value,
@@ -21,6 +24,9 @@ async function addUser() {
     resetForm();
     window.location.href = "index.html";
   } else {
+    confirm.classList.add("border-red");
+    error.style = "display: flex;";
+    confirm.value = "";
   }
 }
 

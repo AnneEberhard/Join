@@ -226,6 +226,7 @@ body {
 
 .border-red {
   border-color: red !important;
+  outline: none;
 }
 
 #error {
