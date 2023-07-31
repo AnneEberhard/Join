@@ -52,13 +52,16 @@ function loadCache() {
 async function resetPassword() {
   let password = document.getElementById("password");
   let confirmedPass = document.getElementById("confirmpassword");
+  let error = document.getElementById("error");
+  confirmedPass.classList.remove("border-red");
+  error.style = "display:none;";
   if (confirmedPass.value == password.value) {
     users[0].password = password.value;
     await setItem("users", JSON.stringify(users));
     window.location.href = "index.html";
   } else {
-    alert(
-      "Your passwords are not matching. Please check that you typed your new password correctly"
-    );
+    confirmedPass.classList.add("border-red");
+    confirmedPass.value = "";
+    error.style = "display:flex;";
   }
 }

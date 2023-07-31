@@ -145,3 +145,18 @@ body {
   text-indent: 10px;
   font-family: "Inter";
 }
+
+.border-red {
+  border-color: red !important;
+  outline: none;
+}
+
+#error {
+  display: flex;
+  position: sticky;
+  color: red;
+  margin-top: -20px;
+  margin-left: 130px;
+  align-self: flex-start;
+  font-size: 12px;
+}
