@@ -43,3 +43,17 @@ function loadCache() {
   document.getElementById("email").value = email;
   document.getElementById("password").value = password;
 }
+
+async function resetPassword() {
+  let password = document.getElementById("password");
+  let confirmedPass = document.getElementById("confirmpassword");
+  if (confirmedPass.value == password.value) {
+    users[0].password = password.value;
+    await setItem("users", JSON.stringify(users));
+    window.location.href = "index.html";
+  } else {
+    alert(
+      "Your passwords are not matching. Please check that you typed your new password correctly"
+    );
+  }
+}
