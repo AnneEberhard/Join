@@ -411,6 +411,10 @@ function popUpNotice() {
   document.getElementById('popupNotice').classList.add('visible');
 }
 
+function switchToBoard() {
+  window.location.href = "board.html";
+}
+
 async function saveTask() {
   //save to Server
   await setItem("tasks", JSON.stringify(tasks));

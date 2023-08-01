@@ -3,6 +3,7 @@ body {
   background-color: rgb(245, 245, 245);
   font-family: "inter";
   display: flex;
+  margin:0;
 }
 
 h2 {
@@ -50,10 +51,11 @@ input:-webkit-autofill:focus {
 
 /*upperPart of add Task*/
 .addTaskContainer {
-  padding-top: 111px;
-  padding-left: 96px;
-  padding-right: 96px;
-  padding-bottom: 111px;
+  position: fixed;
+  top: 206px;
+  left: 328px;
+  width: 1056px;
+  height: 73px;
 }
 
 .addTaskSubContainer {
