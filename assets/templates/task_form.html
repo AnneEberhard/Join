@@ -17,7 +17,7 @@
           id="description"
           class="inputsAddTask padding"
           required
-          placeholder="Enter a Description"
+          placeholder="Enter a description"
         ></textarea>
       </div>
       <div class="addTaskContainerBoxes">
@@ -25,11 +25,13 @@
         <div id="category" class="inputsAddTask">
         </div>
         <div id="newCategoryDotsContainer"></div>
+        <div id="categoryAlert" class="alert"></div>
       </div>
       <div class="addTaskContainerBoxes">
         <p class="addTaskLabels">Assigned to</p>
         <div id="contactContainer" class="inputsAddTask">
         </div>
+        <div id="contactAlert" class="alert"></div>
       </div>
     </div>
     <div class="divider"></div>
@@ -38,7 +40,7 @@
         <p class="addTaskLabels">Due Date</p>
         <input
           id="dueDate"
-          class="inputsAddTask height51 padding"
+          class="inputsAddTask height51 padding hover"
           type="date"
           required
           placeholder="dd/mm/yyyy"
@@ -72,6 +74,7 @@
             Low <img src="assets/img/low.png" />
           </button>
         </div>
+        <div id="prioAlert" class="alert"></div>
       </div>
       <div class="addTaskContainerBoxes">
         <p class="addTaskLabels">Subtasks</p>
@@ -89,11 +92,15 @@
   </div>
 
   <div class="finalizeTask">
+    <div id="popupNotice" class="buttonAddTask">Task added to Board</div>
     <button type="button" onclick="clearTask()" class="buttonAddTask clear hover">
-      Clear <img src="assets/img/x.png" />
+      Clear <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+        <path d="M12.0011 12.5001L17.2441 17.7431M6.75806 17.7431L12.0011 12.5001L6.75806 17.7431ZM17.2441 7.25708L12.0001 12.5001L17.2441 7.25708ZM12.0001 12.5001L6.75806 7.25708L12.0001 12.5001Z" stroke="#2A3647" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
     </button>
     <button type="submit" class="buttonAddTask create hover">
-      Create Task <img src="assets/img/done_white.png" />
+      Create Task <img src="assets/img/check.svg" />
     </button>
   </div>
 </form>
+
