@@ -5,10 +5,29 @@ let confirm = document.getElementById("confirmpassword");
 let password = document.getElementById("password");
 let signup = document.getElementById("signup");
 
+const form = document.getElementById("forgot-form");
+const button = document.querySelector(".fly-in-button");
+const overlay = document.querySelector(".overlay");
+
+function delay(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+form.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  const passwordMatching = await addUser();
+  if (passwordMatching) {
+    document.body.classList.add("clicked");
+    button.classList.add("clicked");
+    await delay(1000);
+    form.submit();
+    window.location.href = "index.html";
+  }
+});
+
 async function addUser() {
   confirm.classList.remove("border-red");
   error.style = "display: none;";
-  signup.disabled = true;
   if (
     username.value.length >= 1 &&
     email.value.length >= 1 &&
@@ -22,11 +41,12 @@ async function addUser() {
     });
     await setItem("users", JSON.stringify(users));
     resetForm();
-    window.location.href = "index.html";
+    return true;
   } else {
     confirm.classList.add("border-red");
     error.style = "display: flex;";
     confirm.value = "";
+    return false;
   }
 }
 

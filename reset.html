@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="styles/reset.css">
     <script src="script.js"></script>
     <script src="js/storage.js"></script>
-    <script src="js/register.js"></script>
+    
     
     <title>Join</title>
 </head>
@@ -23,7 +23,7 @@
           </a>
             <h1>Reset your Password</h1>
           </div>
-          <form id="forgot-form" onsubmit="resetPassword(); return false;">
+          <form id="forgot-form">
             <div class="line"></div>
             <div class="paragraph">
               <span>Change your Account Password</span>
@@ -42,5 +42,8 @@
             </div>
           </form>
         </div>
+        <div class="overlay"></div>
+        <button class="fly-in-button">You reset your password</button>
+        <script src="js/reset.js"></script>
 </body>
 </html>
