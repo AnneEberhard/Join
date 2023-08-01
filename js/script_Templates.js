@@ -8,7 +8,6 @@ async function init(categoryName) {
  *  
  * @param - no parameter
  */
-
 async function includeHTML() {
     let includeElements = document.querySelectorAll('[w3-include-html]');
     for (let i = 0; i < includeElements.length; i++) {
@@ -23,14 +22,11 @@ async function includeHTML() {
     }
 }
 
-
-
 /**
  * function will highlight the active category on sitebar
  * 
  * @param {string} categoryName - gives the last string-part of the ID conatainer
  */
-
 async function showCategory(categoryName) {
     let allCategories = document.getElementsByClassName('active_category');
     if (allCategories.length != 0) {
