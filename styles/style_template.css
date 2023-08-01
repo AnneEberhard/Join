@@ -25,6 +25,11 @@ body{
     margin-top: 48px;
 }
 
+.sidebar_link{
+    text-decoration: none;
+    color: #A4A7AB
+}
+
 #sidebar_categories{
     display: flex;
     flex-direction: column;
@@ -174,7 +179,7 @@ body{
 }
 
 .d-flex{
-    display: flex !important;
+    display: flex;
 }
 
 

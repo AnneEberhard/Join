@@ -1,6 +1,13 @@
-async function init() {
-    includeHTML();
+async function init(categoryName) {
+    await includeHTML();
+    showCategory(categoryName);
 }
+
+/**
+ * this function includes the templates for Sitebar & Topbar
+ *  
+ * @param - no parameter
+ */
 
 async function includeHTML() {
     let includeElements = document.querySelectorAll('[w3-include-html]');
@@ -18,19 +25,37 @@ async function includeHTML() {
 
 
 
+/**
+ * function will highlight the active category on sitebar
+ * 
+ * @param {string} categoryName - gives the last string-part of the ID conatainer
+ */
 
+async function showCategory(categoryName) {
+    let allCategories = document.getElementsByClassName('active_category');
+    if (allCategories.length != 0) {
+        for (let i = 0; i < allCategories.length; i++) {
+            const element = allCategories[i];
 
-
+            element.classList.remove('active_category');
+        }
+    }
+    let string = "sidebar_categories_" + categoryName;
+    let addCat = document.getElementById(string);    
+    console.log(addCat);
+    addCat.classList.add('active_category');
+}
 
 
 function togglePopupBar() {
     let popupBar = document.getElementById('popupBar');
-    if (popupBar.classList.contains('d-none')) {
-        popupBar.classList.remove('d-none');
-        popupBar.classList.add('d-flex');
-    } else{
-        popupBar.classList.remove('d-flex');
-        popupBar.classList.add('d-none');
-    }
+    popupBar.classList.toggle('d-none');
+    // if (popupBar.classList.contains('d-none')) {
+    //     popupBar.classList.remove('d-none');
+    //     popupBar.classList.add('d-flex');
+    // } else {
+    //     popupBar.classList.remove('d-flex');
+    //     popupBar.classList.add('d-none');
+    // }
 
 }

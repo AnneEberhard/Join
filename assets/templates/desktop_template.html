@@ -1,55 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="/styles/style_template.css" />
-    <link rel="stylesheet" href="styles/fonts.css">
-    
-  </head>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="styles/style_template.css" />
+  <link rel="stylesheet" href="styles/fonts.css">
+  <script src="js/script_Templates.js"></script>
+</head>
+
 </html>
 <div id="sidebar">
   <div id="sidebar_logo">
     <img src="assets/img/Join_Logo.png" alt="" />
   </div>
   <div id="sidebar_categories">
-    <div id="sidebar_categories_summary" class="sidebar_category active_category">
-      <div class="sidebar_category_line">
-        <div id="sidebar_categories_summary_Icon" class="category_img">
-          <img src="assets/img/Icon_Summary_white.png" alt="" />
+
+    <a class="sidebar_link" href="summary.html">
+      <div id="sidebar_categories_summary" class="sidebar_category" onclick="showCategory('summary')">
+        <div class="sidebar_category_line">
+          <div id="sidebar_categories_summary_Icon" class="category_img">
+            <img src="assets/img/Icon_Summary_white.png" alt="" />
+          </div>
+          <div id="sidebar_categories_summary_Text">Summary</div>
         </div>
-        <a href="summary.html" id="sidebar_categories_summary_Text">Summary</a>
       </div>
-    </div>
-    <div id="sidebar_categories_board" class="sidebar_category">
+    </a>
+  <a class="sidebar_link" href="board.html">
+    <div id="sidebar_categories_board" class="sidebar_category" onclick="showCategory('board')">
       <div class="sidebar_category_line">
         <div id="sidebar_categories_board_Icon" class="category_img">
           <img src="assets/img/Icon_Board_grey.png" alt="" />
         </div>
-        <a href="board.html" id="sidebar_categories_board_Text">Board</a>
+        <div id="sidebar_categories_board_Text">Board</div>
       </div>
     </div>
-    <div id="sidebar_categories_addTask" class="sidebar_category">
+  </a>
+  <a class="sidebar_link" href="add_task.html" >
+    <div id="sidebar_categories_addTask" class="sidebar_category" onclick="showCategory('add_task')">
       <div class="sidebar_category_line">
         <div id="sidebar_categories_addTask_Icon" class="category_img">
           <img src="assets/img/Icon_Add_Task_grey.png" alt="" />
         </div>
-        <a href="add_task.html" id="sidebar_categories_addTask_Text"
-          >Add Task</a
-        >
+        <div id="sidebar_categories_addTask_Text">Add Task</div>
       </div>
     </div>
-    <div id="sidebar_categories_contacts" class="sidebar_category">
+  </a>
+  <a class="sidebar_link" href="contacts.html">
+    <div id="sidebar_categories_contacts" class="sidebar_category" onclick="showCategory('contacts')">
       <div class="sidebar_category_line">
         <div id="sidebar_categories_contacts_Icon" class="category_img">
           <img src="assets/img/Icon_Contacts_grey.png" alt="" />
         </div>
-        <a href="contacts.html" id="sidebar_categories_contacts_Text"
-          >Contacts</a
-        >
+        <div id="sidebar_categories_contacts_Text">Contacts</div>
       </div>
     </div>
+  </a>
   </div>
   <div id="sidebar_policies">
     <a href="data_security.html">Privacy Policy</a>
@@ -67,7 +74,7 @@
   </div>
 </div>
 
-<div id="popupBar" class="d-none">
-    <a href="#impressum.html">Impressum</a>
-    <a href="#index.html">Log out</a>
+<div id="popupBar" class="d-none d-flex">
+  <a href="#impressum.html">Impressum</a>
+  <a href="#index.html">Log out</a>
 </div>

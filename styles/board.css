@@ -109,6 +109,7 @@ input:focus{
     color: #ffffff;
     font-size: 21px;
     font-weight: 700;
+    cursor: pointer;
 }
 
 #board_container_search_addtask:hover{
@@ -165,7 +166,7 @@ input:focus{
     height: 239px;
     border-radius: 30px;
     background-color: #ffffff;
-    box-shadow: 0 0 14 3 rgba(0, 0, 0, 0.04);
+    /* box-shadow: 0 0 14 3 rgba(0, 0, 0, 0.04); */
 }
 
 .board_task_container_inner{
