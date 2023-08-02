@@ -1,24 +1,14 @@
 <form class="addTaskContainer" onsubmit="createTask(event); return false;">
-  <h2 id="test">Add Task</h2>
+  <div id="add_task_title">Add Task</div>
   <div class="addTaskSubContainer">
     <div class="addTaskContainerSides">
       <div class="addTaskContainerBoxes">
         <p class="addTaskLabels">Title</p>
-        <input
-          id="title"
-          class="inputsAddTask height51 padding"
-          required
-          placeholder="Enter a title"
-        />
+        <input id="title" class="inputsAddTask height51 padding" required placeholder="Enter a title" />
       </div>
       <div class="addTaskContainerBoxes">
         <p class="addTaskLabels">Description</p>
-        <textarea
-          id="description"
-          class="inputsAddTask padding"
-          required
-          placeholder="Enter a Description"
-        ></textarea>
+        <textarea id="description" class="inputsAddTask padding" required placeholder="Enter a Description"></textarea>
       </div>
       <div class="addTaskContainerBoxes">
         <p class="addTaskLabels">Category</p>
@@ -36,39 +26,18 @@
     <div class="addTaskContainerSides">
       <div class="addTaskContainerBoxes">
         <p class="addTaskLabels">Due Date</p>
-        <input
-          id="dueDate"
-          class="inputsAddTask height51 padding"
-          type="date"
-          required
-          placeholder="dd/mm/yyyy"
-        />
+        <input id="dueDate" class="inputsAddTask height51 padding" type="date" required placeholder="dd/mm/yyyy" />
       </div>
       <div class="addTaskContainerBoxes">
         <p class="addTaskLabels">Prio</p>
         <div id="prioContainer">
-          <button
-            id="urgent"
-            type="button"
-            onclick="assignPrio('urgent')"
-            class="prio height51 hover"
-          >
+          <button id="urgent" type="button" onclick="assignPrio('urgent')" class="prio height51 hover">
             Urgent <img src="assets/img/urgent.png" />
           </button>
-          <button
-            id="medium"
-            type="button"
-            onclick="assignPrio('medium')"
-            class="prio height51 hover"
-          >
+          <button id="medium" type="button" onclick="assignPrio('medium')" class="prio height51 hover">
             Medium <img src="assets/img/medium.png" />
           </button>
-          <button
-            id="low"
-            type="button"
-            onclick="assignPrio('low')"
-            class="prio height51 hover"
-          >
+          <button id="low" type="button" onclick="assignPrio('low')" class="prio height51 hover">
             Low <img src="assets/img/low.png" />
           </button>
         </div>

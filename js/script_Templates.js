@@ -1,4 +1,4 @@
-async function init(categoryName) {
+async function initTemplate(categoryName) {
     await includeHTML();
     showCategory(categoryName);
 }
@@ -53,5 +53,4 @@ function togglePopupBar() {
     //     popupBar.classList.remove('d-flex');
     //     popupBar.classList.add('d-none');
     // }
-
 }

@@ -3,7 +3,7 @@ body {
   font-family: "inter";
   display: flex;
 }
-h2 {
+#add_task_title {
   font-size: 61px;
   font-weight: 700;
 }
@@ -35,10 +35,9 @@ textarea:focus-visible {
 }
 
 .addTaskContainer {
-  padding-top: 111px;
-  padding-left: 96px;
-  padding-right: 96px;
-  padding-bottom: 111px;
+  position: fixed;
+  top: 207px;
+  left: 328px;
 }
 
 .addTaskSubContainer {
