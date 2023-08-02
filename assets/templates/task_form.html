@@ -8,25 +8,46 @@
       </div>
       <div class="addTaskContainerBoxes">
         <p class="addTaskLabels">Description</p>
+<<<<<<< HEAD
         <textarea id="description" class="inputsAddTask padding" required placeholder="Enter a Description"></textarea>
+=======
+        <textarea
+          id="description"
+          class="inputsAddTask padding"
+          required
+          placeholder="Enter a description"
+        ></textarea>
+>>>>>>> cc577582dd5dd576ea88605019f278f3a564032f
       </div>
       <div class="addTaskContainerBoxes">
         <p class="addTaskLabels">Category</p>
         <div id="category" class="inputsAddTask">
         </div>
         <div id="newCategoryDotsContainer"></div>
+        <div id="categoryAlert" class="alert"></div>
       </div>
       <div class="addTaskContainerBoxes">
         <p class="addTaskLabels">Assigned to</p>
         <div id="contactContainer" class="inputsAddTask">
         </div>
+        <div id="contactAlert" class="alert"></div>
       </div>
     </div>
     <div class="divider"></div>
     <div class="addTaskContainerSides">
       <div class="addTaskContainerBoxes">
         <p class="addTaskLabels">Due Date</p>
+<<<<<<< HEAD
         <input id="dueDate" class="inputsAddTask height51 padding" type="date" required placeholder="dd/mm/yyyy" />
+=======
+        <input
+          id="dueDate"
+          class="inputsAddTask height51 padding hover"
+          type="date"
+          required
+          placeholder="dd/mm/yyyy"
+        />
+>>>>>>> cc577582dd5dd576ea88605019f278f3a564032f
       </div>
       <div class="addTaskContainerBoxes">
         <p class="addTaskLabels">Prio</p>
@@ -41,6 +62,7 @@
             Low <img src="assets/img/low.png" />
           </button>
         </div>
+        <div id="prioAlert" class="alert"></div>
       </div>
       <div class="addTaskContainerBoxes">
         <p class="addTaskLabels">Subtasks</p>
@@ -58,11 +80,19 @@
   </div>
 
   <div class="finalizeTask">
+    <button type="button" id="popupNotice" class="buttonAddTask hover" onclick="switchToBoard()">Task added to Board</button>
     <button type="button" onclick="clearTask()" class="buttonAddTask clear hover">
-      Clear <img src="assets/img/x.png" />
+      Clear <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+        <path d="M12.0011 12.5001L17.2441 17.7431M6.75806 17.7431L12.0011 12.5001L6.75806 17.7431ZM17.2441 7.25708L12.0001 12.5001L17.2441 7.25708ZM12.0001 12.5001L6.75806 7.25708L12.0001 12.5001Z" stroke="#2A3647" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
     </button>
     <button type="submit" class="buttonAddTask create hover">
-      Create Task <img src="assets/img/done_white.png" />
+      Create Task <img src="assets/img/check.svg" />
     </button>
   </div>
+<<<<<<< HEAD
 </form>
+=======
+</form>
+
+>>>>>>> cc577582dd5dd576ea88605019f278f3a564032f
