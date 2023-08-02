@@ -25,7 +25,7 @@ let assignedPrio;
 let subTasksArray = [];
 
 async function initTask() {
-  await includeHTML();
+  await includeHTML();  
   //await loadItems();
   renderCategories();
   renderContacts();
@@ -47,8 +47,8 @@ async function includeHTML() {
 }
 
 async function loadItems() {
-  await getItem("tasks"); 
-  await getItem("contacts"); 
+  tasks = JSON.parse(await getItem("tasks")); 
+  // await getItem("contacts"); 
   await getItem("categories"); 
   await getItem("freeColors"); 
 }
@@ -232,7 +232,7 @@ function templateNewContact() {
 }
 
 function checkContact(i) {
-  debugger;
+  // debugger;
   if (assignedContactsStatus[i]==false) {
     assignContact(i);
   } else {
@@ -376,8 +376,9 @@ function createTask(event) {
         'subtasks': subTasksArray,
           }
       tasks.push(task);
+      saveTask();
       popUpNotice();
-      //saveTask();
+      
   }
 }
 

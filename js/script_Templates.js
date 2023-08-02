@@ -1,5 +1,5 @@
 async function initTemplate(categoryName) {
-    await includeHTML();
+    await includeHTMLTwo();
     showCategory(categoryName);
     createNameCircle();
 }
@@ -9,7 +9,7 @@ async function initTemplate(categoryName) {
  *  
  * @param - no parameter
  */
-async function includeHTML() {
+async function includeHTMLTwo() {
     let includeElements = document.querySelectorAll('[w3-include-html]');
     for (let i = 0; i < includeElements.length; i++) {
         const element = includeElements[i];
@@ -38,7 +38,7 @@ async function showCategory(categoryName) {
         }
     }
     let string = "sidebar_categories_" + categoryName;
-    let addCat = document.getElementById(string);    
+    let addCat = document.getElementById(string);
     addCat.classList.add('active_category');
 }
 
@@ -60,17 +60,26 @@ function togglePopupBar() {
  * 
  * @param {} - no parameter
  */
-async function createNameCircle(){
-    await loadUsers();
-    currentUser = users[0].name;
-   
-    let matches = currentUser.match(/^(\w+)|(\w+)\W*$/g); //seperates first and last words of a string
-    let acronym = matches[0].charAt(0) + matches[1].charAt(0);  //combine first letters of this words
 
+async function createNameCircle() {
+    await loadUsers();
+    currentUser = users[0].name;    
+    let acronym = createAcronym(currentUser);
     let topbar = document.getElementById('topbar_icons');
     topbar.innerHTML += /*html*/`
         <div id="topbar_Icons_Username" onclick="togglePopupBar()">${acronym}</div>
-    `    
+    `
+}
+
+function createAcronym(currentUser){
+    let acronym;
+    let matches = currentUser.match(/^(\w+)|(\w+)\W*$/g); //seperates first and last words of a string
+    if (matches.length == 2) {
+        acronym = matches[0].charAt(0) + matches[1].charAt(0);  //combine first letters of this words
+    } else {
+        acronym = matches[0].charAt(0)
+    }
+    return acronym;     // passes the beginning letter(s) back to createNameCircle()
 }
 
 

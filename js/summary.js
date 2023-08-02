@@ -1,3 +1,8 @@
+function loadSummary(){
+    greetingSummary();
+    currentDate();
+}
+
 function greetingSummary(){
     createGreetingPhrase();
     createNameGreating();
@@ -7,9 +12,9 @@ function greetingSummary(){
 function createGreetingPhrase(){
     let timeNow = new Date().getHours();
     let greeting;
-    if(5 < timeNow < 12){
+    if(5 < timeNow && timeNow < 12){
         greeting = "Good morning,"
-    } else if (12 <= timeNow < 18){
+    } else if (12 <= timeNow && timeNow < 18){
         greeting = "Good Afternoon"
     } else {
         greeting = "Good Evening"
@@ -38,5 +43,7 @@ function currentDate(){
     ];
     const formattedDate = `${monthNames[currentDate.getMonth()]} ${currentDate.getDate()}, ${currentDate.getFullYear()}`;
 
-    
+    document.getElementById('summary_bottom_stats_mid_right_date').innerHTML = /*html*/`
+        ${formattedDate}
+    `
 }
