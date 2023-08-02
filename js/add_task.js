@@ -26,7 +26,7 @@ let subTasksArray = [];
 
 async function initTask() {
   await includeHTML();  
-  //await loadItems();
+  // await loadItems();
   renderCategories();
   renderContacts();
   renderDueDate();
@@ -48,9 +48,9 @@ async function includeHTML() {
 
 async function loadItems() {
   tasks = JSON.parse(await getItem("tasks")); 
-  // await getItem("contacts"); 
-  await getItem("categories"); 
-  await getItem("freeColors"); 
+  // await getItem("contacts"); gibt noch Fehlermeldung, da keine Contacts vorhanden
+  categories = JSON.parse(await getItem("categories")); 
+  freeColors = JSON.parse(await getItem("freeColors")); 
 }
 
 function renderCategories() {

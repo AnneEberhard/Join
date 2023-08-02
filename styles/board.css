@@ -195,7 +195,8 @@ input:focus{
     border-radius: 10px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 20px;
     align-items: flex-start;
     flex-wrap: wrap;
 }
@@ -220,11 +221,17 @@ input:focus{
     line-height: 14px;
 }
 
-.board_task_progressbar{
-    width: 69px;    /*100 Breite sind 138px --> 1/2 Aufgaben --> 50%*/
+.board_task_progressbar{    
     height: 8px;
     border-radius: 2px;
     background-color: #29ABE2;
+}
+
+.board_task_progress_text{
+    width: 53px;
+    font-size: 12px;
+    line-height: 14.4px;
+    font-weight: 400;
 }
 
 .board_task_working{
@@ -234,8 +241,8 @@ input:focus{
 }
 
 .board_Icons_Username{
-    width: 35px;
-    height: 35px;
+    width: 34px;
+    height: 34px;
     border-radius: 58px;
     border: 1px solid #ffffff;
     background-color: #29ABE2;
@@ -248,9 +255,17 @@ input:focus{
     cursor: pointer;
 }
 
-.board_task_working img{
+.board_prio{
     width: 32px;
     height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.board_prio img{
+    width: 24px;
+    height: 18px;
 }
 
 
