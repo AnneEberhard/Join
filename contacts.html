@@ -1,61 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles/style_template.css">
-    <link rel="stylesheet" href="styles/contacts.css">
-    <link rel="stylesheet" href="styles/fonts.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles/style_template.css" />
+    <link rel="stylesheet" href="styles/contacts.css" />
+    <link rel="stylesheet" href="styles/fonts.css" />
     <script src="/js/script_Templates.js"></script>
     <script src="/script.js"></script>
     <script src="/js/storage.js"></script>
     <title>JOIN | Contacts</title>
-</head>
+  </head>
 
-<body onload="initTemplate('contacts')">
+  <body onload="initTemplate('contacts')">
     <div w3-include-html="assets/templates/desktop_template.html"></div>
     <div id="contactList">
-        <div id="add_new_contact">
-            <button id="new_contact_btn">
-                <div id="add_new_contact_text">New contact</div>
-                <div id="add_new_contact_Icon"><img src="/assets/img/Icon_person_add.png" alt=""></div>
-            </button>
+      <div id="add_new_contact">
+        <button id="new_contact_btn">
+          <div id="add_new_contact_text">New contact</div>
+          <div id="add_new_contact_Icon">
+            <img src="/assets/img/Icon_person_add.png" alt="" />
+          </div>
+        </button>
+      </div>
+      <div id="beginn_a" class="contact_list_letter_container">
+        <div class="letter">A</div>
+      </div>
+      <div class="contact_list_stroke"></div>
+      <div id="contact_list_name_1" class="contact_list_name_container">
+        <div class="contact_list_name_container_inner">
+          <div class="contact_list_name_icon">AS</div>
+          <div class="contact_list_name_mail">
+            <div class="contact_list_name">Anja Schulz</div>
+            <div class="contact_list_mail">schulz@gmail.com</div>
+          </div>
         </div>
-        <div id="beginn_a" class="contact_list_letter_container">
-            <div class="letter">A</div>
+      </div>
+      <div id="beginn_d" class="contact_list_letter_container">
+        <div class="letter">D</div>
+      </div>
+      <div class="contact_list_stroke"></div>
+      <div id="contact_list_name_2" class="contact_list_name_container">
+        <div class="contact_list_name_container_inner">
+          <div class="contact_list_name_icon">DH</div>
+          <div class="contact_list_name_mail">
+            <div class="contact_list_name">Danny Herzog</div>
+            <div class="contact_list_mail">HerzogD@gmail.com</div>
+          </div>
         </div>
-        <div class="contact_list_stroke"></div>
-        <div id="contact_list_name_1" class="contact_list_name_container">
-            <div class="contact_list_name_container_inner">
-                <div class="contact_list_name_icon">
-                    AS
-                </div>
-                <div class="contact_list_name_mail">
-                    <div class="contact_list_name">Anja Schulz</div>
-                    <div class="contact_list_mail">schulz@gmail.com</div>
-                </div>
-            </div>
-        </div>
-        <div id="beginn_d" class="contact_list_letter_container">
-            <div class="letter">D</div>
-        </div>
-        <div class="contact_list_stroke"></div>
-        <div id="contact_list_name_2" class="contact_list_name_container">
-            <div class="contact_list_name_container_inner">
-                <div class="contact_list_name_icon">
-                    DH
-                </div>
-                <div class="contact_list_name_mail">
-                    <div class="contact_list_name">Danny Herzog</div>
-                    <div class="contact_list_mail">HerzogD@gmail.com</div>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
-    <div id="contacts_scrollbar">
+    <!-- <div id="contacts_scrollbar">
         
+    </div> -->
+    <div class="contact_info_container">
+      <div class="header_in_contact">
+        <span class="header">Contacts</span>
+        <div class="divider"></div>
+        <span class="header_subtext">Better with a team</span>
+      </div>
+      <div class""
     </div>
-</body>
-
+  </body>
 </html>
