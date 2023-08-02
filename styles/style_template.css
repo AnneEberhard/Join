@@ -57,6 +57,11 @@ body{
 .active_category{
     background-color: #091931;
     color: #FFFFFF;
+    pointer-events: none;
+}
+
+.active_category img{
+    filter: brightness(0) invert(1);
 }
 
 .sidebar_category_line{

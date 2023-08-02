@@ -8,10 +8,13 @@
     <link rel="stylesheet" href="styles/summary.css">
     <link rel="stylesheet" href="styles/fonts.css">
     <script src="/js/script_Templates.js"></script>
+    <script src="/script.js"></script>
+    <script src="/js/storage.js"></script>
+    <script src="/js/summary.js"></script>
     <title>JOIN | Summary</title>
 </head>
 
-<body onload="initTemplate('summary')">
+<body onload="initTemplate('summary'), greetingSummary()">
     <div w3-include-html="assets/templates/desktop_template.html"></div>
     <div id="summary">
         <div id="summary_container_top">
@@ -52,7 +55,7 @@
                     </div>
                     <div id="summary_bottom_stats_mid_mid"></div>
                     <div id="summary_bottom_stats_mid_right">
-                        <div id="summary_bottom_stats_mid_right_date">October 16, 2022</div>
+                        <div id="summary_bottom_stats_mid_right_date"></div>
                         <div id="summary_bottom_stats_mid_right_text"> Upcoming Deadline</div>
                     </div>
                 </div>
@@ -75,10 +78,10 @@
             </div>
             <div id="summary_container_bottom_right">
                 <div id="summary_container_bottom_right_greeting">
-                    Good morning,
+                    
                 </div>
                 <div id="summary_container_bottom_right_Name">
-                    Klemens Naue
+                    
                 </div>
             </div>
         </div>

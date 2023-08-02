@@ -1,6 +1,7 @@
 async function initTemplate(categoryName) {
     await includeHTML();
     showCategory(categoryName);
+    createNameCircle();
 }
 
 /**
@@ -38,7 +39,6 @@ async function showCategory(categoryName) {
     }
     let string = "sidebar_categories_" + categoryName;
     let addCat = document.getElementById(string);    
-    console.log(addCat);
     addCat.classList.add('active_category');
 }
 
@@ -54,3 +54,26 @@ function togglePopupBar() {
     //     popupBar.classList.add('d-none');
     // }
 }
+
+/**
+ * function create a namecircle with the first letters of first and last name of the User
+ * 
+ * @param {} - no parameter
+ */
+async function createNameCircle(){
+    await loadUsers();
+    currentUser = users[0].name;
+   
+    let matches = currentUser.match(/^(\w+)|(\w+)\W*$/g); //seperates first and last words of a string
+    let acronym = matches[0].charAt(0) + matches[1].charAt(0);  //combine first letters of this words
+
+    let topbar = document.getElementById('topbar_icons');
+    topbar.innerHTML += /*html*/`
+        <div id="topbar_Icons_Username" onclick="togglePopupBar()">${acronym}</div>
+    `    
+}
+
+
+
+
+
