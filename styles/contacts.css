@@ -256,3 +256,201 @@ html {
 .user_container {
   width: 100%;
 }
+
+.modal_new_contact {
+  display: flex;
+  position: absolute;
+  z-index: 2;
+  left: 20%;
+  top: 25%;
+  min-width: 75vw;
+  min-height: 55vh;
+  font-family: "inter";
+  border-radius: 20px;
+  -webkit-box-shadow: 1px 0px 18px 5px rgba(255, 255, 255, 0.63);
+  -moz-box-shadow: 1px 0px 18px 5px rgba(255, 255, 255, 0.63);
+  box-shadow: 1px 0px 18px 5px rgba(192, 188, 188, 0.63);
+}
+
+.left_side {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 45%;
+  min-height: 55vh;
+  background-color: #2a3647;
+  color: white;
+  border-top-left-radius: 20px;
+  border-end-start-radius: 20px;
+}
+
+.left_side img {
+  width: 50px;
+  height: 55px;
+}
+
+.left_side h1 {
+  font-weight: 700;
+  font-size: 55px;
+  margin: 0;
+}
+
+.left_side span {
+  font-weight: 400;
+  font-size: 24px;
+}
+
+.line {
+  margin-top: 10px;
+  height: 2px;
+  width: 23%;
+  background-color: #29abe2;
+}
+
+.right_side {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 55%;
+  min-height: 55vh;
+  background-color: #ffffff;
+  border-top-right-radius: 20px;
+  border-end-end-radius: 20px;
+}
+
+.right_side img {
+  width: 100px;
+  height: 100px;
+}
+
+.create-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+#email,
+#phone,
+#name {
+  padding: 10px;
+  width: 100%;
+  border-radius: 5px;
+  border-color: #d1d1d1;
+  border: 1px solid #d1d1d1;
+  text-indent: 10px;
+  font-family: "Inter";
+}
+
+#email::placeholder,
+#phone::placeholder,
+#name::placeholder {
+  color: #d1d1d1;
+  opacity: 0.9;
+  font-weight: 400;
+  text-indent: 10px;
+  font-size: 14px;
+}
+
+#email {
+  background-image: url("../assets/img/mail.png");
+  background-repeat: no-repeat;
+  background-position: center right 10px;
+}
+
+#name {
+  background-image: url("../assets/img/person.svg");
+  background-repeat: no-repeat;
+  background-position: center right 10px;
+}
+
+#phone {
+  background-image: url("../assets/img/call.png");
+  background-repeat: no-repeat;
+  background-position: center right 10px;
+}
+
+#cancel {
+  border-radius: 8px;
+  height: 45px;
+  width: 120px;
+  padding-right: 18px;
+  background: #ffffff;
+  color: black;
+  font-weight: bold;
+  font-size: 16px;
+  background-image: url("../assets/img/cancel.png");
+  background-repeat: no-repeat;
+  background-position: center right 10px;
+  background-size: 11px;
+}
+
+#create {
+  border-radius: 8px;
+  height: 45px;
+  width: 180px;
+  padding-right: 35px;
+  background: #2a3647;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  transition: 0s background-color;
+  background-image: url("../assets/img/check.svg");
+  background-repeat: no-repeat;
+  background-position: center right 10px;
+}
+
+.avatar {
+  margin-right: 50px;
+}
+
+#create:hover {
+  background: #29abe2;
+  transition-delay: 0.08s;
+  background-image: url("../assets/img/check.svg");
+  background-repeat: no-repeat;
+  background-position: center right 10px;
+}
+
+#cancel:hover {
+  color: #29abe2;
+  border-color: #29abe2;
+  transition-delay: 0.08s;
+}
+
+#cancel:hover,
+#create:hover {
+  cursor: pointer;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.x {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  padding: 15px;
+}
+
+.x:hover {
+  cursor: pointer;
+}

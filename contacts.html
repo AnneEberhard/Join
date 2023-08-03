@@ -25,33 +25,43 @@
           </div>
         </button>
       </div>
-      <div id="beginn_a" class="contact_list_letter_container">
-        <div class="letter">A</div>
-      </div>
-      <div class="contact_list_stroke"></div>
-      <div id="contact_list_name_1" class="contact_list_name_container">
-        <div class="contact_list_name_container_inner">
-          <div class="contact_list_name_icon">AS</div>
-          <div class="contact_list_name_mail">
-            <div class="contact_list_name">Anja Schulz</div>
-            <div class="contact_list_mail">schulz@gmail.com</div>
-          </div>
-        </div>
-      </div>
-      <div id="beginn_d" class="contact_list_letter_container">
-        <div class="letter">D</div>
-      </div>
-      <div class="contact_list_stroke"></div>
-      <div id="contact_list_name_2" class="contact_list_name_container">
-        <div class="contact_list_name_container_inner">
-          <div class="contact_list_name_icon">DH</div>
-          <div class="contact_list_name_mail">
-            <div class="contact_list_name">Danny Herzog</div>
-            <div class="contact_list_mail">HerzogD@gmail.com</div>
-          </div>
-        </div>
-      </div>
+      
+      <div id="contacts_container"></div>
+      
+      
     </div>
+    <div class="modal_new_contact" style="display:flex;">
+      <img class="x" src="assets/img/cancel.png">
+        <div class="left_side">
+          <div class="left_content">
+          <img src="assets/img/Join_Logo.png">
+          <h1>Add contact</h1>
+          <span>Tasks are better with a team!</span>
+          <div class="line"></div>
+        </div>
+        </div>
+        <div class="right_side">
+          
+          <div class="avatar">
+          <img src="assets/img/blank_avatar.png">
+          </div>
+          <div class="form_container">
+          <form id="create_contact">
+            <div class="input-container">
+              <input id="name" type="text" placeholder="Name" />
+              <input id="email" class="" type="email" placeholder="Email"/>
+              <input id="phone" class="" type="number" placeholder="Phone"/>
+            </div>
+            <div class="create-buttons">
+              <button type="button" id="cancel">Cancel</button>
+              <button type="submit" id="create">
+                Create Contact
+              </button>
+            </div>
+          </form>
+        </div>
+        </div>
+      </div>
     <!-- <div id="contacts_scrollbar">
         
     </div> -->
