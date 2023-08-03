@@ -5,7 +5,8 @@ body {
   display: flex;
   margin:0;
 }
-#add_task_title {
+
+#addTaskTitle {
   font-size: 61px;
   font-weight: 700;
 }

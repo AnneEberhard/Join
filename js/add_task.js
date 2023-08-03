@@ -1,32 +1,32 @@
 //these will come from server and will need to be saved at the end
-// if loadItems and save() are enabled, delete these
+// if loadItems and save() are enabled, delete values
 let tasks = [];
+let contacts = [];
 let categories = [
   {'name': 'New category', 'colorCode': 0},
   {'name': 'Backoffice', 'colorCode': 1},
   {'name': 'Design', 'colorCode': 2},
   {'name': 'Media', 'colorCode': 3},
   {'name': 'Sales', 'colorCode': 4},];
-let contacts = ['Anton Mayer', 'Anja Schulz'];
 let freeColors = [6,7,8,9];
-
-//these are needed for the site to function
-let prios = ['urgent', 'medium', 'low'];
-let newCategoryName;
-let newCategoryColor;
-let inputDone = false; //use as safety for priority and category
 
 //these are needed to fill task
 let assignedCategory;
 let assignedContacts = [];
 let assignedContactsStatus = new Array(contacts.length).fill(false);
-//an array as long as contacts is on default filled with false
 let assignedPrio;
 let subTasksArray = [];
 
+//these are needed for the site to function
+let prios = ['urgent', 'medium', 'low'];
+let newCategoryName;
+let newCategoryColor;
+let inputDone = false; 
+
+
 async function initTask() {
   await includeHTML();  
-  // await loadItems();
+  await loadItems();
   renderCategories();
   renderContacts();
   renderDueDate();
@@ -46,12 +46,19 @@ async function includeHTML() {
   }
 }
 
+
+//Doesn't load correctly
 async function loadItems() {
+  try {
   tasks = JSON.parse(await getItem("tasks")); 
-  // await getItem("contacts"); gibt noch Fehlermeldung, da keine Contacts vorhanden
-  categories = JSON.parse(await getItem("categories")); 
-  freeColors = JSON.parse(await getItem("freeColors")); 
+  contacts = JSON.parse(await getItem("contacts"));
+  categories = JSON.parse(await getItem("savedCategories")); 
+  freeColors = JSON.parse(await getItem("savedFreeColors")); 
+} catch (e) {
+  console.error("Loading error:", e);
 }
+}
+
 
 function renderCategories() {
   document.getElementById("newCategoryDotsContainer").innerHTML = "";
@@ -141,7 +148,7 @@ function addNewCategory() {
 
 function templateCategorySelectionLeft() {
   let templateCategorySelectionLeft = `
-  <img src="assets/img/iconoir_cancel.svg" class="hover" onclick="renderCategories()"/>`;
+  <img src="assets/img/cancel.png" class="hover" onclick="renderCategories()"/>`;
   return templateCategorySelectionLeft;
 }
 
@@ -197,7 +204,7 @@ if (indexToRemove !== -1) {
 function renderContacts() {
   document.getElementById('contactContainer').innerHTML = templateContactSelection();
   for (let i = 0; i < contacts.length; i++) {
-    const contact = contacts[i];
+    const contact = contacts[i]['user_name'];
     document.getElementById('contactsOptions').innerHTML += templateContactsOptions(contact, i);
   }
   document.getElementById('contactsOptions').innerHTML += templateNewContact();
@@ -270,9 +277,8 @@ function updateAssignedContacts() {
   }
 }
 
-// MISSING link to contact page
 function inviteContact() {
-  console.log('invite new contact');
+  window.location.href = "contacts.html";
 }
 
 function renderDueDate() {
@@ -417,8 +423,7 @@ function switchToBoard() {
 }
 
 async function saveTask() {
-  //save to Server
   await setItem("tasks", JSON.stringify(tasks));
-  await setItem("categories", JSON.stringify(tasks));
-  await setItem("freeColors", JSON.stringify(tasks));
+  await setItem("categories", JSON.stringify(savedCategories));
+  await setItem("freeColors", JSON.stringify(savedFreeColors));
 }

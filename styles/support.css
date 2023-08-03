@@ -1,0 +1,41 @@
+body {
+  background-color: rgb(245, 245, 245);
+  font-family: "inter";
+  display: flex;
+  margin: 0;
+}
+
+.hover {
+  cursor: pointer;
+}
+.title {
+  font-size: 61px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 120%; /* 73.2px */
+  margin-bottom: 32px;
+}
+.supportPage {
+  position: fixed;
+  top: 207px;
+  left: 328px;
+  align-self: stretch;
+}
+
+h4 {
+  color: var(--black, #000);
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 120%; /* 24px */
+}
+
+p {
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%;
+  color: var(--black, #000);
+}
