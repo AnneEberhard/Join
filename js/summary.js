@@ -1,6 +1,7 @@
 function loadSummary(){
     greetingSummary();
     currentDate();
+    getTaskAmount();
 }
 
 function greetingSummary(){
@@ -47,3 +48,15 @@ function currentDate(){
         ${formattedDate}
     `
 }
+
+
+// async function getTaskAmount(){
+//     let i = await loadTasks('tasksInBoard');
+
+
+
+    
+//     console.log(i);
+//     console.log();
+//     console.log();
+// }
