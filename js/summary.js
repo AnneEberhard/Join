@@ -50,13 +50,8 @@ function currentDate(){
 }
 
 
-// async function getTaskAmount(){
-//     let i = await loadTasks('tasksInBoard');
-
-
-
+async function getTaskAmount(){
+    let i = await load();
+    console.log(i);
     
-//     console.log(i);
-//     console.log();
-//     console.log();
-// }
+}

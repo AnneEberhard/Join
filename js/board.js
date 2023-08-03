@@ -2,6 +2,16 @@ let currentDraggedElement;
 let tasksInBoard;
 let tasksInProgress;
 let awaitingFeedback;
+let toDo;
+let done;
+
+async function renderBoard(){
+    await createBoardCard();
+    countTaks();
+    console.log("Board: ", tasksInBoard);
+    console.log("progress: ", tasksInProgress);
+    console.log("awaiting: ", awaitingFeedback);
+}
 
 async function createBoardCard() {
     await loadItems();
@@ -153,11 +163,22 @@ async function loadCategory(){
 
 
 
+function countTaks(){
+    tasksInBoard = document.getElementsByClassName('board_task_container').length;
+    tasksInProgress = document.getElementById('board_container_bottom_inprogress').getElementsByClassName('board_task_container').length;
+    awaitingFeedback = document.getElementById('board_container_bottom_awaitingfeedback').getElementsByClassName('board_task_container').length;
+    toDo;
+    done;
+    save();
+}
+
+async function save(){
+    await setItem("tasksInBoard", tasksInBoard);
+    // await setItem("tasksInProgress", tasksInProgress);
+    // await setItem("savedCategory", savedCategory);
+}
 
 
-
-
-
-
-
-
+async function load(){
+    return (await getItem("tasksInBoard"));   
+}
