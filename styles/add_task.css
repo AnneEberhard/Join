@@ -51,9 +51,9 @@ input:-webkit-autofill:focus {
 
 /*upperPart of add Task*/
 .addTaskContainer {
-  position: fixed;
-  top: 207px;
-  left: 328px;
+  margin-top: 207px;
+  margin-left: 328px;
+  margin-right: 96px;
 }
 
 .addTaskSubContainer {
