@@ -2,13 +2,8 @@
 // if loadItems and save() are enabled, delete values
 let tasks = [];
 let contacts = [];
-let categories = [
-  {'name': 'New category', 'colorCode': 0},
-  {'name': 'Backoffice', 'colorCode': 1},
-  {'name': 'Design', 'colorCode': 2},
-  {'name': 'Media', 'colorCode': 3},
-  {'name': 'Sales', 'colorCode': 4},];
-let freeColors = [6,7,8,9];
+let categories = [];
+let freeColors = [];
 
 //these are needed to fill task
 let assignedCategory;
@@ -424,6 +419,6 @@ function switchToBoard() {
 
 async function saveTask() {
   await setItem("tasks", JSON.stringify(tasks));
-  await setItem("categories", JSON.stringify(savedCategories));
-  await setItem("freeColors", JSON.stringify(savedFreeColors));
+  await setItem("savedCategories", JSON.stringify(categories));
+  await setItem("savedFreeColors", JSON.stringify(freeColors));
 }
