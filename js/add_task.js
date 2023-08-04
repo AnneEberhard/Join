@@ -1,5 +1,4 @@
 //these will come from server and will need to be saved at the end
-// if loadItems and save() are enabled, delete values
 let tasks = [];
 let contacts = [];
 let categories = [];
@@ -41,8 +40,6 @@ async function includeHTML() {
   }
 }
 
-
-//Doesn't load correctly
 async function loadItems() {
   try {
   tasks = JSON.parse(await getItem("tasks")); 
