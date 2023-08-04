@@ -32,7 +32,7 @@
                     </div>
 
                 </div>
-                <button id="board_container_search_addtask">
+                <button id="board_container_search_addtask" onclick="openAddTask()">
                     <div id="board_container_search_addtask_text">Add task</div>
                     <img src="/assets/img/Icon_plus_white.png" alt="">
                 </button>
@@ -42,27 +42,27 @@
             <div id="board_container_bottom_todo" class="board_container_bottom_category" ondrop="moveTo('board_container_bottom_todo')" ondragover="allowDrop(event); highlight(event)" ondragleave="removeHighlight(event)">
                 <div class="board_container_bottom_category_title">
                     <div class="board_container_bottom_category_name">To do</div>
-                    <div class="board_container_bottom_category_icon"><img src="/assets/img/Icons_plus_Board_categorie.png" alt=""></div>
+                    <div class="board_container_bottom_category_icon" onclick="openAddTask()"><img src="/assets/img/Icons_plus_Board_categorie.png" alt=""></div>
                 </div>
                 
             </div>
             <div id="board_container_bottom_inprogress" class="board_container_bottom_category" ondrop="moveTo('board_container_bottom_inprogress')" ondragover="allowDrop(event); highlight(event)" ondragleave="removeHighlight(event)">
                 <div class="board_container_bottom_category_title">
                     <div class="board_container_bottom_category_name">In progress</div>
-                    <div class="board_container_bottom_category_icon"><img src="/assets/img/Icons_plus_Board_categorie.png" alt=""></div>
+                    <div class="board_container_bottom_category_icon" onclick="openAddTask()"><img src="/assets/img/Icons_plus_Board_categorie.png" alt=""></div>
                 </div>
             </div>
             <div id="board_container_bottom_awaitingfeedback" class="board_container_bottom_category" ondrop="moveTo('board_container_bottom_awaitingfeedback')" ondragover="allowDrop(event); highlight(event)" ondragleave="removeHighlight(event)">
                 <div class="board_container_bottom_category_title">
                     <div class="board_container_bottom_category_name">Awaiting Feedback</div>
-                    <div class="board_container_bottom_category_icon"><img src="/assets/img/Icons_plus_Board_categorie.png" alt=""></div>
+                    <div class="board_container_bottom_category_icon" onclick="openAddTask()"><img src="/assets/img/Icons_plus_Board_categorie.png" alt=""></div>
                 </div>
                 
             </div>            
             <div id="board_container_bottom_done" class="board_container_bottom_category" ondrop="moveTo('board_container_bottom_done')" ondragover="allowDrop(event); highlight(event)" ondragleave="removeHighlight(event)">
                 <div class="board_container_bottom_category_title">
                     <div class="board_container_bottom_category_name">Done</div>
-                    <div class="board_container_bottom_category_icon"><img src="/assets/img/Icons_plus_Board_categorie.png" alt=""></div>
+                    <div class="board_container_bottom_category_icon" onclick="openAddTask()"><img src="/assets/img/Icons_plus_Board_categorie.png" alt=""></div>
                 </div>
             </div>
         </div>

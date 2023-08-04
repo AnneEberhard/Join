@@ -5,33 +5,44 @@ let awaitingFeedback;
 let toDo;
 let done;
 
+
 async function renderBoard(){
-    await createBoardCard();
-    countTaks();
-    console.log("Board: ", tasksInBoard);
-    console.log("progress: ", tasksInProgress);
-    console.log("awaiting: ", awaitingFeedback);
+    countTasks();
+    saveTasks();
+    await renderBoardCards();
 }
 
-async function createBoardCard() {
+async function renderBoardCards(){
     await loadItems();
+    document.getAnimations('board_container_bottom_todo').innerHTML = "";
+    document.getAnimations('board_container_bottom_inprogress').innerHTML = "";
+    document.getAnimations('board_container_bottom_awaitingfeedback').innerHTML = "";
+    document.getAnimations('board_container_bottom_category').innerHTML = "";
+    for (let i = 0; i < tasks.length; i++) {
+        createBoardCard(i)
+    }
+    
+}
+
+async function createBoardCard(i) {
     //load position of the card
     let cat = await loadCategory();     
-    let ID = 1;
-    let task = tasks[0];
+    let ID = i;
+    let task = tasks[i];
     let titleCard = task['title'];
     let descriptionCard = task['description'];
     let categoryCard = task['category'];
     let assignedCard = task['assignedContacts'];
     let prioCard = task['prio'];
     let subtaskCard = task['subtasks'];
+    console.log(subtaskCard)
 
     renderBoardCard(categoryCard, titleCard, descriptionCard, ID, prioCard, cat);
-
+    createAssignmentIcons(assignedCard, ID);
     if (subtaskCard.length > 0) {
         createProgressbar(subtaskCard, ID)
     };
-    createAssignmentIcons(assignedCard, ID);
+    
 }
 
 
@@ -62,6 +73,7 @@ function renderBoardCard(categoryCard, titleCard, descriptionCard, ID, prioCard,
 
 
 function createProgressbar(subtaskCard, id) {
+    console.log(subtask);
     let tasksNumber = subtaskCard.length;
     let doneTasksNumber = (tasksNumber / 2).toFixed(0)        //nur zu Testzwecken ist die Hälfte der Aufgavben erfüllt
     let procentDoneTasks = doneTasksNumber / tasksNumber;
@@ -85,14 +97,19 @@ function renderProgressText(doneTasksNumber, tasksNumber, id) {
     `
 }
 
-
+/**
+ * Noch aufhübschen und entschlacken
+ * @param {*} assignedCard 
+ * @param {*} id 
+ */ 
 function createAssignmentIcons(assignedCard, id) {
 
+    
     for (let i = 0; i < assignedCard.length; i++) {
-        const assiggned = assignedCard[i];
-
+        const assiggned = assignedCard[i].user_name;
+        
         let acronym = createAcronym(assiggned); //erstellt zwei Buchstaben
-
+    
         const randColor = () => {
             return "#" + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0').toUpperCase();
         }
@@ -163,22 +180,47 @@ async function loadCategory(){
 
 
 
-function countTaks(){
+async function countTasks(){
     tasksInBoard = document.getElementsByClassName('board_task_container').length;
     tasksInProgress = document.getElementById('board_container_bottom_inprogress').getElementsByClassName('board_task_container').length;
     awaitingFeedback = document.getElementById('board_container_bottom_awaitingfeedback').getElementsByClassName('board_task_container').length;
-    toDo;
-    done;
-    save();
+    toDo = document.getElementById('board_container_bottom_todo').getElementsByClassName('board_task_container').length;
+    done = document.getElementById('board_container_bottom_done').getElementsByClassName('board_task_container').length;
+    await saveTasks();
+    console.log("Board: ", tasksInBoard);
+    console.log("progress: ", tasksInProgress);
+    console.log("awaiting: ", awaitingFeedback);
+    console.log("todo: ", toDo);
+    console.log("done: ", done);
 }
 
-async function save(){
-    await setItem("tasksInBoard", tasksInBoard);
+
+async function saveTasks() {  
+    // Speichere die Werte auf dem Server
+    await setItem("tasksInBoard", JSON.stringify(tasksInBoard));
     // await setItem("tasksInProgress", tasksInProgress);
-    // await setItem("savedCategory", savedCategory);
+    // await setItem("awaitingFeedback", awaitingFeedback);
+    // await setItem("toDo", toDo);
+    // await setItem("done", done);
+  }
+
+function openAddTask(){
+    window.location.href = "add_task.html";
 }
 
 
-async function load(){
-    return (await getItem("tasksInBoard"));   
+function searchTasksOnBoard() {
+    let searchedTask = document.getElementById('board_input').value.toUpperCase();
+    let searchingArea = document.getElementById("board_container_bottom_category");
+    let searchingElements = searchingArea.getElementsByClassName('pokemonName');
+
+    for (let p = 0; p < searchingElements.length; p++) {
+        let pokemon = searchingElements[p];
+        searchValue = pokemon.textContent || pokemon.innerText;
+        if (searchValue.toUpperCase().indexOf(searchedPokemon) > -1) {
+            searchingElements[p].parentElement.style.display = "flex";
+        } else {
+            searchingElements[p].parentElement.style.display = "none";
+        }
+    }
 }
