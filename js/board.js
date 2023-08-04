@@ -7,8 +7,8 @@ let done;
 
 
 async function renderBoard(){
-    countTasks();
-    saveTasks();
+    // countTasks();
+    await saveTasks();
     await renderBoardCards();
 }
 
@@ -26,8 +26,9 @@ async function renderBoardCards(){
 
 async function createBoardCard(i) {
     //load position of the card
-    let cat = await loadCategory();     
     let ID = i;
+    let cat = await assignCategory(ID);
+    
     let task = tasks[i];
     let titleCard = task['title'];
     let descriptionCard = task['description'];
@@ -35,14 +36,33 @@ async function createBoardCard(i) {
     let assignedCard = task['assignedContacts'];
     let prioCard = task['prio'];
     let subtaskCard = task['subtasks'];
-    console.log(subtaskCard)
+    console.log(tasks)
+    console.log(cat)
+
 
     renderBoardCard(categoryCard, titleCard, descriptionCard, ID, prioCard, cat);
-    createAssignmentIcons(assignedCard, ID);
     if (subtaskCard.length > 0) {
         createProgressbar(subtaskCard, ID)
     };
+    createAssignmentIcons(assignedCard, ID);   
+}
+
+
+async function assignCategory(id){
+    console.log(id);
+    let cat = await loadCategory(id);
+    if(cat == undefined){
+        return "board_container_bottom_todo"
+    }else{
+        return cat
+    }
     
+    // try {
+    //     let cat = await loadCategory(id);
+
+    // } catch{
+    //     return "board_container_bottom_todo"
+    // }
 }
 
 
@@ -73,7 +93,7 @@ function renderBoardCard(categoryCard, titleCard, descriptionCard, ID, prioCard,
 
 
 function createProgressbar(subtaskCard, id) {
-    console.log(subtask);
+    console.log(subtaskCard);
     let tasksNumber = subtaskCard.length;
     let doneTasksNumber = (tasksNumber / 2).toFixed(0)        //nur zu Testzwecken ist die Hälfte der Aufgavben erfüllt
     let procentDoneTasks = doneTasksNumber / tasksNumber;
@@ -148,7 +168,9 @@ async function moveTo(category) {
     let draggedCard = document.getElementById(currentDraggedElement);
     targetContainer.appendChild(draggedCard);
     targetContainer.style.backgroundColor = '';
-    await saveCategory(category);
+    saveCat = "saveTask" + currentDraggedElement;
+    console.log(saveCat);
+    await saveCategory(saveCat, category);
 }
 
 
@@ -170,29 +192,30 @@ function removeHighlight(event) {
  * 
  * @param {*} savedCategory passes the actually category of the TaskCard 
  */
-async function saveCategory(savedCategory){
-    await setItem("savedCategory", savedCategory);
+async function saveCategory(saveCat, savedCategory){
+    await setItem(saveCat, savedCategory);
 }
 
-async function loadCategory(){    
-    return (await getItem("savedCategory"));      
+async function loadCategory(id){
+    let cat = "saveTask" + id;    
+    return (await getItem(cat));      
 }
 
 
 
-async function countTasks(){
-    tasksInBoard = document.getElementsByClassName('board_task_container').length;
-    tasksInProgress = document.getElementById('board_container_bottom_inprogress').getElementsByClassName('board_task_container').length;
-    awaitingFeedback = document.getElementById('board_container_bottom_awaitingfeedback').getElementsByClassName('board_task_container').length;
-    toDo = document.getElementById('board_container_bottom_todo').getElementsByClassName('board_task_container').length;
-    done = document.getElementById('board_container_bottom_done').getElementsByClassName('board_task_container').length;
-    await saveTasks();
-    console.log("Board: ", tasksInBoard);
-    console.log("progress: ", tasksInProgress);
-    console.log("awaiting: ", awaitingFeedback);
-    console.log("todo: ", toDo);
-    console.log("done: ", done);
-}
+// async function countTasks(){
+//     tasksInBoard = document.getElementsByClassName('board_task_container').length;
+//     tasksInProgress = document.getElementById('board_container_bottom_inprogress').getElementsByClassName('board_task_container').length;
+//     awaitingFeedback = document.getElementById('board_container_bottom_awaitingfeedback').getElementsByClassName('board_task_container').length;
+//     toDo = document.getElementById('board_container_bottom_todo').getElementsByClassName('board_task_container').length;
+//     done = document.getElementById('board_container_bottom_done').getElementsByClassName('board_task_container').length;
+//     await saveTasks();
+//     console.log("Board: ", tasksInBoard);
+//     console.log("progress: ", tasksInProgress);
+//     console.log("awaiting: ", awaitingFeedback);
+//     console.log("todo: ", toDo);
+//     console.log("done: ", done);
+// }
 
 
 async function saveTasks() {  

@@ -60,7 +60,6 @@ function togglePopupBar() {
  * 
  * @param {} - no parameter
  */
-
 async function createNameCircle() {
     await loadUsers();
     currentUser = users[0].name;    
