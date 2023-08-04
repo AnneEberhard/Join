@@ -7,30 +7,42 @@ let done;
 
 
 async function renderBoard(){
-    await createBoardCard();
     countTasks();
     saveTasks();
+    await renderBoardCards();
 }
 
-async function createBoardCard() {
+async function renderBoardCards(){
     await loadItems();
+    document.getAnimations('board_container_bottom_todo').innerHTML = "";
+    document.getAnimations('board_container_bottom_inprogress').innerHTML = "";
+    document.getAnimations('board_container_bottom_awaitingfeedback').innerHTML = "";
+    document.getAnimations('board_container_bottom_category').innerHTML = "";
+    for (let i = 0; i < tasks.length; i++) {
+        createBoardCard(i)
+    }
+    
+}
+
+async function createBoardCard(i) {
     //load position of the card
     let cat = await loadCategory();     
-    let ID = 1;
-    let task = tasks[0];
+    let ID = i;
+    let task = tasks[i];
     let titleCard = task['title'];
     let descriptionCard = task['description'];
     let categoryCard = task['category'];
     let assignedCard = task['assignedContacts'];
     let prioCard = task['prio'];
     let subtaskCard = task['subtasks'];
+    console.log(subtaskCard)
 
     renderBoardCard(categoryCard, titleCard, descriptionCard, ID, prioCard, cat);
-
+    createAssignmentIcons(assignedCard, ID);
     if (subtaskCard.length > 0) {
         createProgressbar(subtaskCard, ID)
     };
-    createAssignmentIcons(assignedCard, ID);
+    
 }
 
 
@@ -61,6 +73,7 @@ function renderBoardCard(categoryCard, titleCard, descriptionCard, ID, prioCard,
 
 
 function createProgressbar(subtaskCard, id) {
+    console.log(subtask);
     let tasksNumber = subtaskCard.length;
     let doneTasksNumber = (tasksNumber / 2).toFixed(0)        //nur zu Testzwecken ist die Hälfte der Aufgavben erfüllt
     let procentDoneTasks = doneTasksNumber / tasksNumber;
@@ -84,14 +97,19 @@ function renderProgressText(doneTasksNumber, tasksNumber, id) {
     `
 }
 
-
+/**
+ * Noch aufhübschen und entschlacken
+ * @param {*} assignedCard 
+ * @param {*} id 
+ */ 
 function createAssignmentIcons(assignedCard, id) {
 
+    
     for (let i = 0; i < assignedCard.length; i++) {
-        const assiggned = assignedCard[i];
-
+        const assiggned = assignedCard[i].user_name;
+        
         let acronym = createAcronym(assiggned); //erstellt zwei Buchstaben
-
+    
         const randColor = () => {
             return "#" + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0').toUpperCase();
         }
@@ -179,11 +197,11 @@ async function countTasks(){
 
 async function saveTasks() {  
     // Speichere die Werte auf dem Server
-    await setItem("tasksInBoard", tasksInBoard);
-    await setItem("tasksInProgress", tasksInProgress);
-    await setItem("awaitingFeedback", awaitingFeedback);
-    await setItem("toDo", toDo);
-    await setItem("done", done);
+    await setItem("tasksInBoard", JSON.stringify(tasksInBoard));
+    // await setItem("tasksInProgress", tasksInProgress);
+    // await setItem("awaitingFeedback", awaitingFeedback);
+    // await setItem("toDo", toDo);
+    // await setItem("done", done);
   }
 
 function openAddTask(){
