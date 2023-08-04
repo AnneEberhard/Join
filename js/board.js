@@ -5,11 +5,10 @@ let awaitingFeedback;
 let toDo;
 let done;
 
-
-async function renderBoard(){
-    // countTasks();
+async function renderBoard(){    
     await saveTasks();
     await renderBoardCards();
+    countTasks();
 }
 
 async function renderBoardCards(){
@@ -193,23 +192,18 @@ async function loadCategory(id){
 
 
 
-// async function countTasks(){
-//     tasksInBoard = document.getElementsByClassName('board_task_container').length;
-//     tasksInProgress = document.getElementById('board_container_bottom_inprogress').getElementsByClassName('board_task_container').length;
-//     awaitingFeedback = document.getElementById('board_container_bottom_awaitingfeedback').getElementsByClassName('board_task_container').length;
-//     toDo = document.getElementById('board_container_bottom_todo').getElementsByClassName('board_task_container').length;
-//     done = document.getElementById('board_container_bottom_done').getElementsByClassName('board_task_container').length;
-//     await saveTasks();
-//     console.log("Board: ", tasksInBoard);
-//     console.log("progress: ", tasksInProgress);
-//     console.log("awaiting: ", awaitingFeedback);
-//     console.log("todo: ", toDo);
-//     console.log("done: ", done);
-// }
+function countTasks(){
+    tasksInBoard = document.getElementsByClassName('board_task_container_inner').length;
+    console.log(tasksInBoard)
+    // tasksInProgress = document.getElementById('board_container_bottom_inprogress').getElementsByClassName('board_task_container').length;
+    // awaitingFeedback = document.getElementById('board_container_bottom_awaitingfeedback').getElementsByClassName('board_task_container').length;
+    // toDo = document.getElementById('board_container_bottom_todo').getElementsByClassName('board_task_container').length;
+    // done = document.getElementById('board_container_bottom_done').getElementsByClassName('board_task_container').length;
+    // await saveTasks();
+}
 
-
-async function saveTasks() {  
     // Speichere die Werte auf dem Server
+async function saveTasks() {      
     await setItem("tasksInBoard", JSON.stringify(tasksInBoard));
     // await setItem("tasksInProgress", tasksInProgress);
     // await setItem("awaitingFeedback", awaitingFeedback);
@@ -217,23 +211,23 @@ async function saveTasks() {
     // await setItem("done", done);
   }
 
-function openAddTask(){
-    window.location.href = "add_task.html";
-}
-
 
 function searchTasksOnBoard() {
     let searchedTask = document.getElementById('board_input').value.toUpperCase();
-    let searchingArea = document.getElementById("board_container_bottom_category");
-    let searchingElements = searchingArea.getElementsByClassName('pokemonName');
+    let searchingElements = document.getElementsByClassName('board_task_container_title');
 
     for (let p = 0; p < searchingElements.length; p++) {
-        let pokemon = searchingElements[p];
-        searchValue = pokemon.textContent || pokemon.innerText;
-        if (searchValue.toUpperCase().indexOf(searchedPokemon) > -1) {
-            searchingElements[p].parentElement.style.display = "flex";
+        let title = searchingElements[p];
+        searchValue = title.textContent || title.innerText;
+        if (searchValue.toUpperCase().indexOf(searchedTask) > -1) {
+            searchingElements[p].parentElement.parentElement.parentElement.style.display = "flex";
         } else {
-            searchingElements[p].parentElement.style.display = "none";
+            searchingElements[p].parentElement.parentElement.parentElement.style.display = "none";
         }
     }
+}
+
+
+function openAddTask(){
+    window.location.href = "add_task.html";
 }
