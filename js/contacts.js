@@ -3,10 +3,10 @@ let email = document.getElementById("email");
 let phone = document.getElementById("phone");
 
 let contacts = [
-  new Contact("Anja Schulz", +4917672446077, "schulz@gmail.com"),
-  new Contact("Alen Alduk", +4917672446077, "alen-1997@hotmail.de"),
-  new Contact("Anne Eberhard", +4917672446077, "anne.e@gmail.com"),
-  new Contact("Klemens Naue", +4917672446077, "klemens.n@gmail.com"),
+  new Contact("Anja Schulz", +4917672446077, "schulz@gmail.com", "AS"),
+  new Contact("Alen Alduk", +4917672446077, "alen-1997@hotmail.de", "AA"),
+  new Contact("Anne Eberhard", +4917672446077, "anne.e@gmail.com", "AE"),
+  new Contact("Klemens Naue", +4917672446077, "klemens.n@gmail.com", "KN"),
 ];
 
 // Code for Letters in Contacts:
@@ -43,19 +43,24 @@ function openModal(id) {
 }
 
 function cancelContact(id) {
-  user_name.value = "";
-  email.value = "";
-  phone.value = "";
+  resetForm();
   closeModal(id);
 }
 
 async function createContact(id) {
-  let contact = new Contact(user_name.value, +phone.value, email.value);
+  let acronym = createAcronym(user_name.value);
+  let contact = new Contact(
+    user_name.value,
+    +phone.value,
+    email.value,
+    acronym.toUpperCase()
+  );
   contacts.push(contact);
   await setItem("contacts", JSON.stringify(contacts));
   await loadContacts();
   resetForm();
   closeModal(id);
+  renderContactList();
 }
 
 async function loadContacts() {
@@ -71,3 +76,91 @@ function resetForm() {
   email.value = "";
   phone.value = "";
 }
+
+// async function createNameCircle() {
+//   await loadUsers();
+//   currentUser = users[0].name;
+//   let acronym = createAcronym(currentUser);
+//   let topbar = document.getElementById('topbar_icons');
+//   topbar.innerHTML += /*html*/`
+//       <div id="topbar_Icons_Username" onclick="togglePopupBar()">${acronym}</div>
+//   `
+// }
+
+function renderContactList() {
+  const contactsContainer = document.getElementById("contacts_container");
+  contactsContainer.innerHTML = "";
+
+  const groupedContacts = {};
+
+  // Group contacts by their acronym
+  for (const contact of contacts) {
+    const firstLetter = contact.acronym.charAt(0).toUpperCase();
+    if (!groupedContacts[firstLetter]) {
+      groupedContacts[firstLetter] = [];
+    }
+    groupedContacts[firstLetter].push(contact);
+  }
+
+  // Sort the grouped contacts by name
+  for (const letter in groupedContacts) {
+    groupedContacts[letter].sort((a, b) =>
+      a.user_name.localeCompare(b.user_name)
+    );
+  }
+
+  // Render the headers, contacts, and dividers
+  for (const letter in groupedContacts) {
+    const letterContainer = document.createElement("div");
+    letterContainer.id = `beginn_${letter.toLowerCase()}`;
+    letterContainer.className = "contact_list_letter_container";
+
+    const letterHeader = document.createElement("div");
+    letterHeader.className = "letter";
+    letterHeader.textContent = letter;
+    letterContainer.appendChild(letterHeader);
+
+    const strokeDiv = document.createElement("div");
+    strokeDiv.className = "contact_list_stroke";
+    letterContainer.appendChild(strokeDiv);
+
+    for (const contact of groupedContacts[letter]) {
+      const contactContainer = document.createElement("div");
+      contactContainer.className = "contact_list_name_container";
+
+      const contactInnerContainer = document.createElement("div");
+      contactInnerContainer.className = "contact_list_name_container_inner";
+      contactInnerContainer.onclick = function () {
+        deleteContact(contact.user_name);
+      };
+
+      const acronymDiv = document.createElement("div");
+      acronymDiv.className = "contact_list_name_icon";
+      acronymDiv.textContent = contact.acronym;
+
+      const nameMailContainer = document.createElement("div");
+      nameMailContainer.className = "contact_list_name_mail";
+
+      const nameDiv = document.createElement("div");
+      nameDiv.className = "contact_list_name";
+      nameDiv.textContent = contact.user_name;
+
+      const mailDiv = document.createElement("div");
+      mailDiv.className = "contact_list_mail";
+      mailDiv.textContent = contact.email;
+
+      nameMailContainer.appendChild(nameDiv);
+      nameMailContainer.appendChild(mailDiv);
+
+      contactInnerContainer.appendChild(acronymDiv);
+      contactInnerContainer.appendChild(nameMailContainer);
+
+      contactContainer.appendChild(contactInnerContainer);
+      letterContainer.appendChild(contactContainer);
+    }
+
+    contactsContainer.appendChild(letterContainer);
+  }
+}
+
+renderContactList();
