@@ -139,7 +139,7 @@ function renderContactList() {
       const contactInnerContainer = document.createElement("div");
       contactInnerContainer.className = "contact_list_name_container_inner";
       contactInnerContainer.onclick = function () {
-        // renderContact(contact.user_name);
+        renderContact(contact.user_name);
       };
 
       const acronymDiv = document.createElement("div");
@@ -169,4 +169,52 @@ function renderContactList() {
 
     contactsContainer.appendChild(letterContainer);
   }
+}
+
+function renderContact(username) {
+  let contact = findContactByUserName(username);
+  let email = contact.email;
+  let phone = contact.phone;
+  let name = contact.user_name;
+  let acronym = contact.acronym;
+  content = document.getElementById("render");
+  render.innerHTML = htmlUserTemplate(email, phone, name, acronym);
+}
+
+function htmlUserTemplate(email, phone, name, acronym) {
+  return `<div class="user_container">
+  <div class="user">
+  <div class="user_icon">${acronym}</div>
+  <div class="user_edit_container">
+  <div class="username">${name}</div>
+  <div class="edit_user">
+    <img src="/assets/img/edit.png">
+    <span>Edit</span>
+    <img src="assets/img/delete.png">
+    <span>Delete</span>
+  </div>
+  
+</div>
+
+</div>
+<div class="contact_information">
+    <span class="information">Contact Information</span>
+  </div>
+  <div class="user_details">
+    <div class="details_container">
+        <div class="email">
+            <h3>Email</h3>
+            <a href="mailto: ${email}">${email}</a>
+        </div>
+        <div class="phone">
+            <h3>Phone</h3>
+            <a href="tel: ${phone}">${phone}</a>
+        </div>
+    </div>
+  </div>
+</div>`;
+}
+
+function findContactByUserName(userName) {
+  return contacts.find((contact) => contact.user_name === userName);
 }
