@@ -32,6 +32,14 @@ Code for mini Contact Card:
       </div> */
 }
 
+async function init() {
+  await includeHTMLTwo();
+  showCategory("contacts");
+  createNameCircle();
+  await loadContacts();
+  renderContactList();
+}
+
 function closeModal(id) {
   let modal = document.getElementById(id);
   modal.style = "display: none;";
@@ -131,7 +139,7 @@ function renderContactList() {
       const contactInnerContainer = document.createElement("div");
       contactInnerContainer.className = "contact_list_name_container_inner";
       contactInnerContainer.onclick = function () {
-        deleteContact(contact.user_name);
+        // renderContact(contact.user_name);
       };
 
       const acronymDiv = document.createElement("div");
@@ -162,5 +170,3 @@ function renderContactList() {
     contactsContainer.appendChild(letterContainer);
   }
 }
-
-renderContactList();
