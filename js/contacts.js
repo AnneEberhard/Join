@@ -181,6 +181,10 @@ function renderContact(username) {
   render.innerHTML = htmlUserTemplate(email, phone, name, acronym);
 }
 
+function findContactByUserName(userName) {
+  return contacts.find((contact) => contact.user_name === userName);
+}
+
 function htmlUserTemplate(email, phone, name, acronym) {
   return `<div class="user_container">
   <div class="user">
@@ -213,8 +217,4 @@ function htmlUserTemplate(email, phone, name, acronym) {
     </div>
   </div>
 </div>`;
-}
-
-function findContactByUserName(userName) {
-  return contacts.find((contact) => contact.user_name === userName);
 }
