@@ -27,8 +27,7 @@ async function renderBoardCards(){
 async function createBoardCard(i) {
     //load position of the card
     let ID = i;
-    let cat = await assignCategory(ID);
-    
+    let cat = await assignCategory(ID);    
     let task = tasks[i];
     let titleCard = task['title'];
     let descriptionCard = task['description'];
@@ -36,9 +35,6 @@ async function createBoardCard(i) {
     let assignedCard = task['assignedContacts'];
     let prioCard = task['prio'];
     let subtaskCard = task['subtasks'];
-    console.log(tasks)
-    console.log(cat)
-
 
     renderBoardCard(categoryCard, titleCard, descriptionCard, ID, prioCard, cat);
     if (subtaskCard.length > 0) {
@@ -49,20 +45,15 @@ async function createBoardCard(i) {
 
 
 async function assignCategory(id){
-    console.log(id);
-    let cat = await loadCategory(id);
-    if(cat == undefined){
-        return "board_container_bottom_todo"
-    }else{
+    
+    try {
+        let cat = await loadCategory(id);
+        return cat
+
+    } catch{
+        let cat = "board_container_bottom_todo"
         return cat
     }
-    
-    // try {
-    //     let cat = await loadCategory(id);
-
-    // } catch{
-    //     return "board_container_bottom_todo"
-    // }
 }
 
 
@@ -93,7 +84,6 @@ function renderBoardCard(categoryCard, titleCard, descriptionCard, ID, prioCard,
 
 
 function createProgressbar(subtaskCard, id) {
-    console.log(subtaskCard);
     let tasksNumber = subtaskCard.length;
     let doneTasksNumber = (tasksNumber / 2).toFixed(0)        //nur zu Testzwecken ist die Hälfte der Aufgavben erfüllt
     let procentDoneTasks = doneTasksNumber / tasksNumber;
