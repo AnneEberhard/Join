@@ -5,12 +5,11 @@ let awaitingFeedback;
 let toDo;
 let done;
 
+
 async function renderBoard(){
     await createBoardCard();
-    countTaks();
-    console.log("Board: ", tasksInBoard);
-    console.log("progress: ", tasksInProgress);
-    console.log("awaiting: ", awaitingFeedback);
+    countTasks();
+    saveTasks();
 }
 
 async function createBoardCard() {
@@ -163,22 +162,47 @@ async function loadCategory(){
 
 
 
-function countTaks(){
+async function countTasks(){
     tasksInBoard = document.getElementsByClassName('board_task_container').length;
     tasksInProgress = document.getElementById('board_container_bottom_inprogress').getElementsByClassName('board_task_container').length;
     awaitingFeedback = document.getElementById('board_container_bottom_awaitingfeedback').getElementsByClassName('board_task_container').length;
-    toDo;
-    done;
-    save();
+    toDo = document.getElementById('board_container_bottom_todo').getElementsByClassName('board_task_container').length;
+    done = document.getElementById('board_container_bottom_done').getElementsByClassName('board_task_container').length;
+    await saveTasks();
+    console.log("Board: ", tasksInBoard);
+    console.log("progress: ", tasksInProgress);
+    console.log("awaiting: ", awaitingFeedback);
+    console.log("todo: ", toDo);
+    console.log("done: ", done);
 }
 
-async function save(){
+
+async function saveTasks() {  
+    // Speichere die Werte auf dem Server
     await setItem("tasksInBoard", tasksInBoard);
-    // await setItem("tasksInProgress", tasksInProgress);
-    // await setItem("savedCategory", savedCategory);
+    await setItem("tasksInProgress", tasksInProgress);
+    await setItem("awaitingFeedback", awaitingFeedback);
+    await setItem("toDo", toDo);
+    await setItem("done", done);
+  }
+
+function openAddTask(){
+    window.location.href = "add_task.html";
 }
 
 
-async function load(){
-    return (await getItem("tasksInBoard"));   
+function searchTasksOnBoard() {
+    let searchedTask = document.getElementById('board_input').value.toUpperCase();
+    let searchingArea = document.getElementById("board_container_bottom_category");
+    let searchingElements = searchingArea.getElementsByClassName('pokemonName');
+
+    for (let p = 0; p < searchingElements.length; p++) {
+        let pokemon = searchingElements[p];
+        searchValue = pokemon.textContent || pokemon.innerText;
+        if (searchValue.toUpperCase().indexOf(searchedPokemon) > -1) {
+            searchingElements[p].parentElement.style.display = "flex";
+        } else {
+            searchingElements[p].parentElement.style.display = "none";
+        }
+    }
 }

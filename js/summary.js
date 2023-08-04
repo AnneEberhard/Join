@@ -1,7 +1,7 @@
-function loadSummary(){
+async function loadSummary(){
     greetingSummary();
     currentDate();
-    getTaskAmount();
+    loadTasks();
 }
 
 function greetingSummary(){
@@ -50,8 +50,7 @@ function currentDate(){
 }
 
 
-async function getTaskAmount(){
-    let i = await load();
-    console.log(i);
-    
+async function loadTasks(){
+    let i = await getItem("tasksInProgress");
+    console.log(i);    
 }

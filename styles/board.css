@@ -1,3 +1,7 @@
+body{
+    background-color: #F6F7F8;
+}
+
 #board{
     font-family: 'Inter';
     height: 100vh;
@@ -6,9 +10,8 @@
 }
 
 #board_container_top{
-    position: fixed;
-    top: 206px;
-    left: 328px;
+    padding-top: 206px;
+    padding-left: 328px;
     width: 1056px;
     height: 73px;
     display: flex;
@@ -120,9 +123,9 @@ input:focus{
 }
 
 #board_container_bottom{
-    position: fixed;
-    top: 343px;
-    left:297px; 
+    
+    margin-top: 67px;
+    margin-left:297px; 
     width: 1078px;
     height: 661px;
     display: flex;
