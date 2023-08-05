@@ -215,7 +215,20 @@ async function saveEditedContact() {
   renderContact(editingContact.user_name);
 }
 
-function deleteContact(user) {}
+async function deleteContact(user) {
+  let target = user;
+  let indexToRemove = contacts.findIndex(
+    (contact) => contact.user_name === target
+  );
+
+  if (indexToRemove !== -1) {
+    contacts.splice(indexToRemove, 1);
+    await setItem("contacts", JSON.stringify(contacts));
+    loadContacts();
+    renderContactList();
+    document.getElementById("render").innerHTML = "";
+  }
+}
 
 function resetEditForm() {
   let email = document.getElementById("edit_email");
