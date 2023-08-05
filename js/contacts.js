@@ -9,6 +9,8 @@ let contacts = [
   new Contact("Klemens Naue", +4917672446077, "klemens.n@gmail.com", "KN"),
 ];
 
+let editingContact;
+
 // Code for Letters in Contacts:
 
 {
@@ -185,24 +187,58 @@ function findContactByUserName(userName) {
   return contacts.find((contact) => contact.user_name === userName);
 }
 
-// function editContact(user){
-//   let contact = findContactByUserName(user);
-//   contact.user_name =
-// }
+function editContact(user) {
+  openModal("edit_contact_modal");
+  let email = document.getElementById("edit_email");
+  let name = document.getElementById("edit_name");
+  let phone = document.getElementById("edit_phone");
+  editingContact = findContactByUserName(user);
+  name.value = editingContact.user_name;
+  email.value = editingContact.email;
+  phone.value = editingContact.phone;
+}
+
+async function saveEditedContact() {
+  let email = document.getElementById("edit_email");
+  let name = document.getElementById("edit_name");
+  let phone = document.getElementById("edit_phone");
+  let acronym = createAcronym(name.value);
+  editingContact.user_name = name.value;
+  editingContact.email = email.value;
+  editingContact.phone = phone.value;
+  editingContact.acronym = acronym;
+  resetEditForm();
+  await setItem("contacts", JSON.stringify(contacts));
+  await loadContacts();
+  renderContactList();
+  closeModal("edit_contact_modal");
+  renderContact(editingContact.user_name);
+}
+
+function deleteContact(user) {}
+
+function resetEditForm() {
+  let email = document.getElementById("edit_email");
+  let name = document.getElementById("edit_name");
+  let phone = document.getElementById("edit_phone");
+  name.value = "";
+  email.value = "";
+  phone.value = "";
+}
 
 function htmlUserTemplate(email, phone, name, acronym) {
-  return `<div class="user_container">
+  return /*html*/ `<div class="user_container">
   <div class="user">
   <div class="user_icon">${acronym}</div>
   <div class="user_edit_container">
   <div class="username">${name}</div>
   
   <div class="edit_user">
-  <div id="edit_contact" onclick="editContact(${name})">
+  <div id="edit_contact" onclick="editContact('${name}')">
     <img src="/assets/img/edit.png">
     <span>Edit</span>
     </div>
-    <div id="delete_contact" onclick="deleteContact(${name})>
+    <div id="delete_contact" onclick="deleteContact('${name}')">
     <img src="assets/img/delete.png">
     <span>Delete</span>
     </div>

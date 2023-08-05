@@ -65,7 +65,7 @@
         </div>
       </div>
     <!-- Edit COntact Modal -->
-    <div class="modal_edit_contact" id="edit_contact_modal" style="display:flex;">
+    <div class="modal_edit_contact" id="edit_contact_modal" style="display:none;">
       <img class="x" src="assets/img/cancel.png" onclick="closeModal('edit_contact_modal')">
         <div class="left_side">
           <div class="left_content">
@@ -80,7 +80,7 @@
           <img src="assets/img/blank_avatar.png">
           </div>
           <div class="form_container">
-          <form id="edit_form" onsubmit="createContact('new_contact_modal'); return false;">
+          <form id="edit_form" onsubmit="saveEditedContact(); return false;">
             <div class="input-container">
               <input id="edit_name" type="text" placeholder="Name" required/>
               <input id="edit_email" class="" type="email" placeholder="Email" required/>
