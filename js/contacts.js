@@ -44,12 +44,14 @@ async function init() {
 
 function closeModal(id) {
   let modal = document.getElementById(id);
-  modal.style = "display: none;";
+  modal.classList.remove("slideIn");
+  modal.className = "slideOut";
 }
 
 function openModal(id) {
   let modal = document.getElementById(id);
   modal.style = "display: flex;";
+  modal.className = "slideIn";
 }
 
 function cancelContact(id) {
@@ -226,6 +228,21 @@ async function deleteContact(user) {
     await setItem("contacts", JSON.stringify(contacts));
     loadContacts();
     renderContactList();
+    document.getElementById("render").innerHTML = "";
+  }
+}
+
+async function deleteContactInModal(id) {
+  let modal = document.getElementById(id);
+  target = modal.value;
+  let toDelete = contacts.findIndex((contact) => contact.user_name === target);
+
+  if (toDelete !== -1) {
+    contacts.splice(toDelete, 1);
+    await setItem("contacts", JSON.stringify(contacts));
+    loadContacts();
+    renderContactList();
+    closeModal("edit_contact_modal");
     document.getElementById("render").innerHTML = "";
   }
 }

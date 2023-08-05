@@ -66,6 +66,7 @@
       </div>
     <!-- Edit COntact Modal -->
     <div class="modal_edit_contact" id="edit_contact_modal" style="display:none;">
+      
       <img class="x" src="assets/img/cancel.png" onclick="closeModal('edit_contact_modal')">
         <div class="left_side">
           <div class="left_content">
@@ -87,7 +88,7 @@
               <input id="edit_phone" class="" type="number" placeholder="Phone"/>
             </div>
             <div class="create-buttons">
-              <button type="button" id="edit_delete" onclick="deleteContact('new_contact_modal')">Delete</button>
+              <button type="button" id="edit_delete" onclick="deleteContactInModal('edit_name')">Delete</button>
               <button type="submit" id="edit_save">
                 Save
               </button>
@@ -95,6 +96,7 @@
           </form>
         </div>
         </div>
+      
       </div>
     <div class="contact_info_container">
         
