@@ -21,6 +21,8 @@
     <div w3-include-html="assets/templates/desktop_template.html"></div>
     <!--Edit-Container-->
     <div id="editTask"  class="d-none">
+        <div id="confirmDeleteTask" class="d-none">
+        </div>
         <div id="editTaskContainer">
             <div id="editTaskContainerClose" onclick="closeEditTask()"><img src="/assets/img/Icon_close.png" alt=""></div>
             <div id="editTaskContainerEditDelete">
@@ -40,9 +42,9 @@
                     <div id="editTaskContainerPrioPrio"></div>
                 </div>
                 <div id="editTaskContainerAssigned">
-                    <div id="editTaskContainerAssigned">Assigned to:</div>
+                    <div id="editTaskContainerAssignedText">Assigned to:</div>
+                    <div id="editTaskContainerAssignedNames"></div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -72,8 +74,7 @@
                 <div class="board_container_bottom_category_title">
                     <div class="board_container_bottom_category_name">To do</div>
                     <div class="board_container_bottom_category_icon" onclick="openAddTask()"><img src="/assets/img/Icons_plus_Board_categorie.png" alt=""></div>
-                </div>
-                
+                </div>   
             </div>
             <div id="board_container_bottom_inprogress" class="board_container_bottom_category" ondrop="moveTo('board_container_bottom_inprogress')" ondragover="allowDrop(event); highlight(event)" ondragleave="removeHighlight(event)">
                 <div class="board_container_bottom_category_title">

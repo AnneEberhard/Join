@@ -14,10 +14,6 @@ async function renderBoard() {
 
 async function renderBoardCards() {
     await loadItems();
-    document.getAnimations('board_container_bottom_todo').innerHTML = "";
-    document.getAnimations('board_container_bottom_inprogress').innerHTML = "";
-    document.getAnimations('board_container_bottom_awaitingfeedback').innerHTML = "";
-    document.getAnimations('board_container_bottom_category').innerHTML = "";
     for (let i = 0; i < tasks.length; i++) {
         createBoardCard(i)
     }
@@ -29,8 +25,6 @@ async function createBoardCard(i) {
     let ID = i;
     let cat = await assignCategory(ID);
     let task = tasks[i];
-    let taskString = JSON.stringify(task)
-    console.log(taskString);
     let titleCard = task['title'];
     let descriptionCard = task['description'];
     let categoryCard = task['category'];
@@ -43,30 +37,6 @@ async function createBoardCard(i) {
         createProgressbar(subtaskCard, ID)
     };
     createAssignmentIcons(assignedCard, ID);
-}
-
-
-function openTaskOverview(id){
-    let task = tasks[id];
-    let taskOverview = document.getElementById('editTask');
-    taskOverview.classList.remove('d-none');
-    document.getElementById('editTaskContainerCategory').innerHTML = `${task['category']}`;
-    document.getElementById('editTaskContainerTitle').innerHTML = `${task['title']}`;
-    document.getElementById('editTaskContainerDescription').innerHTML = `${task['description']}`;
-    document.getElementById('editTaskContainerDueDateDate').innerHTML = `${task['dueDate']}`;
-    document.getElementById('editTaskContainerDelete').innerHTML = `<img src="/assets/img/Icon_delete.png" onclick="askBeforeDelete(${id})">`;
-    document.getElementById('editTaskContainerPrioPrio').innerHTML = `${task['prio']} <img src="../assets/img/${task['prio']}_white.png"/>`;
-
-}
-
-
-function askBeforeDelete(a){    
-    deleteTask(a);
-    setTimeout(() => window.location.href = "board.html", 300)
-}
-
-function closeEditTask(){
-    document.getElementById('editTask').classList.add('d-none');
 }
 
 
@@ -257,4 +227,71 @@ function searchTasksOnBoard() {
 
 function openAddTask() {
     window.location.href = "add_task.html";
+}
+
+
+function openTaskOverview(id){
+    let task = tasks[id];
+    let taskOverview = document.getElementById('editTask');
+    taskOverview.classList.remove('d-none');
+    document.getElementById('editTaskContainerCategory').innerHTML = `${task['category']}`;
+    document.getElementById('editTaskContainerTitle').innerHTML = `${task['title']}`;
+    document.getElementById('editTaskContainerDescription').innerHTML = `${task['description']}`;
+    document.getElementById('editTaskContainerDueDateDate').innerHTML = `${task['dueDate']}`;
+    document.getElementById('editTaskContainerDelete').innerHTML = `<img src="/assets/img/Icon_delete.png" onclick="askBeforeDelete(${id})">`;
+    document.getElementById('editTaskContainerPrioPrio').innerHTML = `${task['prio']} <img src="../assets/img/${task['prio']}_white.png"/>`;
+
+    renderAssignementsInTaskOverview(task);    
+}
+
+
+function renderAssignementsInTaskOverview(task){    
+    let assign = task['assignedContacts'];
+    document.getElementById(`editTaskContainerAssignedNames`).innerHTML = "";
+    for (let i = 0; i < assign.length; i++) {
+        const a = assign[i];
+
+        let newContainer = document.createElement('div');
+        newContainer.classList.add('editTaskUsername');
+        let newCircle = document.createElement('div');
+        newCircle.classList.add('editTaskUsernameCircle');
+        let newName = document.createElement('div');
+        newName.classList.add('editTaskUsernameName');
+        
+        let un = document.getElementById(`editTaskContainerAssignedNames`);
+        
+        newContainer.appendChild(newCircle);
+        newContainer.appendChild(newName);
+        newCircle.innerHTML = a.acronym;
+        newName.innerHTML = a.user_name;
+        un.appendChild(newContainer);
+    }
+}
+
+
+function askBeforeDelete(a){
+    let confirmDelete = document.getElementById('confirmDeleteTask');
+    confirmDelete.classList.remove('d-none');
+    confirmDelete.innerHTML += /*html*/`
+        <div id="confirmDeleteTaskQuestion">Delete Task?</div>
+        <div id="confirmDeleteTaskAnswers">
+                <div id="confirmDeleteTaskAnswersYes" onclick="deleteTaskFinally(${a})">Delete</div>
+                <div id="confirmDeleteTaskAnswersNo" onclick="closeDeleteRequest()">Back</div>
+        </div>
+    `
+}
+
+async function deleteTaskFinally(a){
+        closeDeleteRequest();
+        deleteTask(a);
+        setTimeout(() => window.location.href = "board.html", 100);
+}
+
+function closeDeleteRequest(){
+    document.getElementById('confirmDeleteTask').innerHTML = "";
+    document.getElementById('confirmDeleteTask').classList.add('d-none');
+}
+
+function closeEditTask(){
+    document.getElementById('editTask').classList.add('d-none');
 }
