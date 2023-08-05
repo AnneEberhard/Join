@@ -7,17 +7,46 @@
     <link rel="stylesheet" href="styles/style_template.css">
     <link rel="stylesheet" href="styles/board.css">
     <link rel="stylesheet" href="styles/fonts.css">
-    <script src="/js/script_Templates.js"></script>
-    <script src="/script.js"></script>
-    <script src="/js/storage.js"></script>
-    <script src="/js/add_task.js"></script>
-    <script src="/js/board.js"></script>
-    <script src="/js/summary.js"></script>
+    <script src="js/script_Templates.js"></script>
+    <script src="script.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/add_task.js"></script>
+    <script src="js/board.js"></script>
+    <script src="js/summary.js"></script>
+    <script src="js/delete.js"></script>
     <title>JOIN | Board</title>
 </head>
 
 <body onload="initTemplate('board'), renderBoard()">
     <div w3-include-html="assets/templates/desktop_template.html"></div>
+    <!--Edit-Container-->
+    <div id="editTask"  class="d-none">
+        <div id="editTaskContainer">
+            <div id="editTaskContainerClose" onclick="closeEditTask()"><img src="/assets/img/Icon_close.png" alt=""></div>
+            <div id="editTaskContainerEditDelete">
+                <div id="editTaskContainerDelete"></div>
+                <div id="editTaskContainerEdit"><img src="/assets/img/Icon_edit.png" ></div>
+            </div>
+            <div id="editTaskContainerInner">
+                <div id="editTaskContainerCategory"></div>
+                <div id="editTaskContainerTitle"></div>
+                <div id="editTaskContainerDescription"></div>
+                <div id="editTaskContainerDueDate">
+                    <div id="editTaskContainerDueDateText">Due Date:</div>
+                    <div id="editTaskContainerDueDateDate"></div>
+                </div>
+                <div id="editTaskContainerPrio">
+                    <div id="editTaskContainerPrioText">Priority:</div>
+                    <div id="editTaskContainerPrioPrio"></div>
+                </div>
+                <div id="editTaskContainerAssigned">
+                    <div id="editTaskContainerAssigned">Assigned to:</div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
     <div id="board">
         <div id="board_container_top">
             <div id="board_container_title">Board</div>
