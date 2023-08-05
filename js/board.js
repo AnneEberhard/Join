@@ -11,6 +11,9 @@ async function renderBoard(){
     countTasks();
 }
 
+   
+
+
 async function renderBoardCards(){
     await loadItems();
     document.getAnimations('board_container_bottom_todo').innerHTML = "";
@@ -22,6 +25,7 @@ async function renderBoardCards(){
     }
     
 }
+
 
 async function createBoardCard(i) {
     //load position of the card
@@ -159,7 +163,7 @@ async function moveTo(category) {
     targetContainer.style.backgroundColor = '';
     saveCat = "saveTask" + currentDraggedElement;
     console.log(saveCat);
-    await saveCategory(saveCat, category);
+   await saveCategory(saveCat, category);
 }
 
 
@@ -192,14 +196,14 @@ async function loadCategory(id){
 
 
 
-function countTasks(){
+async function countTasks() {
     tasksInBoard = document.getElementsByClassName('board_task_container_inner').length;
-    console.log(tasksInBoard)
-    // tasksInProgress = document.getElementById('board_container_bottom_inprogress').getElementsByClassName('board_task_container').length;
-    // awaitingFeedback = document.getElementById('board_container_bottom_awaitingfeedback').getElementsByClassName('board_task_container').length;
-    // toDo = document.getElementById('board_container_bottom_todo').getElementsByClassName('board_task_container').length;
-    // done = document.getElementById('board_container_bottom_done').getElementsByClassName('board_task_container').length;
-    // await saveTasks();
+    tasksInProgress = document.getElementById('board_container_bottom_inprogress').getElementsByClassName('board_task_container').length;
+    awaitingFeedback = document.getElementById('board_container_bottom_awaitingfeedback').getElementsByClassName('board_task_container').length;
+    toDo = document.getElementById('board_container_bottom_todo').getElementsByClassName('board_task_container').length;
+    done = document.getElementById('board_container_bottom_done').getElementsByClassName('board_task_container').length;
+    await saveTasks();
+    console.log(tasksInBoard, awaitingFeedback, toDo, done)
 }
 
     // Speichere die Werte auf dem Server
