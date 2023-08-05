@@ -454,11 +454,128 @@ input[type="number"] {
   cursor: pointer;
 }
 
-/* TEST */
-
 #contacts_container {
   display: flex;
   flex-direction: column;
   width: 100%;
   overflow-y: auto;
+}
+
+#edit_contact,
+#delete_contact {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  border-radius: 5px;
+  padding: 2px;
+}
+
+#edit_contact:hover,
+#delete_contact:hover {
+  background-color: #d1d1d1;
+  cursor: pointer;
+}
+
+#edit_contact_modal {
+  display: flex;
+  position: absolute;
+  z-index: 2;
+  left: 20%;
+  top: 25%;
+  min-width: 75vw;
+  min-height: 55vh;
+  font-family: "inter";
+  border-radius: 20px;
+  -webkit-box-shadow: 1px 0px 18px 5px rgba(255, 255, 255, 0.63);
+  -moz-box-shadow: 1px 0px 18px 5px rgba(255, 255, 255, 0.63);
+  box-shadow: 1px 0px 18px 5px rgba(192, 188, 188, 0.63);
+}
+
+#edit_email,
+#edit_phone,
+#edit_name {
+  padding: 10px;
+  width: 100%;
+  border-radius: 5px;
+  border-color: #d1d1d1;
+  border: 1px solid #d1d1d1;
+  text-indent: 10px;
+  font-family: "Inter";
+}
+
+#edit_email::placeholder,
+#edit_phone::placeholder,
+#edit_name::placeholder {
+  color: #d1d1d1;
+  opacity: 0.9;
+  font-weight: 400;
+  text-indent: 10px;
+  font-size: 14px;
+}
+
+#edit_email {
+  background-image: url("../assets/img/mail.png");
+  background-repeat: no-repeat;
+  background-position: center right 10px;
+}
+
+#edit_name {
+  background-image: url("../assets/img/person.svg");
+  background-repeat: no-repeat;
+  background-position: center right 10px;
+}
+
+#edit_phone {
+  background-image: url("../assets/img/call.png");
+  background-repeat: no-repeat;
+  background-position: center right 10px;
+}
+
+#edit_delete {
+  border-radius: 8px;
+  height: 45px;
+  width: 120px;
+  padding-right: 18px;
+  background: #ffffff;
+  color: black;
+  font-weight: bold;
+  font-size: 16px;
+  background-image: url("../assets/img/cancel.png");
+  background-repeat: no-repeat;
+  background-position: center right 10px;
+  background-size: 11px;
+}
+
+#edit_save {
+  border-radius: 8px;
+  height: 45px;
+  width: 180px;
+  padding-right: 35px;
+  background: #2a3647;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  transition: 0s background-color;
+  background-image: url("../assets/img/check.svg");
+  background-repeat: no-repeat;
+  background-position: center right 10px;
+}
+
+#edit_save:hover {
+  background: #29abe2;
+  transition-delay: 0.08s;
+  background-image: url("../assets/img/check.svg");
+  background-repeat: no-repeat;
+  background-position: center right 10px;
+}
+
+#edit_delete:hover {
+  color: #29abe2;
+  border-color: #29abe2;
+  transition-delay: 0.08s;
+}
+
+#edit_delete:hover,
+#edit_save:hover {
+  cursor: pointer;
 }

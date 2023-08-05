@@ -185,17 +185,27 @@ function findContactByUserName(userName) {
   return contacts.find((contact) => contact.user_name === userName);
 }
 
+// function editContact(user){
+//   let contact = findContactByUserName(user);
+//   contact.user_name =
+// }
+
 function htmlUserTemplate(email, phone, name, acronym) {
   return `<div class="user_container">
   <div class="user">
   <div class="user_icon">${acronym}</div>
   <div class="user_edit_container">
   <div class="username">${name}</div>
+  
   <div class="edit_user">
+  <div id="edit_contact" onclick="editContact(${name})">
     <img src="/assets/img/edit.png">
     <span>Edit</span>
+    </div>
+    <div id="delete_contact" onclick="deleteContact(${name})>
     <img src="assets/img/delete.png">
     <span>Delete</span>
+    </div>
   </div>
   
 </div>
@@ -207,9 +217,11 @@ function htmlUserTemplate(email, phone, name, acronym) {
   <div class="user_details">
     <div class="details_container">
         <div class="email">
+        
             <h3>Email</h3>
             <a href="mailto: ${email}">${email}</a>
-        </div>
+            </div>
+        
         <div class="phone">
             <h3>Phone</h3>
             <a href="tel: ${phone}">${phone}</a>
