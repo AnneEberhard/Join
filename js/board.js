@@ -62,7 +62,7 @@ function openTaskOverview(id){
 
 function askBeforeDelete(a){    
     deleteTask(a);
-    window.location.href = "board.html";
+    setTimeout(() => window.location.href = "board.html", 300)
 }
 
 function closeEditTask(){
