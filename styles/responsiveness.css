@@ -1,0 +1,99 @@
+#mobileFooter {
+  display: none;
+}
+
+#mobileHeader {
+  display: none;
+}
+
+
+@media (max-width: 1450px) {
+  .addTaskContainerSides {
+    width: 90%;
+  }
+}
+
+@media (max-width: 1200px) {
+ .addTaskContainer {
+    margin: 207px 32px 0 328px;
+  }
+
+.addTaskSubContainer {
+  flex-direction: column;
+}
+.divider {
+  display: none;
+}
+.addTaskContainerSides {
+  height: fit-content;
+}
+}
+
+@media (max-width: 800px) {
+
+  .addTaskContainer {
+    margin: 118px 32px 0 32px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  #sidebar {
+    display: none !important;
+  }
+  #topbar {
+    display: none !important;
+  }
+
+  #mobileHeader {
+    display: flex;
+    padding: 20px;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: white;
+  }
+
+  .mobileAddTaskHeader {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .mobileClear {
+    display: flex !important;
+  }
+
+  #mobileFooter {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #2a3647;
+    display: flex;
+    height: 80px;
+    padding: 0px 16px;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+  }
+  .mobileCategory_line {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 76px;
+    width: 76px;
+  }
+
+  .footerLink {
+    color: white;
+    text-decoration: none;
+  }
+
+  .mobileClearButton {
+display: flex;
+  }
+}

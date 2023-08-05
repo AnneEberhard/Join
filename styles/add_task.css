@@ -6,9 +6,8 @@ body {
   margin:0;
 }
 
-#addTaskTitle {
-  font-size: 61px;
-  font-weight: 700;
+form {
+  width: 100%
 }
 
 .hover {
@@ -54,15 +53,23 @@ input:-webkit-autofill:focus {
   margin-top: 207px;
   margin-left: 328px;
   margin-right: 96px;
+  margin-bottom: 40px;
+  box-sizing: border-box;
+  width: calc(100% - 424px); 
 }
 
+#addTaskTitle {
+  font-size: 61px;
+  font-weight: 700;
+}
 .addTaskSubContainer {
   display: flex;
   margin-bottom: 40px;
+  
 }
 
 .addTaskContainerSides {
-  width: 422px;
+  width: 100%;
   height: 551px;
 }
 
