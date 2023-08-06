@@ -8,7 +8,7 @@ let freeColors = [];
 let assignedCategory;
 let assignedContacts = [];
 let assignedContactsStatus = new Array(contacts.length).fill(false);
-let assignedPrio;
+let assignedPrio ='';
 let subTasksArray = [];
 
 //these are needed for the site to function
@@ -96,17 +96,20 @@ function templateCategoryOptionsFirst(category, i) {
 
 function templateCategoryOptionsFurther(category,i) {
   let templateCategoryOptionsFurther = /*html*/`
-  <div id="category${i}" class="option" onclick="selectCategory(${i})">
-  <div>${category}</div>
-  <div class="circle colorCategory${i}"></div>
-</div>`;
+  <div class="option">
+    <div id="category${i}" class="categoryLine" onclick="selectCategory(${i})">
+      <div>${category}</div>
+      <div class="circle colorCategory${i}"></div>
+    </div>
+    <img src="assets/img/delete.png" class="hover" onclick="deleteCategory('${category}', '${i}')"/>
+  </div>`;
   return templateCategoryOptionsFurther;
-}
+} 
 
 function toggleOptions(id) {
   const optionsDiv = document.getElementById(`${id}`);
   optionsDiv.classList.toggle('hidden');
-//  document.getElementById('contactAlert').innerHTML='';
+  document.getElementById('categoryAlert').innerHTML ='';
 }
 
 function selectCategory(i) {
@@ -193,6 +196,33 @@ if (indexToRemove !== -1) {
   toggleOptions('categoryOptions');
 }
 
+function deleteCategory (categoryToDelete, i) {
+  checkCategoryIfUsed = checkCategoryToDelete(categoryToDelete); 
+  if (checkCategoryIfUsed === false) {
+    categories.splice(i, 1);
+    console.log('gelöscht');
+    document.getElementById('categoryAlert').innerHTML ='';
+    renderCategories();
+    saveOnlyCategories()
+  } else {
+    document.getElementById('categoryAlert').innerHTML ='Category is in use';
+  }
+
+  console.log (checkCategoryIfUsed);
+  
+}
+
+function checkCategoryToDelete(categoryToDelete) {
+  for (let i = 0; i < tasks.length; i++) {
+    const categoryToCheck = tasks[i]['category'];
+    if (categoryToDelete === categoryToCheck) {
+      return true; 
+    }
+  }
+  return false;
+}
+
+
 function renderContacts() {
   document.getElementById('contactContainer').innerHTML = templateContactSelection();
   for (let i = 0; i < contacts.length; i++) {
@@ -214,9 +244,9 @@ function templateContactSelection() {
 
 function templateContactsOptions(contact,i) {
   let templateContactsOptions = /*html*/`
-  <div class="option contactList">
+  <div class="option contactList" onclick="checkContact(${i})">
     <div id="contact${i}">${contact}</div>
-    <div class="checkBox hover" id="contactCheckBox${i}" onclick="checkContact(${i})"></div>
+    <div class="checkBox hover" id="contactCheckBox${i}"></div>
   </div>`;
   return templateContactsOptions;
 }
@@ -230,12 +260,11 @@ function templateNewContact() {
   return templateNewContact;
 }
 
-function checkContact(i) {
-  // debugger;
-  if (assignedContactsStatus[i]==false) {
-    assignContact(i);
-  } else {
+function checkContact(i) { 
+  if (assignedContactsStatus[i]===true) {
     unassignContact(i);
+  } else {
+    assignContact(i);
   }
   updateAssignedContacts();
 }
@@ -297,16 +326,24 @@ function renderDueDate() {
 
 function assignPrio(chosenPrio) {
   document.getElementById('prioAlert').innerHTML ='';
-  let capitalPrio = chosenPrio.charAt(0).toUpperCase() + chosenPrio.slice(1);
-  assignedPrio = chosenPrio;
+  if (assignedPrio === chosenPrio) {
+    assignedPrio = '';
+  } else {
+    assignedPrio = chosenPrio;}
+  renderAssignedPrio(chosenPrio);
+  console.log(assignedPrio);
+}
+
+function renderAssignedPrio(chosenPrio) {
   for (let i = 0; i < prios.length; i++) {
     const prio = prios[i];
-    prioBox = document.getElementById(`${prio}`);
-    capitalPrio = prio.charAt(0).toUpperCase() + prio.slice(1);
+    const prioBox = document.getElementById(`${prio}`);
+    const capitalPrio = prio.charAt(0).toUpperCase() + prio.slice(1);
      if (prio === chosenPrio && prioBox.classList.contains(prio) === false) {
         prioBox.classList.add(`${prio}`);
         prioBox.innerHTML = `${capitalPrio} <img src="../assets/img/${prio}_white.png" />`;
-    } else {
+    } 
+    else {
         prioBox.classList.remove(`${prio}`);
         prioBox.innerHTML = `${capitalPrio} <img src="../assets/img/${prio}.png" />`;
     }
@@ -340,6 +377,7 @@ function clearTask() {
   document.getElementById("categoryOptions").innerHTML = "";
   document.getElementById("categoryAlert").innerHTML = "";
   document.getElementById("contactAlert").innerHTML = "";
+  document.getElementById("prioAlert").innerHTML = "";
   document.getElementById("dueDate").value = "";
   document.getElementById("inputSubtask").value = "";
   document.getElementById("subTasks").innerHTML = "";
@@ -418,4 +456,8 @@ async function saveTask() {
   await setItem("tasks", JSON.stringify(tasks));
   await setItem("savedCategories", JSON.stringify(categories));
   await setItem("savedFreeColors", JSON.stringify(freeColors));
+}
+
+async function saveOnlyCategories() {
+  await setItem("savedCategories", JSON.stringify(categories));
 }
