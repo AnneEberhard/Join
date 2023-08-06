@@ -32,13 +32,13 @@ async function createBoardCard(i) {
     let assignedCard = task['assignedContacts'];
     let prioCard = task['prio'];
     let subtaskCard = task['subtasks'];
-    
+    let idContainerAssignements = `board_icons_username${ID}`;    
 
     renderBoardCard(categoryCard, titleCard, descriptionCard, ID, prioCard, cat, categoryColorCode);
     if (subtaskCard.length > 0) {
         createProgressbar(subtaskCard, ID)
     };
-    createAssignmentIcons(assignedCard, ID);
+    createAssignmentIcons(assignedCard, idContainerAssignements);
 }
 
 
@@ -50,7 +50,6 @@ function determineColorCategory(category) {
                 colorCode = categories[i].colorCode
              }
     }
-
     return colorCode
 }
 
@@ -121,7 +120,7 @@ function renderProgressText(doneTasksNumber, tasksNumber, id) {
  * @param {*} assignedCard passes Array with names of the editors of the task
  * @param {*} id   passes id of the boardcard
  */
-function createAssignmentIcons(assignedCard, id) {
+function createAssignmentIcons(assignedCard, idContainer) {
 
 
     for (let i = 0; i < assignedCard.length; i++) {
@@ -141,7 +140,7 @@ function createAssignmentIcons(assignedCard, id) {
         newCircle.innerHTML = acronym;
 
 
-        let username = document.getElementById(`board_icons_username${id}`);
+        let username = document.getElementById(idContainer);
 
         username.appendChild(newCircle);
 
@@ -159,7 +158,6 @@ function startDragging(id) {
 function allowDrop(ev) {
     ev.preventDefault();
 }
-
 
 
 async function moveTo(category) {
