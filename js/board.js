@@ -123,13 +123,14 @@ function renderProgressText(doneTasksNumber, tasksNumber, id) {
  */
 function createAssignmentIcons(assignedCard, idContainer) {
     for (let i = 0; i < assignedCard.length; i++) {
-        const assiggned = assignedCard[i].user_name;
+        const assignedUser = assignedCard[i].user_name;
 
-        let acronym = createAcronym(assiggned); 
+        let acronym = createAcronym(assignedUser); 
         let newCircle = document.createElement('div');
         newCircle.classList.add('board_Icons_Username');
-        newCircle.style.backgroundColor = getColor(assiggned);
+        newCircle.style.backgroundColor = getColor(assignedUser);
         newCircle.innerHTML = acronym;
+        newCircle.title = assignedUser;
 
         let username = document.getElementById(idContainer);
         username.appendChild(newCircle);        
@@ -137,11 +138,11 @@ function createAssignmentIcons(assignedCard, idContainer) {
 }
 
 
-function getColor(assiggned){
+function getColor(assignedUser){
     for (let i = 0; i < contacts.length; i++) {
         const contact = contacts[i];
         
-        if(contact.user_name === assiggned){
+        if(contact.user_name === assignedUser){
             return contact.color
         }
     }

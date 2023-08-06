@@ -50,15 +50,16 @@ function renderEditOverviewTemplate(colorCode, prio, id){
 
 
 function renderAssignementsInTaskOverview(task, idContainer) {
-    let assign = task['assignedContacts'];
+    let assignedUsers = task['assignedContacts'];
     document.getElementById(`${idContainer}`).innerHTML = "";
-    for (let i = 0; i < assign.length; i++) {
-        const a = assign[i];
+    for (let i = 0; i < assignedUsers.length; i++) {
+        const assignedUser = assignedUsers[i];
 
         let newContainer = document.createElement('div');
         newContainer.classList.add('editTaskUsername');
         let newCircle = document.createElement('div');
         newCircle.classList.add('editTaskUsernameCircle');
+        newCircle.style.backgroundColor = getColor(assignedUser.user_name);
         let newName = document.createElement('div');
         newName.classList.add('editTaskUsernameName');
 
@@ -66,8 +67,9 @@ function renderAssignementsInTaskOverview(task, idContainer) {
 
         newContainer.appendChild(newCircle);
         newContainer.appendChild(newName);
-        newCircle.innerHTML = a.acronym;
-        newName.innerHTML = a.user_name;
+        newCircle.innerHTML = assignedUser.acronym;
+        
+        newName.innerHTML = assignedUser.user_name;
         un.appendChild(newContainer);
     }
 }
@@ -139,7 +141,7 @@ function renderEditModeTemplates(task){
                             class="inputsAddTask height51 padding hover"
                             type="date"
                             required
-                            placeholder="${task['dueDate']}"            
+                            value="${task['dueDate']}"       
                             />
                 </div> 
 
@@ -156,6 +158,7 @@ function renderEditModeTemplates(task){
                             Low <img src="assets/img/low.png" />
                         </button>
                     </div>
+                    <div id="prioAlert" class="alert"></div>
                 </div>
 
                 <div id="editTaskAssigned" class="editTaskTitleFixed">
@@ -168,5 +171,6 @@ function renderEditModeTemplates(task){
     `
     let assignedCard = task['assignedContacts'];
     createAssignmentIcons(assignedCard, "editTaskAssignedChangable");
-    renderContacts();
+    renderContacts();    
+    assignPrio(task["prio"])
 }
