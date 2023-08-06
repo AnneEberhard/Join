@@ -114,15 +114,11 @@ function renderContactList() {
     groupedContacts[firstLetter].push(contact);
   }
 
-  // Sort the grouped contacts by name
-  for (const letter in groupedContacts) {
-    groupedContacts[letter].sort((a, b) =>
-      a.user_name.localeCompare(b.user_name)
-    );
-  }
+  // Sort the keys (letters) of the groupedContacts object
+  const sortedLetters = Object.keys(groupedContacts).sort();
 
   // Render the headers, contacts, and dividers
-  for (const letter in groupedContacts) {
+  for (const letter of sortedLetters) {
     const letterContainer = document.createElement("div");
     letterContainer.id = `beginn_${letter.toLowerCase()}`;
     letterContainer.className = "contact_list_letter_container";
