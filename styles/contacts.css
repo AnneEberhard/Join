@@ -607,3 +607,8 @@ input[type="number"] {
 #edit_save:hover {
   cursor: pointer;
 }
+
+.highlighted {
+  background-color: #2a3647; /* Change this to your preferred highlighting style */
+  color: white;
+}
