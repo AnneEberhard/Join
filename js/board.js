@@ -22,6 +22,7 @@ async function renderBoardCards() {
 
 async function createBoardCard(i) {
     //load position of the card
+    console.log(contacts)
     let ID = i;
     let cat = await assignCategory(ID);
     let task = tasks[i];
@@ -121,31 +122,28 @@ function renderProgressText(doneTasksNumber, tasksNumber, id) {
  * @param {*} id   passes id of the boardcard
  */
 function createAssignmentIcons(assignedCard, idContainer) {
-
-
     for (let i = 0; i < assignedCard.length; i++) {
         const assiggned = assignedCard[i].user_name;
 
-        let acronym = createAcronym(assiggned); //erstellt zwei Buchstaben
-
-        const randColor = () => {
-            return "#" + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0').toUpperCase();
-        }
-
+        let acronym = createAcronym(assiggned); 
         let newCircle = document.createElement('div');
         newCircle.classList.add('board_Icons_Username');
-        newCircle.style.backgroundColor = randColor();
-        // newCircle.setAttribute('id', `icon_circle_${id}_${i}`);
-
+        newCircle.style.backgroundColor = getColor(assiggned);
         newCircle.innerHTML = acronym;
-
 
         let username = document.getElementById(idContainer);
+        username.appendChild(newCircle);        
+    }
+}
 
-        username.appendChild(newCircle);
 
-
-        newCircle.innerHTML = acronym;
+function getColor(assiggned){
+    for (let i = 0; i < contacts.length; i++) {
+        const contact = contacts[i];
+        
+        if(contact.user_name === assiggned){
+            return contact.color
+        }
     }
 }
 
