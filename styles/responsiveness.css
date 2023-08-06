@@ -10,6 +10,7 @@
   .addTaskContainerSides {
     width: 90%;
   }
+
 }
 
 @media (max-width: 1200px) {
@@ -26,9 +27,10 @@
   .addTaskContainerSides {
     height: fit-content;
   }
+
 }
 
-@media (max-width: 800px) {
+@media (max-width: 900px) {
   .addTaskContainer {
     margin: 118px 32px 0 32px;
     width: 90%;
@@ -101,6 +103,15 @@
   .footerLink {
     color: white;
     text-decoration: none;
+  }
+
+    
+  .supportPage {
+    margin: 118px 32px 0 32px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
   }
 
 }
