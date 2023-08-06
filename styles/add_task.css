@@ -46,6 +46,7 @@ input:-webkit-autofill:focus {
 
 .alert {
   margin-top: 8px;
+  color: red;
 }
 
 /*upperPart of add Task*/
@@ -289,6 +290,7 @@ textarea:focus-visible {
 .prio img {
   width: 20px;
   height: 14.51px;
+  flex-shrink: 0;
 }
 
 .urgent {

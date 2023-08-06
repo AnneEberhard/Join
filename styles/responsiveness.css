@@ -10,7 +10,6 @@
   .addTaskContainerSides {
     width: 90%;
   }
-
 }
 
 @media (max-width: 1200px) {
@@ -27,21 +26,26 @@
   .addTaskContainerSides {
     height: fit-content;
   }
-
 }
 
 @media (max-width: 900px) {
   .addTaskContainer {
-    margin: 118px 32px 0 32px;
+    margin: 118px 0px 60px 0px;
     width: 90%;
     display: flex;
     flex-direction: column;
     align-items: stretch;
   }
-.addTaskSubContainer{
-  align-items: center;
-}
-  
+  .addTaskSubContainer {
+    align-items: center;
+    font-size: 16px !important;
+  }
+  #addTaskTitle {
+    font-size: 47px;
+    margin-left: 32px;
+  }
+
+
   #sidebar {
     display: none !important;
   }
@@ -65,17 +69,20 @@
     justify-content: space-between;
   }
 
-
   .mobileClearButton {
     display: flex !important;
   }
 
-.create {
-  position:fixed;
-  top: 16px;
-  right:16px;
-  z-index: 999;
-}
+  .create {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    z-index: 999;
+  }
+
+  .clear {
+    display: none;
+  }
 
   #mobileFooter {
     display: flex;
@@ -105,7 +112,6 @@
     text-decoration: none;
   }
 
-    
   .supportPage {
     margin: 118px 32px 0 32px;
     width: 90%;
@@ -113,5 +119,30 @@
     flex-direction: column;
     align-items: stretch;
   }
+}
 
+@media (max-width: 500px) {
+  .addTaskLabels {
+    font-size: 16px;
+  }
+.inputsAddTask {
+  font-size: 16px;
+}
+  .selection {
+    width: 100%;
+    font-size: 16px;
+  }
+
+  .prio {
+    font-size: 16px;
+    height: 41px;
+    padding: 18px 10px;
+    gap: 10px;
+    line-height: 120%; /* 19.2px */
+    width: 111px;
+  }
+
+  .visible {
+    bottom: 400px !important;
+  }
 }
