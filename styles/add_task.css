@@ -411,6 +411,7 @@ textarea:focus-visible {
   font-weight: 700;
   font-size: 21px;
   gap: 4px;
+  position: relative;
 }
 
 .clear:hover {
