@@ -2,6 +2,11 @@ let user_name = document.getElementById("name");
 let email = document.getElementById("email");
 let phone = document.getElementById("phone");
 
+let edit_email = document.getElementById("edit_email");
+let edit_name = document.getElementById("edit_name");
+let edit_phone = document.getElementById("edit_phone");
+let edit_picture = document.getElementById("edit_avatar");
+
 let contacts = [
   new Contact("Anja Schulz", +4917672446077, "schulz@gmail.com", "AS"),
   new Contact("Alen Alduk", +4917672446077, "alen-1997@hotmail.de", "AA"),
@@ -10,29 +15,6 @@ let contacts = [
 ];
 
 let editingContact;
-
-// Code for Letters in Contacts:
-
-{
-  /* <div id="beginn_d" class="contact_list_letter_container">
-        <div class="letter">D</div>
-      </div>
-
-Code for Line divider: 
-<div class="contact_list_stroke"></div>
-
-Code for mini Contact Card:
-
-<div id="contact_list_name_2" class="contact_list_name_container">
-        <div class="contact_list_name_container_inner">
-          <div class="contact_list_name_icon">DH</div>
-          <div class="contact_list_name_mail">
-            <div class="contact_list_name">Danny Herzog</div>
-            <div class="contact_list_mail">HerzogD@gmail.com</div>
-          </div>
-        </div>
-      </div> */
-}
 
 async function init() {
   await includeHTMLTwo();
@@ -89,89 +71,6 @@ function resetForm() {
   phone.value = "";
 }
 
-// async function createNameCircle() {
-//   await loadUsers();
-//   currentUser = users[0].name;
-//   let acronym = createAcronym(currentUser);
-//   let topbar = document.getElementById('topbar_icons');
-//   topbar.innerHTML += /*html*/`
-//       <div id="topbar_Icons_Username" onclick="togglePopupBar()">${acronym}</div>
-//   `
-// }
-
-function renderContactList() {
-  const contactsContainer = document.getElementById("contacts_container");
-  contactsContainer.innerHTML = "";
-
-  const groupedContacts = {};
-
-  // Group contacts by their acronym
-  for (const contact of contacts) {
-    const firstLetter = contact.acronym.charAt(0).toUpperCase();
-    if (!groupedContacts[firstLetter]) {
-      groupedContacts[firstLetter] = [];
-    }
-    groupedContacts[firstLetter].push(contact);
-  }
-
-  // Sort the keys (letters) of the groupedContacts object
-  const sortedLetters = Object.keys(groupedContacts).sort();
-
-  // Render the headers, contacts, and dividers
-  for (const letter of sortedLetters) {
-    const letterContainer = document.createElement("div");
-    letterContainer.id = `beginn_${letter.toLowerCase()}`;
-    letterContainer.className = "contact_list_letter_container";
-
-    const letterHeader = document.createElement("div");
-    letterHeader.className = "letter";
-    letterHeader.textContent = letter;
-    letterContainer.appendChild(letterHeader);
-
-    const strokeDiv = document.createElement("div");
-    strokeDiv.className = "contact_list_stroke";
-    letterContainer.appendChild(strokeDiv);
-
-    for (const contact of groupedContacts[letter]) {
-      const contactContainer = document.createElement("div");
-      contactContainer.className = "contact_list_name_container";
-
-      const contactInnerContainer = document.createElement("div");
-      contactInnerContainer.className = "contact_list_name_container_inner";
-      contactInnerContainer.onclick = function () {
-        renderContact(contact.user_name);
-      };
-
-      const acronymDiv = document.createElement("div");
-      acronymDiv.className = "contact_list_name_icon";
-      acronymDiv.textContent = contact.acronym;
-      acronymDiv.style.backgroundColor = contact.color;
-
-      const nameMailContainer = document.createElement("div");
-      nameMailContainer.className = "contact_list_name_mail";
-
-      const nameDiv = document.createElement("div");
-      nameDiv.className = "contact_list_name";
-      nameDiv.textContent = contact.user_name;
-
-      const mailDiv = document.createElement("div");
-      mailDiv.className = "contact_list_mail";
-      mailDiv.textContent = contact.email;
-
-      nameMailContainer.appendChild(nameDiv);
-      nameMailContainer.appendChild(mailDiv);
-
-      contactInnerContainer.appendChild(acronymDiv);
-      contactInnerContainer.appendChild(nameMailContainer);
-
-      contactContainer.appendChild(contactInnerContainer);
-      letterContainer.appendChild(contactContainer);
-    }
-
-    contactsContainer.appendChild(letterContainer);
-  }
-}
-
 function renderContact(username) {
   let contact = findContactByUserName(username);
   let email = contact.email;
@@ -189,26 +88,20 @@ function findContactByUserName(userName) {
 
 function editContact(user) {
   openModal("edit_contact_modal");
-  let email = document.getElementById("edit_email");
-  let name = document.getElementById("edit_name");
-  let phone = document.getElementById("edit_phone");
-  let picture = document.getElementById("edit_avatar");
+
   editingContact = findContactByUserName(user);
-  name.value = editingContact.user_name;
-  email.value = editingContact.email;
-  phone.value = editingContact.phone;
-  picture.innerHTML = editingContact.acronym;
-  picture.style.backgroundColor = editingContact.color;
+  edit_name.value = editingContact.user_name;
+  edit_email.value = editingContact.email;
+  edit_phone.value = editingContact.phone;
+  edit_picture.innerHTML = editingContact.acronym;
+  edit_picture.style.backgroundColor = editingContact.color;
 }
 
 async function saveEditedContact() {
-  let email = document.getElementById("edit_email");
-  let name = document.getElementById("edit_name");
-  let phone = document.getElementById("edit_phone");
-  let acronym = createAcronym(name.value);
-  editingContact.user_name = name.value;
-  editingContact.email = email.value;
-  editingContact.phone = phone.value;
+  let acronym = createAcronym(edit_name.value);
+  editingContact.user_name = edit_name.value;
+  editingContact.email = edit_email.value;
+  editingContact.phone = edit_phone.value;
   editingContact.acronym = acronym;
   resetEditForm();
   await setItem("contacts", JSON.stringify(contacts));
@@ -249,13 +142,12 @@ async function deleteContactInModal(id) {
 }
 
 function resetEditForm() {
-  let email = document.getElementById("edit_email");
-  let name = document.getElementById("edit_name");
-  let phone = document.getElementById("edit_phone");
-  name.value = "";
-  email.value = "";
-  phone.value = "";
+  edit_name.value = "";
+  edit_email.value = "";
+  edit_phone.value = "";
 }
+
+// HTML TEMPLATE
 
 function htmlUserTemplate(email, phone, name, acronym, color) {
   return /*html*/ `<div class="user_container">
