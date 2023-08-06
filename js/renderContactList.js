@@ -39,7 +39,7 @@ function renderContactList() {
 
       const contactInnerContainer = document.createElement("div");
       contactInnerContainer.className = "contact_list_name_container_inner";
-      contactContainer.addEventListener("click", function () {
+      contactInnerContainer.addEventListener("click", function () {
         if (currentHighlightedDiv !== null) {
           currentHighlightedDiv.classList.remove("highlighted"); // Remove highlighting
         }
