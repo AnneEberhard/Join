@@ -1,3 +1,5 @@
+let currentHighlightedDiv = null;
+
 function renderContactList() {
   const contactsContainer = document.getElementById("contacts_container");
   contactsContainer.innerHTML = "";
@@ -37,9 +39,14 @@ function renderContactList() {
 
       const contactInnerContainer = document.createElement("div");
       contactInnerContainer.className = "contact_list_name_container_inner";
-      contactInnerContainer.onclick = function () {
+      contactContainer.addEventListener("click", function () {
+        if (currentHighlightedDiv !== null) {
+          currentHighlightedDiv.classList.remove("highlighted"); // Remove highlighting
+        }
+        contactInnerContainer.classList.toggle("highlighted");
+        currentHighlightedDiv = contactInnerContainer;
         renderContact(contact.user_name);
-      };
+      });
 
       const acronymDiv = document.createElement("div");
       acronymDiv.className = "contact_list_name_icon";
