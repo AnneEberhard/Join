@@ -104,10 +104,8 @@ function closeEditTask() {
 }
 
 
-function openEditMode(id){
-    
+function openEditMode(id){    
     let task = tasks[id];
-    console.log(task);
     renderEditModeTemplates(task)
 }
 
