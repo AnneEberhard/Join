@@ -114,7 +114,7 @@ html {
   width: 42px;
   border-radius: 45px;
   border: 1px solid white;
-  background-color: aquamarine;
+  background-color: rgb(161, 127, 255);
   color: white;
   display: flex;
   justify-content: center;

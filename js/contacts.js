@@ -149,6 +149,7 @@ function renderContactList() {
       const acronymDiv = document.createElement("div");
       acronymDiv.className = "contact_list_name_icon";
       acronymDiv.textContent = contact.acronym;
+      acronymDiv.style.backgroundColor = contact.color;
 
       const nameMailContainer = document.createElement("div");
       nameMailContainer.className = "contact_list_name_mail";
@@ -181,8 +182,9 @@ function renderContact(username) {
   let phone = contact.phone;
   let name = contact.user_name;
   let acronym = contact.acronym;
+  let color = contact.color;
   content = document.getElementById("render");
-  render.innerHTML = htmlUserTemplate(email, phone, name, acronym);
+  render.innerHTML = htmlUserTemplate(email, phone, name, acronym, color);
 }
 
 function findContactByUserName(userName) {
@@ -194,10 +196,13 @@ function editContact(user) {
   let email = document.getElementById("edit_email");
   let name = document.getElementById("edit_name");
   let phone = document.getElementById("edit_phone");
+  let picture = document.getElementById("edit_avatar");
   editingContact = findContactByUserName(user);
   name.value = editingContact.user_name;
   email.value = editingContact.email;
   phone.value = editingContact.phone;
+  picture.innerHTML = editingContact.acronym;
+  picture.style.backgroundColor = editingContact.color;
 }
 
 async function saveEditedContact() {
@@ -256,10 +261,10 @@ function resetEditForm() {
   phone.value = "";
 }
 
-function htmlUserTemplate(email, phone, name, acronym) {
+function htmlUserTemplate(email, phone, name, acronym, color) {
   return /*html*/ `<div class="user_container">
   <div class="user">
-  <div class="user_icon">${acronym}</div>
+  <div class="user_icon" style="background-color: ${color}">${acronym}</div>
   <div class="user_edit_container">
   <div class="username">${name}</div>
   
