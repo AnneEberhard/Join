@@ -28,15 +28,30 @@ async function createBoardCard(i) {
     let titleCard = task['title'];
     let descriptionCard = task['description'];
     let categoryCard = task['category'];
+    let categoryColorCode = `colorCategory${determineColorCategory(categoryCard)}`;
     let assignedCard = task['assignedContacts'];
     let prioCard = task['prio'];
     let subtaskCard = task['subtasks'];
+    
 
-    renderBoardCard(categoryCard, titleCard, descriptionCard, ID, prioCard, cat, task);
+    renderBoardCard(categoryCard, titleCard, descriptionCard, ID, prioCard, cat, categoryColorCode);
     if (subtaskCard.length > 0) {
         createProgressbar(subtaskCard, ID)
     };
     createAssignmentIcons(assignedCard, ID);
+}
+
+
+function determineColorCategory(category) {
+    let colorCode;
+    for (let i = 0; i < categories.length; i++) {
+             const compareCategory = categories[i].name;
+             if (category === compareCategory) {
+                colorCode = categories[i].colorCode
+             }
+    }
+
+    return colorCode
 }
 
 
@@ -51,12 +66,12 @@ async function assignCategory(id) {
 }
 
 
-function renderBoardCard(categoryCard, titleCard, descriptionCard, ID, prioCard, cat) {
+function renderBoardCard(categoryCard, titleCard, descriptionCard, ID, prioCard, cat, categoryColorCode) {
     let board_todo = document.getElementById(`${cat}`);
     board_todo.innerHTML += /*html*/`
         <div id="${ID}" draggable="true" ondragstart="startDragging(${ID})" onclick="openTaskOverview(${ID})" class="board_task_container" >
             <div class="board_task_container_inner">
-                <div class="board_task_container_category">${categoryCard}</div>
+                <div class="board_task_container_category ${categoryColorCode}">${categoryCard}</div>
                 <div class="board_task_container_title_and_description">
                     <div class="board_task_container_title">${titleCard}</div>
                     <div class="board_task_container_description">${descriptionCard}</div>
@@ -230,68 +245,4 @@ function openAddTask() {
 }
 
 
-function openTaskOverview(id){
-    let task = tasks[id];
-    let taskOverview = document.getElementById('editTask');
-    taskOverview.classList.remove('d-none');
-    document.getElementById('editTaskContainerCategory').innerHTML = `${task['category']}`;
-    document.getElementById('editTaskContainerTitle').innerHTML = `${task['title']}`;
-    document.getElementById('editTaskContainerDescription').innerHTML = `${task['description']}`;
-    document.getElementById('editTaskContainerDueDateDate').innerHTML = `${task['dueDate']}`;
-    document.getElementById('editTaskContainerDelete').innerHTML = `<img src="/assets/img/Icon_delete.png" onclick="askBeforeDelete(${id})">`;
-    document.getElementById('editTaskContainerPrioPrio').innerHTML = `${task['prio']} <img src="../assets/img/${task['prio']}_white.png"/>`;
 
-    renderAssignementsInTaskOverview(task);    
-}
-
-
-function renderAssignementsInTaskOverview(task){    
-    let assign = task['assignedContacts'];
-    document.getElementById(`editTaskContainerAssignedNames`).innerHTML = "";
-    for (let i = 0; i < assign.length; i++) {
-        const a = assign[i];
-
-        let newContainer = document.createElement('div');
-        newContainer.classList.add('editTaskUsername');
-        let newCircle = document.createElement('div');
-        newCircle.classList.add('editTaskUsernameCircle');
-        let newName = document.createElement('div');
-        newName.classList.add('editTaskUsernameName');
-        
-        let un = document.getElementById(`editTaskContainerAssignedNames`);
-        
-        newContainer.appendChild(newCircle);
-        newContainer.appendChild(newName);
-        newCircle.innerHTML = a.acronym;
-        newName.innerHTML = a.user_name;
-        un.appendChild(newContainer);
-    }
-}
-
-
-function askBeforeDelete(a){
-    let confirmDelete = document.getElementById('confirmDeleteTask');
-    confirmDelete.classList.remove('d-none');
-    confirmDelete.innerHTML += /*html*/`
-        <div id="confirmDeleteTaskQuestion">Delete Task?</div>
-        <div id="confirmDeleteTaskAnswers">
-                <div id="confirmDeleteTaskAnswersYes" onclick="deleteTaskFinally(${a})">Delete</div>
-                <div id="confirmDeleteTaskAnswersNo" onclick="closeDeleteRequest()">Back</div>
-        </div>
-    `
-}
-
-async function deleteTaskFinally(a){
-        closeDeleteRequest();
-        deleteTask(a);
-        setTimeout(() => window.location.href = "board.html", 100);
-}
-
-function closeDeleteRequest(){
-    document.getElementById('confirmDeleteTask').innerHTML = "";
-    document.getElementById('confirmDeleteTask').classList.add('d-none');
-}
-
-function closeEditTask(){
-    document.getElementById('editTask').classList.add('d-none');
-}
