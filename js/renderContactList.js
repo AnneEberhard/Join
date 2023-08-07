@@ -40,6 +40,8 @@ function renderContactList() {
       const contactInnerContainer = document.createElement("div");
       contactInnerContainer.className = "contact_list_name_container_inner";
       contactInnerContainer.addEventListener("click", function () {
+        let container = document.getElementById("contact_container");
+        container.style.display = "flex";
         if (currentHighlightedDiv !== null) {
           currentHighlightedDiv.classList.remove("highlighted"); // Remove highlighting
         }

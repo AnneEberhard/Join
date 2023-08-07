@@ -150,6 +150,7 @@ function resetEditForm() {
 function changeDisplay() {
   let container = document.getElementById("contact_container");
   container.style.display = "none";
+  currentHighlightedDiv.classList.remove("highlighted");
 }
 
 // HTML TEMPLATE
