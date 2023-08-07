@@ -198,3 +198,52 @@ body.clicked .overlay {
 body.clicked .fly-in-button {
   bottom: 50px; /* Move to the center of the screen */
 }
+
+@media (max-width: 600px) {
+  .loading-screen img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .login-container {
+    padding: 34px 34px;
+    width: 70vw;
+  }
+
+  #email {
+    width: 95%;
+  }
+
+  #login {
+    width: 170px;
+  }
+
+  .header {
+    align-items: flex-start;
+    text-align: center;
+  }
+
+  .header h1 {
+    font-size: 34px !important;
+    align-self: center;
+    margin-left: unset;
+    margin-right: unset;
+  }
+
+  .header a {
+    position: absolute;
+    top: 32vh;
+    left: 15vw;
+  }
+}
+
+@media (max-width: 375px) {
+  .login-container {
+    margin-top: 60px;
+    padding: 24px 37px;
+  }
+
+  .main-page {
+    align-items: flex-start;
+  }
+}
