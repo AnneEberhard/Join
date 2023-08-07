@@ -27,7 +27,8 @@ async function init() {
 function closeModal(id) {
   let modal = document.getElementById(id);
   modal.classList.remove("slideIn");
-  modal.className = "slideOut";
+  modal.classList.add("slideOut");
+  modal.style.display = "none";
 }
 
 function openModal(id) {
