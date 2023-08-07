@@ -661,6 +661,9 @@ input[type="number"] {
 }
 
 @media (max-width: 900px) {
+  .x {
+    color: white;
+  }
   .dropdown_for_mobile:hover .dropdown-content {
     display: block;
   }
@@ -790,6 +793,10 @@ input[type="number"] {
     box-shadow: unset;
     height: 80vh;
     width: 100vw;
+  }
+
+  .user_icon {
+    font-size: 32px;
   }
 
   @media (max-width: 600px) {
