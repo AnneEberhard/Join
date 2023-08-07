@@ -36,16 +36,18 @@ body {
   top: 30px;
   left: 30px;
   background-color: #f6f7f8;
-  /* width: 96vw; */
-  /* height: 96vh; */
+  width: 96vw;
+  height: 96vh;
   opacity: 1;
   visibility: visible;
   z-index: 9999;
-  /* transition: opacity 200ms ease-out, visibility 200ms ease-out; */
+  transition: opacity 200ms ease-out, visibility 200ms ease-out;
   position: absolute;
-  /* animation: resizeLogo 2s ease-in-out forwards 700ms; */
+  animation: resizeLogo 2s ease-in-out forwards 700ms;
 }
-
+.loading-screen-mobile {
+  display: none;
+}
 .logo {
   width: 100%;
   height: 100%;
@@ -236,4 +238,80 @@ body {
   margin-left: -10px;
   align-self: flex-start;
   font-size: 12px;
+}
+
+@media (max-width: 600px) {
+  .loading-screen {
+    display: flex;
+    transition: unset;
+    position: absolute;
+    transition: opacity 100ms ease-out, visibility 100ms ease-out;
+    position: absolute;
+    animation: resizeLogo 0.8s ease-in-out forwards 500ms;
+  }
+
+  .loading-screen-mobile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    background-color: #2a3647;
+    width: 100vw;
+    height: 100vh;
+    opacity: 1;
+    visibility: visible;
+    z-index: 9999;
+    transition: opacity 100ms ease-out, visibility 100ms ease-out;
+    position: absolute;
+    animation: resizeLogoMobile 0.8s ease-in-out forwards 500ms;
+  }
+
+  .loading-screen-mobile img {
+    height: 150px;
+    width: 150px;
+  }
+
+  @keyframes resizeLogoMobile {
+    0% {
+      max-width: 100%;
+      max-height: 100%;
+    }
+    90% {
+      opacity: 0;
+      display: none;
+      top: 30px;
+      left: 30px;
+    }
+    100% {
+      max-width: 0%;
+      max-height: 0%;
+      display: none;
+      top: 30px;
+      left: 30px;
+    }
+  }
+
+  @keyframes resizeLogo {
+    0% {
+      max-width: 100%;
+      max-height: 100%;
+      display: none;
+      opacity: 0;
+    }
+
+    50% {
+      max-width: 150px;
+      max-height: 150px;
+      opacity: 0;
+      display: none;
+    }
+
+    100% {
+      max-width: 100px;
+      max-height: 100px;
+      opacity: 1;
+      display: flex;
+    }
+  }
 }
