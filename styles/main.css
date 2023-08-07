@@ -280,15 +280,15 @@ body {
     90% {
       opacity: 0;
       display: none;
-      top: 30px;
-      left: 30px;
+      top: 40px;
+      left: 40px;
     }
     100% {
       max-width: 0%;
       max-height: 0%;
       display: none;
-      top: 30px;
-      left: 30px;
+      top: 40px;
+      left: 40px;
     }
   }
 
