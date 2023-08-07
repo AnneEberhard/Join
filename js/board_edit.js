@@ -164,13 +164,40 @@ function renderEditModeTemplates(task){
                 <div id="editTaskAssigned" class="editTaskTitleFixed">
                     <div id="editTaskAssignedFix">Assigned to</div>
                     <div id="contactContainer" class="inputsAddTask editAssignment"></div>
+                    <div id="contactAlert" class="alert"></div>
                     <div id="editTaskAssignedChangable"></div>
                 </div>
             </div>
         </div>
     `
     let assignedCard = task['assignedContacts'];
-    createAssignmentIcons(assignedCard, "editTaskAssignedChangable");
-    renderContacts();    
-    assignPrio(task["prio"])
+    
+    renderContacts();
+    renderContactsAssignContacts(assignedCard);
+    createAssignmentIcons(assignedCard, "editTaskAssignedChangable"); 
+
+    assignPrio(task["prio"]);
+    
+}
+
+
+function renderContactsAssignContacts(assContacts){
+    let searchArea = document.getElementsByClassName("contactList");
+    let classContainer;
+    for (let c = 0; c < assContacts.length; c++) {
+        const assContact = assContacts[c];
+        console.log(assContact.user_name)
+        for (let d = 0; d < searchArea.length; d++) {
+            const searchElement = searchArea[d];
+            console.log(searchElement)
+            searchValue = searchElement.textContent || searchElement.innerText;
+
+            if(searchValue.indexOf(assContact.user_name) > -1){
+                classContainer = d;
+                assignContact(d)
+            }
+            
+        }
+
+    }
 }
