@@ -346,3 +346,24 @@ body {
     order: -1;
   }
 }
+
+@media (max-width: 375px) {
+  .loading-screen img {
+    background-color: unset;
+    display: none;
+  }
+
+  .loading-screen {
+    background-color: unset;
+    display: none;
+  }
+
+  .login-container {
+    margin-top: 60px;
+    padding: 24px 37px;
+  }
+
+  .main-page {
+    align-items: flex-start;
+  }
+}
