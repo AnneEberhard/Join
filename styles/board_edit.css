@@ -172,19 +172,6 @@
     width: 380px;
 }
 
-::-webkit-scrollbar{
-    width: 15px;
-}
-
-::-webkit-scrollbar-thumb {
-    background: #29ABE2; 
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: #2A3647; 
-  }
-
 #editTaskContainerAssignedText{
     font-size: 20px;
     font-weight: 700;    
@@ -363,5 +350,20 @@
     z-index: 15;
 }
 
+
+/* Scrollbar Design */
+
+::-webkit-scrollbar{
+    width: 15px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #2A3647; 
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {    
+    background: #29ABE2; 
+  }
 
 

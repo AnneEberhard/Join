@@ -124,8 +124,7 @@ input:focus{
     box-shadow: 0 4px 4px #29ABE2;
 }
 
-#board_container_bottom{
-    
+#board_container_bottom{    
     margin-top: 67px;
     margin-left:297px; 
     width: 1078px;
@@ -136,11 +135,25 @@ input:focus{
 
 .board_container_bottom_category{
     width: 250px;
+    min-height: 20px;
     display: flex;
     flex-direction: column;
     gap: 35px;
     justify-content: flex-start;
     align-items: center;
+    border-radius: 30px;
+    flex: 1;
+}
+
+.board_container_bottom_category_background{
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 30px;
+    flex: 1;
 }
 
 .board_container_bottom_category_title{
@@ -214,7 +227,8 @@ input:focus{
 }
 
 .board_task_container_description{
-    color: #A8A8A8
+    color: #A8A8A8;
+    overflow: hidden;
 }
 
 .board_task_progress{
@@ -250,7 +264,7 @@ input:focus{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 8px;
+    margin-left: 8px;    
 }
 
 .board_Icons_Username{

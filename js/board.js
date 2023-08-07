@@ -9,14 +9,23 @@ async function renderBoard() {
     await saveTasks();
     await renderBoardCards();
     countTasks();
+    
 }
 
 
 async function renderBoardCards() {
     await loadItems();
+    await deleteBoard()
     for (let i = 0; i < tasks.length; i++) {
         createBoardCard(i)
     }
+}
+
+async function deleteBoard(){
+    document.getElementById('board_container_bottom_todo').innerHTML = "";
+    document.getElementById('board_container_bottom_inprogress').innerHTML = "";
+    document.getElementById('board_container_bottom_awaitingfeedback').innerHTML = "";
+    document.getElementById('board_container_bottom_done').innerHTML = "";
 }
 
 

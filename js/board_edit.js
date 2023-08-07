@@ -1,6 +1,3 @@
-assignedCategory;
-
-
 function openTaskOverview(id, category) {
     assignedCategory = category;
     let task = tasks[id];
@@ -101,7 +98,8 @@ function askBeforeDelete(a) {
 async function deleteTaskFinally(a) {
     closeDeleteRequest();
     await deleteTask(a);
-    window.location.href = "board.html";
+    renderBoardCards();
+    closeEditTask();
 }
 
 
@@ -137,12 +135,12 @@ function renderEditModeTemplates(task, id){
             <div id="editTaskContainerInner" class="editContainerInner">
                 <div id="editTaskTitle" class="editTaskTitleFixed editTasksWidth80">
                     <div id="editTaskTitleFixed">Title</div>
-                    <input id="editTaskTitleChangable" class="inputsAddTask" value="${task['title']}">
+                    <input id="editTaskTitleChangable" class="inputsAddTask" value="${task['title']}" maxlength="30">
                 </div>
 
                 <div id="editTaskDescription" class="editTaskTitleFixed editTasksWidth80">
                     <div id="editTaskDescriptionFixed">Description</div>
-                    <textarea id="editTaskDescriptionChangable" class="inputsAddTask">${task['description']}</textarea>
+                    <textarea id="editTaskDescriptionChangable" class="inputsAddTask" maxlength="100">${task['description']}</textarea>
                 </div>
 
                 <div id="editTaskDueDate" class="editTaskTitleFixed editTasksWidth80">
@@ -231,6 +229,6 @@ async function saveEditedBoard(id){
             tasks[id] = task;
             await saveTask();
             closeEditTask();
-            window.location.href = "board.html";            
+            await renderBoardCards();          
         }      
 }
