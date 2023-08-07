@@ -1,5 +1,8 @@
-function openTaskOverview(id) {
-    
+assignedCategory;
+
+
+function openTaskOverview(id, category) {
+    assignedCategory = category;
     let task = tasks[id];
     let colorCode = `colorCategory${determineColorCategory(task['category'])}`;
     renderEditOverviewTemplate(colorCode, task['prio'], id);
@@ -55,6 +58,11 @@ function renderAssignementsInTaskOverview(task, idContainer) {
     for (let i = 0; i < assignedUsers.length; i++) {
         const assignedUser = assignedUsers[i];
 
+        for (let k = 0; k < contacts.length; k++) {
+            const contact = contacts[k];
+
+            if (assignedUser.user_name === contact.user_name) {
+
         let newContainer = document.createElement('div');
         newContainer.classList.add('editTaskUsername');
         let newCircle = document.createElement('div');
@@ -71,6 +79,8 @@ function renderAssignementsInTaskOverview(task, idContainer) {
         
         newName.innerHTML = assignedUser.user_name;
         un.appendChild(newContainer);
+            }
+        }
     }
 }
 
@@ -108,17 +118,18 @@ function closeEditTask() {
 
 function openEditMode(id){    
     let task = tasks[id];
-    renderEditModeTemplates(task)
+    renderEditModeTemplates(task, id);
 }
 
 
-function renderEditModeTemplates(task){
+function renderEditModeTemplates(task, id){
+    
     document.getElementById('editTask').innerHTML = "";
     document.getElementById('editTask').innerHTML = /*html*/`
         <div id="editTaskContainer">
             <div id="editTaskContainerClose" onclick="closeEditTask()"><img src="assets/img/Icon_close.png" alt="">
             </div>
-            <div id="editTaskContainerSave">
+            <div id="editTaskContainerSave" onclick="saveEditedBoard(${id})">
                 <div id="editTaskContainerSaveText">Ok</div>
                 <div id="editTaskContainerSaveIcon"><img src="assets/img/done-30.png"></div>
             </div>
@@ -183,7 +194,6 @@ function renderEditModeTemplates(task){
 
 function renderContactsAssignContacts(assContacts){
     let searchArea = document.getElementsByClassName("contactList");
-    let classContainer;
     for (let c = 0; c < assContacts.length; c++) {
         const assContact = assContacts[c];
         console.log(assContact.user_name)
@@ -195,9 +205,32 @@ function renderContactsAssignContacts(assContacts){
             if(searchValue.indexOf(assContact.user_name) > -1){
                 classContainer = d;
                 assignContact(d)
-            }
-            
+            }            
         }
-
     }
+}
+
+async function saveEditedBoard(id){
+        
+        let prioFilled = checkPrio();
+        // let correctCategory = checkCorrectCategory();
+        let correctContact = checkCorrectContact();
+        if (prioFilled == true && correctContact == true){
+          let title = document.getElementById("editTaskTitleChangable").value;
+          let description = document.getElementById("editTaskDescriptionChangable").value;
+          let dueDate = document.getElementById("dueDate").value;
+          let task = {
+              'title': title,
+              'description': description,
+              'category': assignedCategory,
+              'assignedContacts': assignedContacts,
+              'dueDate': dueDate,
+              'prio': assignedPrio,
+              'subtasks': subTasksArray,
+                }
+            tasks[id] = task;
+            await saveTask();
+            closeEditTask();
+            window.location.href = "board.html";            
+        }      
 }

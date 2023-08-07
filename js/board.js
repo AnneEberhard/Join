@@ -22,7 +22,6 @@ async function renderBoardCards() {
 
 async function createBoardCard(i) {
     //load position of the card
-    console.log(contacts)
     let ID = i;
     let cat = await assignCategory(ID);
     let task = tasks[i];
@@ -33,7 +32,7 @@ async function createBoardCard(i) {
     let assignedCard = task['assignedContacts'];
     let prioCard = task['prio'];
     let subtaskCard = task['subtasks'];
-    let idContainerAssignements = `board_icons_username${ID}`;    
+    let idContainerAssignements = `board_icons_username${ID}`;
 
     renderBoardCard(categoryCard, titleCard, descriptionCard, ID, prioCard, cat, categoryColorCode);
     if (subtaskCard.length > 0) {
@@ -46,10 +45,10 @@ async function createBoardCard(i) {
 function determineColorCategory(category) {
     let colorCode;
     for (let i = 0; i < categories.length; i++) {
-             const compareCategory = categories[i].name;
-             if (category === compareCategory) {
-                colorCode = categories[i].colorCode
-             }
+        const compareCategory = categories[i].name;
+        if (category === compareCategory) {
+            colorCode = categories[i].colorCode
+        }
     }
     return colorCode
 }
@@ -69,7 +68,7 @@ async function assignCategory(id) {
 function renderBoardCard(categoryCard, titleCard, descriptionCard, ID, prioCard, cat, categoryColorCode) {
     let board_todo = document.getElementById(`${cat}`);
     board_todo.innerHTML += /*html*/`
-        <div id="${ID}" draggable="true" ondragstart="startDragging(${ID})" onclick="openTaskOverview(${ID})" class="board_task_container" >
+        <div id="${ID}" draggable="true" ondragstart="startDragging(${ID})" onclick="openTaskOverview(${ID}, '${categoryCard}')" class="board_task_container" >
             <div class="board_task_container_inner">
                 <div class="board_task_container_category ${categoryColorCode}">${categoryCard}</div>
                 <div class="board_task_container_title_and_description">
@@ -125,24 +124,32 @@ function createAssignmentIcons(assignedCard, idContainer) {
     for (let i = 0; i < assignedCard.length; i++) {
         const assignedUser = assignedCard[i].user_name;
 
-        let acronym = createAcronym(assignedUser); 
-        let newCircle = document.createElement('div');
-        newCircle.classList.add('board_Icons_Username');
-        newCircle.style.backgroundColor = getColor(assignedUser);
-        newCircle.innerHTML = acronym;
-        newCircle.title = assignedUser;
+        for (let k = 0; k < contacts.length; k++) {
+            const contact = contacts[k];
 
-        let username = document.getElementById(idContainer);
-        username.appendChild(newCircle);        
+            if (assignedUser === contact.user_name) {
+
+                let acronym = createAcronym(assignedUser);
+                let newCircle = document.createElement('div');
+                newCircle.classList.add('board_Icons_Username');
+                newCircle.style.backgroundColor = getColor(assignedUser);
+                newCircle.innerHTML = acronym;
+                newCircle.title = assignedUser;
+
+                let username = document.getElementById(idContainer);
+                username.appendChild(newCircle);
+            }
+
+        }
     }
 }
 
 
-function getColor(assignedUser){
+function getColor(assignedUser) {
     for (let i = 0; i < contacts.length; i++) {
         const contact = contacts[i];
-        
-        if(contact.user_name === assignedUser){
+
+        if (contact.user_name === assignedUser) {
             return contact.color
         }
     }
