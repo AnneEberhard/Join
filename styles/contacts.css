@@ -749,8 +749,18 @@ input[type="number"] {
     justify-content: center;
     width: 100%;
     position: absolute;
-    top: 28vh !important;
+    top: 27vh !important;
     margin-right: 0;
+  }
+
+  .avatar img {
+    width: 85px;
+    height: 85px;
+  }
+
+  #edit_avatar {
+    height: 80px;
+    width: 80px;
   }
 
   .right_side {
@@ -824,8 +834,8 @@ input[type="number"] {
     }
 
     #edit_avatar {
-      height: 100px;
-      width: 100px;
+      height: 90px;
+      width: 90px;
     }
     .username {
       font-size: 32px;
