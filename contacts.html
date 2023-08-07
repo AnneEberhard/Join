@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="styles/style_template.css" />
     <link rel="stylesheet" href="styles/contacts.css" />
     <link rel="stylesheet" href="styles/fonts.css" />
+    <link rel="stylesheet" href="styles/responsiveness.css" />
     <script src="js/script_Templates.js"></script>
     <script src="script.js"></script>
     <script src="js/storage.js"></script>
@@ -17,6 +18,7 @@
 
   <body onload="init();">
     <div w3-include-html="assets/templates/desktop_template.html"></div>
+    <div w3-include-html="assets/templates/mobile_template.html"></div>
     <div id="contactList">
       <div id="add_new_contact">
         <button id="new_contact_btn" onclick="openModal('new_contact_modal')">
@@ -99,9 +101,10 @@
         </div>
       
       </div>
-    <div class="contact_info_container">
+    <div class="contact_info_container" id="contact_container">
         
       <div class="header_in_contact">
+        <img class="arrow" src="assets/img/arrow-left-line.svg" onclick="changeDisplay();">
         <span class="header">Contacts</span>
         <div class="divider"></div>
         <span class="header_subtext">Better with a team</span>

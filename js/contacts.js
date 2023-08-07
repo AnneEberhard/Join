@@ -147,6 +147,11 @@ function resetEditForm() {
   edit_phone.value = "";
 }
 
+function changeDisplay() {
+  let container = document.getElementById("contact_container");
+  container.style.display = "none";
+}
+
 // HTML TEMPLATE
 
 function htmlUserTemplate(email, phone, name, acronym, color) {
