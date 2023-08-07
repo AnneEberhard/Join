@@ -308,10 +308,41 @@ body {
     }
 
     100% {
-      max-width: 100px;
-      max-height: 100px;
+      max-width: 80px;
+      max-height: 80px;
       opacity: 1;
       display: flex;
     }
+  }
+
+  .login-container {
+    padding: 57px 67px;
+  }
+
+  .signup-container {
+    top: unset;
+    bottom: 10vh;
+    right: 20vw;
+  }
+
+  .login-buttons {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  #login {
+    width: 170px;
+  }
+
+  #guest-login {
+    width: 170px;
+  }
+
+  .options {
+    flex-direction: column;
+  }
+
+  .options a {
+    order: -1;
   }
 }
