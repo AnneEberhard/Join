@@ -6,9 +6,7 @@ let boardToDos = 0;
 let boardDones = 0;
 
 async function renderBoard() {
-    await saveTasks();
-    await renderBoardCards(); 
-    
+    await renderBoardCards();
 }
 
 
@@ -193,21 +191,16 @@ async function moveTo(category) {
     let targetContainer = document.getElementById(category);
     let draggedCard = document.getElementById(currentDraggedElement); //ID
     targetContainer.appendChild(draggedCard);
-    targetContainer.style.backgroundColor = '';
-
-    console.log(category);
-    console.log(currentDraggedElement);    
+    targetContainer.style.backgroundColor = '';  
     
-        changeTaskColumn(currentDraggedElement, category)
+    changeTaskColumn(currentDraggedElement, category)
 }
 
 
 async function changeTaskColumn(taskIndex, newColumn) {
     if (taskIndex >= 0 && taskIndex < tasks.length) {
       tasks[taskIndex].column = newColumn;
-      await saveTask(); // Speichern der Aufgaben, falls nötig
-    } else {
-      console.error('Ungültiger Index für Aufgabe.');
+      await saveTask();
     }
 }
 
@@ -223,30 +216,6 @@ function removeHighlight(event) {
     event.preventDefault();
     let targetContainer = event.target;
     targetContainer.style.backgroundColor = '';
-}
-
-/**
- * Save and load just a String, so don' need JSON.stringify and parse
- * 
- * @param {*} savedCategory passes the actually category of the TaskCard 
- */
-async function saveCategory(saveCat, savedCategory) {
-    await setItem(saveCat, savedCategory);
-}
-
-async function loadCategory(id) {
-    let cat = "saveTask" + id;
-    return (await getItem(cat));
-}
-
-
-// Speichere die Werte auf dem Server
-async function saveTasks() {
-    await setItem("tasksInBoard", JSON.stringify(tasksInBoard));
-    await setItem("tasksInProgress", tasksInProgress);
-    await setItem("awaitingFeedback", awaitingFeedback);
-    await setItem("toDo", toDo);
-    await setItem("done", done);
 }
 
 

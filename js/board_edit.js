@@ -1,6 +1,7 @@
 function openTaskOverview(id, category) {
     assignedCategory = category;
     let task = tasks[id];
+    column = task.column;
     let colorCode = determineColorCategory(task['category']);
     renderEditOverviewTemplate(colorCode, task['prio'], id);
     let taskOverview = document.getElementById('editTask');
@@ -183,8 +184,7 @@ function renderEditModeTemplates(task, id){
     
     renderContacts();
     renderContactsAssignContacts(assignedCard);
-    createAssignmentIcons(assignedCard, "editTaskAssignedChangable"); 
-
+    createAssignmentIcons(assignedCard, "editTaskAssignedChangable");
     assignPrio(task["prio"]);
     
 }
@@ -194,10 +194,8 @@ function renderContactsAssignContacts(assContacts){
     let searchArea = document.getElementsByClassName("contactList");
     for (let c = 0; c < assContacts.length; c++) {
         const assContact = assContacts[c];
-        console.log(assContact.user_name)
         for (let d = 0; d < searchArea.length; d++) {
-            const searchElement = searchArea[d];
-            console.log(searchElement)
+            const searchElement = searchArea[d];            
             searchValue = searchElement.textContent || searchElement.innerText;
 
             if(searchValue.indexOf(assContact.user_name) > -1){
@@ -206,6 +204,7 @@ function renderContactsAssignContacts(assContacts){
             }            
         }
     }
+    updateAssignedContacts(); //Array mit assignedContacts wird geladen und somit die Fehlermeldung vemieden
 }
 
 async function saveEditedBoard(id){
@@ -224,6 +223,7 @@ async function saveEditedBoard(id){
               'assignedContacts': assignedContacts,
               'dueDate': dueDate,
               'prio': assignedPrio,
+              'column': column,
               'subtasks': subTasksArray,
                 }
             tasks[id] = task;

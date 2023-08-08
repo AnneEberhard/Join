@@ -38,7 +38,7 @@ function clearTask() {
           'dueDate': dueDate,
           'prio': assignedPrio,
           'subtasks': subTasksArray,
-          'column': 'todo'
+          'column': 'board_container_bottom_todo'
             }
         tasks.push(task);
         saveTask();
