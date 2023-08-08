@@ -6,11 +6,12 @@
     <div class="addTaskContainerSides">
       <div class="addTaskContainerBoxes">
         <p class="addTaskLabels">Title</p>
-        <input id="title" class="inputsAddTask height51 padding" required placeholder="Enter a title" />
+        <input id="title" maxlength="20" class="inputsAddTask height51 padding" required placeholder="Enter a title" />
       </div>
       <div class="addTaskContainerBoxes">
         <p class="addTaskLabels">Description</p>
         <textarea
+        maxlength="100"
           id="description"
           class="inputsAddTask padding"
           required

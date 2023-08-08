@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="styles/board_edit.css">
     <link rel="stylesheet" href="styles/fonts.css">
     <link rel="stylesheet" href="styles/colorCodes.css">
-    <link rel="stylesheet" href="styles/add_task.css">
+    <link rel="stylesheet" href="styles/add_task_left.css" />
+    <link rel="stylesheet" href="styles/add_tasks_right.css" />
     <link rel="stylesheet" href="styles/board_add.css">
     <link rel="stylesheet" href="styles/responsiveness.css">
     <link rel="icon" type="image/x-icon" href="./assets/img/Join_logo_dark.png"/>
@@ -17,7 +18,8 @@
     <script src="script.js"></script>
     <script src="js/storage.js"></script>
     <script src="js/add_task.js"></script>
-    <script src="./js/board_add.js"></script>
+    <script src="js/board_add.js"></script>
+    <script src="js/save_add_tasks.js"></script>
     <script src="js/delete.js"></script>
     <script src="js/board.js"></script>
     <script src="js/board_edit.js"></script>
@@ -33,8 +35,8 @@
     <div id="editTask" class="d-none">        
     </div>
     <!--AddTask-Container-->
-    <div id="addTaskBoard" >  
-        <div class="addTaskBoardContainer"> 
+    <div id="addTaskBoard" class="d-none">  
+        <div id="addTaskBoardContainer" > 
             <div class="closeBoardAddTask" >
                 <div class="closeButtonBoardAddTask" onclick="closeAddTask()">
                     <img src="/assets/img/Icon_close.png" alt="">

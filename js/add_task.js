@@ -21,8 +21,8 @@ let inputDone = false;
 async function initTask() {
   await includeHTML();  
   await loadItems();
-  renderCategories();
-  renderContacts();
+  await renderCategories();
+  await renderContacts();
   renderDueDate();
 }
 
@@ -52,7 +52,7 @@ async function loadItems() {
 }
 
 
-function renderCategories() {
+async function renderCategories() {
   document.getElementById("newCategoryDotsContainer").innerHTML = "";
   document.getElementById('category').innerHTML = templateCategory();
   createFreecolors();
@@ -63,8 +63,10 @@ function renderCategories() {
 function templateCategory() {
   let templateCategory = /*html*/`
   <div class="inputWithList">
+    <div class="inputCategory">
   <input id="categorySelection" class="selection" required placeholder="Select task category">
  <div id="categorySelectionCircle"></div> 
+ </div>
  <div id="categorySelectionLeft"></div>
  <div id="dividerSmall"></div>
  <div id="categorySelectionRight">
@@ -165,7 +167,6 @@ function templateNewCategoryDots(i) {
   let colorCode = freeColors[i];
   let templateNewCategoryDots = /*html*/ `
     <div class="circle hover" id="newCategoryDot${i}" style="background-color: ${colorCode}" onclick="addColor(${i})"></div>`;
-  console.log(colorCode);
   return templateNewCategoryDots;
 }
 
@@ -184,7 +185,6 @@ function createFreecolors() {
     let freeColorCode = getRandomColor();
     freeColors.push(freeColorCode);
   }
-  console.log(freeColors);
 }
 
 function getRandomColor() {
@@ -222,16 +222,12 @@ function deleteCategory (categoryToDelete, i) {
   checkCategoryIfUsed = checkCategoryToDelete(categoryToDelete); 
   if (checkCategoryIfUsed === false) {
     categories.splice(i, 1);
-    console.log('gelöscht');
     document.getElementById('categoryAlert').innerHTML ='';
     renderCategories();
     saveOnlyCategories()
   } else {
     document.getElementById('categoryAlert').innerHTML ='Category is in use';
   }
-
-  console.log (checkCategoryIfUsed);
-  
 }
 
 function checkCategoryToDelete(categoryToDelete) {
@@ -245,7 +241,7 @@ function checkCategoryToDelete(categoryToDelete) {
 }
 
 
-function renderContacts() {
+async function renderContacts() {
   document.getElementById('contactContainer').innerHTML = templateContactSelection();
   for (let i = 0; i < contacts.length; i++) {
     const contact = contacts[i]['user_name'];
@@ -353,7 +349,6 @@ function assignPrio(chosenPrio) {
   } else {
     assignedPrio = chosenPrio;}
   renderAssignedPrio(chosenPrio);
-  console.log(assignedPrio);
 }
 
 function renderAssignedPrio(chosenPrio) {

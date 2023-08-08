@@ -35,7 +35,7 @@
 @media (max-width: 900px) {
   .addTaskContainer {
     margin: 118px 0px 60px 0px;
-    width: 90%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: stretch;
@@ -77,10 +77,12 @@
     display: flex !important;
   }
 
-
-
   .clear {
     display: none;
+  }
+
+  .create {
+    margin-right: 20px;
   }
 
   #mobileFooter {
@@ -112,7 +114,7 @@
   }
 
   .supportPage {
-    margin: 118px 32px 0 32px;
+    margin: 118px 32px 100px 32px;
     width: 90%;
     display: flex;
     flex-direction: column;
@@ -146,6 +148,6 @@
   }
 
   .visible {
-    bottom: 400px !important;
+    bottom: 200px !important;
   }
 }
