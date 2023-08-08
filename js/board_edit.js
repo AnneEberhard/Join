@@ -1,7 +1,7 @@
 function openTaskOverview(id, category) {
     assignedCategory = category;
     let task = tasks[id];
-    let colorCode = `colorCategory${determineColorCategory(task['category'])}`;
+    let colorCode = determineColorCategory(task['category']);
     renderEditOverviewTemplate(colorCode, task['prio'], id);
     let taskOverview = document.getElementById('editTask');
     taskOverview.classList.remove('d-none');
@@ -28,7 +28,7 @@ function renderEditOverviewTemplate(colorCode, prio, id){
                 <div id="editTaskContainerEdit" onclick="openEditMode(${id})"><img src="/assets/img/Icon_edit.png"></div>
             </div>
             <div id="editTaskContainerInner">
-                <div id="editTaskContainerCategory" class="${colorCode}"></div>
+                <div id="editTaskContainerCategory" style="background-color: ${colorCode}"></div>
                 <div id="editTaskContainerTitle"></div>
                 <div id="editTaskContainerDescription"></div>
                 <div id="editTaskContainerDueDate">

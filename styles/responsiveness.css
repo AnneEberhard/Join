@@ -7,6 +7,10 @@
 }
 
 @media (max-width: 1450px) {
+.addTaskContainer {
+  width: calc(100%-232px);
+}
+
   .addTaskContainerSides {
     width: 90%;
   }
@@ -73,12 +77,7 @@
     display: flex !important;
   }
 
-  .create {
-    position: fixed;
-    top: 16px;
-    right: 16px;
-    z-index: 999;
-  }
+
 
   .clear {
     display: none;
@@ -122,6 +121,10 @@
 }
 
 @media (max-width: 500px) {
+
+  #addTaskTitle {
+    margin: 16px;
+  }
   .addTaskLabels {
     font-size: 16px;
   }

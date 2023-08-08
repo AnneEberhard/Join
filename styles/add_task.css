@@ -390,6 +390,7 @@ textarea:focus-visible {
   display: flex;
   justify-content: flex-end;
   gap: 25px;
+  margin-bottom: 40px;
 }
 
 .buttonAddTask {

@@ -55,6 +55,7 @@ async function loadItems() {
 function renderCategories() {
   document.getElementById("newCategoryDotsContainer").innerHTML = "";
   document.getElementById('category').innerHTML = templateCategory();
+  createFreecolors();
   renderCategoryOptions();
   resetCategories();
 }
@@ -79,10 +80,11 @@ function renderCategoryOptions() {
   document.getElementById('categoryOptions').innerHTML = '';
   for (let i = 0; i < categories.length; i++) {
     const category = categories[i]['name'];
+    const colorCode = categories[i]['colorCode'];
     if (i==0) {
       document.getElementById('categoryOptions').innerHTML += templateCategoryOptionsFirst(category,i);
     } else {
-    document.getElementById('categoryOptions').innerHTML += templateCategoryOptionsFurther(category,i);}
+    document.getElementById('categoryOptions').innerHTML += templateCategoryOptionsFurther(category,i, colorCode);}
   }
 }
 
@@ -94,12 +96,12 @@ function templateCategoryOptionsFirst(category, i) {
   return templateCategoryOptionsFirst;
 }
 
-function templateCategoryOptionsFurther(category,i) {
+function templateCategoryOptionsFurther(category,i, colorCode) {
   let templateCategoryOptionsFurther = /*html*/`
   <div class="option">
     <div id="category${i}" class="categoryLine" onclick="selectCategory(${i})">
       <div>${category}</div>
-      <div class="circle colorCategory${i}"></div>
+      <div class="circle" style="background-color: ${colorCode}"></div>
     </div>
     <img src="assets/img/delete.png" class="hover" onclick="deleteCategory('${category}', '${i}')"/>
   </div>`;
@@ -114,10 +116,11 @@ function toggleOptions(id) {
 
 function selectCategory(i) {
   const category = categories[i]['name'];
+  const colorCode = categories[i]['colorCode'];
   assignedCategory = category;
   document.getElementById('categorySelection').value = category;
   document.getElementById('categorySelectionCircle').innerHTML = /*html*/ `
-  <div class="circle colorCategory${i}"></div>`;
+  <div class="circle" style="background-color: ${colorCode}"></div>`;
   toggleOptions('categoryOptions');
 }
 
@@ -161,7 +164,8 @@ function templateCategorySelectionRight() {
 function templateNewCategoryDots(i) { 
   let colorCode = freeColors[i];
   let templateNewCategoryDots = /*html*/ `
-    <div class="circle colorCategory${colorCode} hover" id="newCategoryDot${i}" onclick="addColor(${i})"></div>`;
+    <div class="circle hover" id="newCategoryDot${i}" style="background-color: ${colorCode}" onclick="addColor(${i})"></div>`;
+  console.log(colorCode);
   return templateNewCategoryDots;
 }
 
@@ -172,6 +176,24 @@ function checkIfNewCategoryReady() {
     addCategoryButton.addEventListener('click', addCategory);
     addCategoryButton.classList.add('hover');
   }
+}
+
+function createFreecolors() {
+  freeColors = [];
+  for (let i = 0; i < 5; i++) {
+    let freeColorCode = getRandomColor();
+    freeColors.push(freeColorCode);
+  }
+  console.log(freeColors);
+}
+
+function getRandomColor() {
+  const letters = "0123456789ABCDEF";
+  let color = "#";
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
 }
 
 function addColor(i) {
@@ -370,94 +392,3 @@ function addCheck(index) {
     document.getElementById(`checkBox${index}`).innerHTML = /*html*/ `<img src="assets/img/done-30.png">`;
 }
 
-
-function clearTask() {
-  document.getElementById("title").value = "";
-  document.getElementById("description").value = "";
-  document.getElementById("categoryOptions").innerHTML = "";
-  document.getElementById("categoryAlert").innerHTML = "";
-  document.getElementById("contactAlert").innerHTML = "";
-  document.getElementById("prioAlert").innerHTML = "";
-  document.getElementById("dueDate").value = "";
-  document.getElementById("inputSubtask").value = "";
-  document.getElementById("subTasks").innerHTML = "";
-  document.getElementById("urgent").classList.remove("urgent");
-  document.getElementById("medium").classList.remove("medium");
-  document.getElementById("low").classList.remove("low");
-  document.getElementById("popupNotice").classList.remove("visible");
-  renderCategories();
-  renderContacts();
-  renderPrio();
-  assignedPrio = "";
-  subTasksArray = [];
-}
-
-
-function createTask(event) {
-  event.preventDefault();
-  let prioFilled = checkPrio();
-  let correctCategory = checkCorrectCategory();
-  let correctContact = checkCorrectContact();
-  if (prioFilled == true && correctCategory == true && correctContact == true){
-    let title = document.getElementById("title").value;
-    let description = document.getElementById("description").value;
-    let dueDate = document.getElementById("dueDate").value;
-    let task = {
-        'title': title,
-        'description': description,
-        'category': assignedCategory,
-        'assignedContacts': assignedContacts,
-        'dueDate': dueDate,
-        'prio': assignedPrio,
-        'subtasks': subTasksArray,
-          }
-      tasks.push(task);
-      saveTask();
-      popUpNotice();
-      
-  }
-}
-
-function checkPrio() {
-  if (typeof assignedPrio !== 'undefined' && assignedPrio !== null && assignedPrio !== '') {
-    return true;
-  } else {
-   document.getElementById('prioAlert').innerHTML ='Please select a priority!';
-  }
-}
-
-function checkCorrectCategory() {
-  let inputCategory = document.getElementById("categorySelection").value;
-  const categoryExists = categories.some(category => category.name === inputCategory);
-  if (categoryExists) {
-    return true;
-  } else {
-    document.getElementById('categoryAlert').innerHTML ='Please enter a valid category or choose from the dropdown Menu';
-  }
-}
-
-function checkCorrectContact() {
-  if (assignedContacts.length != 0) {
-    return true;
-  } else {
-    document.getElementById('contactAlert').innerHTML ='Please choose an option from the dropdown Menu';
-  }
-}
-
-function popUpNotice() {
-  document.getElementById('popupNotice').classList.add('visible');
-}
-
-function switchToBoard() {
-  window.location.href = "board.html";
-}
-
-async function saveTask() {
-  await setItem("tasks", JSON.stringify(tasks));
-  await setItem("savedCategories", JSON.stringify(categories));
-  await setItem("savedFreeColors", JSON.stringify(freeColors));
-}
-
-async function saveOnlyCategories() {
-  await setItem("savedCategories", JSON.stringify(categories));
-}

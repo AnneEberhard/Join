@@ -12,13 +12,15 @@
   </head>
   <body onload="initTask(), initTemplate('addTask')">
     
-    <div w3-include-html="assets/templates/task_form.html" style="width:100%"></div>
+    <div w3-include-html="assets/templates/task_form.html" style="width:100%;  display:flex; flex-direction: column; align-items: center;"></div>
     <div w3-include-html="assets/templates/desktop_template.html"></div>
     <div w3-include-html="assets/templates/mobile_template.html"></div>
 
     <script src="./js/add_task.js"></script>
+    <script src="./js/save_add_tasks.js"></script>
     <script src="./js/script_Templates.js"></script>
     <script src="/script.js"></script>
     <script src="/js/storage.js"></script>
+
   </body>
 </html>

@@ -9,7 +9,6 @@ async function renderBoard() {
     await saveTasks();
     await renderBoardCards();
     countTasks();
-    
 }
 
 
@@ -37,7 +36,7 @@ async function createBoardCard(i) {
     let titleCard = task['title'];
     let descriptionCard = task['description'];
     let categoryCard = task['category'];
-    let categoryColorCode = `colorCategory${determineColorCategory(categoryCard)}`;
+    let categoryColorCode = determineColorCategory(categoryCard);
     let assignedCard = task['assignedContacts'];
     let prioCard = task['prio'];
     let subtaskCard = task['subtasks'];
@@ -59,6 +58,7 @@ function determineColorCategory(category) {
             colorCode = categories[i].colorCode
         }
     }
+    console.log(colorCode)
     return colorCode
 }
 
@@ -79,7 +79,7 @@ function renderBoardCard(categoryCard, titleCard, descriptionCard, ID, prioCard,
     board_todo.innerHTML += /*html*/`
         <div id="${ID}" draggable="true" ondragstart="startDragging(${ID})" onclick="openTaskOverview(${ID}, '${categoryCard}')" class="board_task_container" >
             <div class="board_task_container_inner">
-                <div class="board_task_container_category ${categoryColorCode}">${categoryCard}</div>
+                <div class="board_task_container_category" style="background-color: ${categoryColorCode}">${categoryCard}</div>
                 <div class="board_task_container_title_and_description">
                     <div class="board_task_container_title">${titleCard}</div>
                     <div class="board_task_container_description">${descriptionCard}</div>
