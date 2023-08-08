@@ -11,8 +11,9 @@
     <title>Join | Add Task</title>
   </head>
   <body onload="initTask(), initTemplate('addTask')">
-    
-    <div w3-include-html="assets/templates/task_form.html" style="width:100%;  display:flex; flex-direction: column; align-items: center;"></div>
+    <div class="addTaskContainer" >     
+      <div w3-include-html="assets/templates/task_form.html" ></div>
+  </div>
     <div w3-include-html="assets/templates/desktop_template.html"></div>
     <div w3-include-html="assets/templates/mobile_template.html"></div>
 

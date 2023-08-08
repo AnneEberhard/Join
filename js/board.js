@@ -58,7 +58,6 @@ function determineColorCategory(category) {
             colorCode = categories[i].colorCode
         }
     }
-    console.log(colorCode)
     return colorCode
 }
 
@@ -253,9 +252,6 @@ function searchTasksOnBoard() {
 }
 
 
-function openAddTask() {
-    window.location.href = "add_task.html";
-}
 
 
 
