@@ -1,4 +1,7 @@
-
+  /**
+   * this function clears the entire template and resets to original state
+   * @param - no param
+   */
 function clearTask() {
     document.getElementById("title").value = "";
     document.getElementById("description").value = "";
@@ -21,6 +24,10 @@ function clearTask() {
   }
   
   
+    /**
+   * this function creates the respective JSOn tasks if all requirements are met and adds it to the array tasks
+   * @param {Event} event - needed to prevent new loading of form
+   */
   function createTask(event) {
     event.preventDefault();
     let prioFilled = checkPrio();
@@ -47,6 +54,10 @@ function clearTask() {
     }
   }
   
+  /**
+   * this function checks if a prioritiy is assigned to task and writes an alert otherwise
+   * @param - no param
+   */
   function checkPrio() {
     if (typeof assignedPrio !== 'undefined' && assignedPrio !== null && assignedPrio !== '') {
       return true;
@@ -55,6 +66,10 @@ function clearTask() {
     }
   }
   
+  /**
+   * this function checks if a correct category is assigned to task and writes an alert otherwise
+   * @param - no param
+   */
   function checkCorrectCategory() {
     let inputCategory = document.getElementById("categorySelection").value;
     const categoryExists = categories.some(category => category.name === inputCategory);
@@ -65,6 +80,11 @@ function clearTask() {
     }
   }
   
+
+    /**
+   * this function checks if at least one contact is assigned to task and writes an alert otherwise
+   * @param - no param
+   */
   function checkCorrectContact() {
     if (assignedContacts.length != 0) {
       return true;
@@ -73,20 +93,40 @@ function clearTask() {
     }
   }
   
+
+    /**
+   * this function shows popUp Notice when task is added and saved
+   * @param - no param
+   */
   function popUpNotice() {
     document.getElementById('popupNotice').classList.add('visible');
   }
   
+
+  /**
+   * this function refers to the site board.html
+   * @param - no param
+   */
   function switchToBoard() {
     window.location.href = "board.html";
   }
   
+
+  /**
+   * this function seves the JSONs tasks, savedCategories and the array savedfreeColors to the backend 
+   * @param - no param
+   */
   async function saveTask() {
     await setItem("tasks", JSON.stringify(tasks));
     await setItem("savedCategories", JSON.stringify(categories));
     await setItem("savedFreeColors", JSON.stringify(freeColors));
   }
   
+
+  /**
+   * this function saves only the savedCategories to the backend and is used when a category is deleted
+   * @param - no param
+   */
   async function saveOnlyCategories() {
     await setItem("savedCategories", JSON.stringify(categories));
   }
