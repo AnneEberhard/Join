@@ -17,7 +17,7 @@ let contacts = [
 let editingContact;
 
 async function init() {
-  await includeHTMLTwo();
+  await includeHTML();
   showCategory("contacts");
   createNameCircle();
   await loadContacts();

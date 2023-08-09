@@ -1,16 +1,16 @@
 async function initTemplate(categoryName) {
-  await includeHTMLTwo();
+  await includeHTML();
   showCategory(categoryName);
   showMobileCategory(categoryName);
   createNameCircle();
 }
 
 /**
- * this function includes the templates for Sitebar & Topbar
+ * this function includes the templates for Sitebar, Topbar, mobile Bars & task_form
  *
  * @param - no parameter
  */
-async function includeHTMLTwo() {
+async function includeHTML() {
   let includeElements = document.querySelectorAll("[w3-include-html]");
   for (let i = 0; i < includeElements.length; i++) {
     const element = includeElements[i];
