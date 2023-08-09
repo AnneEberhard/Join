@@ -1,5 +1,6 @@
 function openAddTask() {
     document.getElementById('addTaskBoard').classList.remove('d-none');
+    initTask();
     document.getElementById('addTaskBoardContainer').classList.add('slideIn');
 }
 

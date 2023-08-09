@@ -1,6 +1,7 @@
 async function initTemplate(categoryName) {
   await includeHTMLTwo();
   showCategory(categoryName);
+  showMobileCategory(categoryName);
   createNameCircle();
 }
 
@@ -47,6 +48,20 @@ async function showCategory(categoryName) {
   }
 }
 
+async function showMobileCategory(categoryName) {
+  let allCategories = document.getElementsByClassName("active_category");
+  if (allCategories.length != 0) {
+    for (let i = 0; i < allCategories.length; i++) {
+      const element = allCategories[i];
+      element.classList.remove("active_category");
+    }
+  }
+  let string = "mobile_categories_" + categoryName;
+  let addCat = document.getElementById(string);
+  addCat.classList.add("active_category");
+}
+
+
 function togglePopupBar() {
   let popupBar = document.getElementById("popupBar");
   popupBar.classList.toggle("d-none");
@@ -69,9 +84,13 @@ async function createNameCircle() {
   currentUser = users[0].name;
   let acronym = createAcronym(currentUser);
   let topbar = document.getElementById("topbar_icons");
+  let mobiletopbar = document.getElementById("mobile_topbar_icons");
   topbar.innerHTML += /*html*/ `
         <div id="topbar_Icons_Username" onclick="togglePopupBar()">${acronym}</div>
     `;
+  mobiletopbar.innerHTML += /*html*/ `
+     <div id="mobile_topbar_Icons_Username" onclick="togglePopupBar()">${acronym}</div>
+ `;
 }
 
 function createAcronym(currentUser) {
