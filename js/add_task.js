@@ -22,12 +22,11 @@ let inputDone = false;
  *
  * @param - no parameter
  */
-
 async function initTask() {
   await includeHTML();  
   await loadItems();
-  await renderCategories();
-  await renderContacts();
+  renderCategories();
+  renderContacts();
   renderDueDate();
 }
 
@@ -46,205 +45,12 @@ async function loadItems() {
 }
 }
 
-/**
- * this function begins the rendering of the categories
- * @param - no parameter
- */
-
-async function renderCategories() {
-  document.getElementById("newCategoryDotsContainer").innerHTML = "";
-  document.getElementById('category').innerHTML = templateCategory();
-  createFreecolors();
-  renderCategoryOptions();
-  resetCategories();
-}
 
 /**
- * this function returns the template
+ * this function begins the rendering of the contacts
  * @param - no parameter
  */
-function templateCategory() {
-  let templateCategory = /*html*/`
-  <div class="inputWithList">
-    <div class="inputCategory">
-  <input id="categorySelection" class="selection" required placeholder="Select task category">
- <div id="categorySelectionCircle"></div> 
- </div>
- <div id="categorySelectionLeft"></div>
- <div id="dividerSmall"></div>
- <div id="categorySelectionRight">
-  <img src="assets/img/dropdown.svg" class="hover" onclick="toggleOptions('categoryOptions')"/>
- </div>
-</div>
-<div class="hidden roundedBorder" id="categoryOptions"></div>
-</div>`;
-  return templateCategory;
-}
-
-function renderCategoryOptions() {
-  document.getElementById('categoryOptions').innerHTML = '';
-  for (let i = 0; i < categories.length; i++) {
-    const category = categories[i]['name'];
-    const colorCode = categories[i]['colorCode'];
-    if (i==0) {
-      document.getElementById('categoryOptions').innerHTML += templateCategoryOptionsFirst(category,i);
-    } else {
-    document.getElementById('categoryOptions').innerHTML += templateCategoryOptionsFurther(category,i, colorCode);}
-  }
-}
-
-function templateCategoryOptionsFirst(category, i) {
-  let templateCategoryOptionsFirst = /*html*/ `  
-  <div id="category${i}" class="option" onclick="addNewCategory()">
-  <div>${category}</div></div>
-</div>`;
-  return templateCategoryOptionsFirst;
-}
-
-function templateCategoryOptionsFurther(category,i, colorCode) {
-  let templateCategoryOptionsFurther = /*html*/`
-  <div class="option">
-    <div id="category${i}" class="categoryLine" onclick="selectCategory(${i})">
-      <div>${category}</div>
-      <div class="circle" style="background-color: ${colorCode}"></div>
-    </div>
-    <img src="assets/img/delete.png" class="hover" onclick="deleteCategory('${category}', '${i}')"/>
-  </div>`;
-  return templateCategoryOptionsFurther;
-} 
-
-function toggleOptions(id) {
-  const optionsDiv = document.getElementById(`${id}`);
-  optionsDiv.classList.toggle('hidden');
-  document.getElementById('categoryAlert').innerHTML ='';
-}
-
-function selectCategory(i) {
-  const category = categories[i]['name'];
-  const colorCode = categories[i]['colorCode'];
-  assignedCategory = category;
-  document.getElementById('categorySelection').value = category;
-  document.getElementById('categorySelectionCircle').innerHTML = /*html*/ `
-  <div class="circle" style="background-color: ${colorCode}"></div>`;
-  toggleOptions('categoryOptions');
-}
-
-function resetCategories () {
- newCategoryName = '';
-  newCategoryColor = '';
-}
-
-function addNewCategory() {
-  document.getElementById('categorySelection').value='';
-  document.getElementById('categorySelection').setAttribute('placeholder', 'New category Name');
-  document.getElementById('categorySelection').setAttribute('onkeydown', 'checkIfNewCategoryReady()');
-  document.getElementById('categorySelectionCircle').innerHTML = '';
-  document.getElementById('categorySelectionLeft').innerHTML = templateCategorySelectionLeft();
-  document.getElementById('dividerSmall').innerHTML = templatedividerSmall();
-  document.getElementById('categorySelectionRight').innerHTML = templateCategorySelectionRight();
-  document.getElementById('newCategoryDotsContainer').innerHTML = `<div id="newCategoryDots"></div>`;
-  for (let i = 0; i < freeColors.length; i++) {
-    document.getElementById('newCategoryDots').innerHTML += templateNewCategoryDots(i);
-  }
-  toggleOptions('categoryOptions');
-}
-
-function templateCategorySelectionLeft() {
-  let templateCategorySelectionLeft = `
-  <img src="assets/img/cancel.png" class="hover" onclick="renderCategories()"/>`;
-  return templateCategorySelectionLeft;
-}
-
-function templatedividerSmall() {
-  let templatedividerSmall = `<div class="dividerSmall"></div>`;
-  return templatedividerSmall;
-}
-
-function templateCategorySelectionRight() {
-  let templateCategorySelectionRight = `
-  <img src="assets/img/done-30.png" class="iconsNewCategory" id="addCategory" />`;
-  return templateCategorySelectionRight;
-}
-
-function templateNewCategoryDots(i) { 
-  let colorCode = freeColors[i];
-  let templateNewCategoryDots = /*html*/ `
-    <div class="circle hover" id="newCategoryDot${i}" style="background-color: ${colorCode}" onclick="addColor(${i})"></div>`;
-  return templateNewCategoryDots;
-}
-
-function checkIfNewCategoryReady() {
-  newCategoryName = document.getElementById('categorySelection').value;
-  if (newCategoryName !== '' && newCategoryColor !== null) {
-    const addCategoryButton = document.getElementById('addCategory');
-    addCategoryButton.addEventListener('click', addCategory);
-    addCategoryButton.classList.add('hover');
-  }
-}
-
-function createFreecolors() {
-  freeColors = [];
-  for (let i = 0; i < 5; i++) {
-    let freeColorCode = getRandomColor();
-    freeColors.push(freeColorCode);
-  }
-}
-
-function getRandomColor() {
-  const letters = "0123456789ABCDEF";
-  let color = "#";
-  for (let i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
-  }
-  return color;
-}
-
-function addColor(i) {
-  newCategoryColor = freeColors[i];
-  for (let j = 0; j < freeColors.length; j++) {
-      document.getElementById(`newCategoryDot${j}`).classList.remove('selected');
-  }
-  document.getElementById(`newCategoryDot${i}`).classList.add('selected');
-  checkIfNewCategoryReady();
-}
-
-function addCategory() {
-  const newCategoryObject = { 'name': newCategoryName, 'colorCode': newCategoryColor };
-  categories.push(newCategoryObject);
-  let lastItem = categories.length -1;
-  const indexToRemove = freeColors.indexOf(newCategoryColor);
-if (indexToRemove !== -1) {
-  freeColors.splice(indexToRemove, 1);
-}
-  renderCategories();
-  selectCategory(lastItem);
-  toggleOptions('categoryOptions');
-}
-
-function deleteCategory (categoryToDelete, i) {
-  checkCategoryIfUsed = checkCategoryToDelete(categoryToDelete); 
-  if (checkCategoryIfUsed === false) {
-    categories.splice(i, 1);
-    document.getElementById('categoryAlert').innerHTML ='';
-    renderCategories();
-    saveOnlyCategories()
-  } else {
-    document.getElementById('categoryAlert').innerHTML ='Category is in use';
-  }
-}
-
-function checkCategoryToDelete(categoryToDelete) {
-  for (let i = 0; i < tasks.length; i++) {
-    const categoryToCheck = tasks[i]['category'];
-    if (categoryToDelete === categoryToCheck) {
-      return true; 
-    }
-  }
-  return false;
-}
-
-
-async function renderContacts() {
+function renderContacts() {
   document.getElementById('contactContainer').innerHTML = templateContactSelection();
   for (let i = 0; i < contacts.length; i++) {
     const contact = contacts[i]['user_name'];
@@ -253,6 +59,11 @@ async function renderContacts() {
   document.getElementById('contactsOptions').innerHTML += templateNewContact();
 }
 
+
+/**
+ * this function returns the main template for contacts
+ * @param - no parameter
+ */
 function templateContactSelection() {
   let templateContactSelection = /*html*/`
   <div class="inputWithList">
@@ -263,6 +74,12 @@ function templateContactSelection() {
   return templateContactSelection;
 }
 
+
+/**
+ * this function returns the regular lines for the dropdown menu of contacts
+ * @param {string} ccontact - the contact from the global JSON contacts
+ * @param {number} i - index of the JSON contacts 
+ */
 function templateContactsOptions(contact,i) {
   let templateContactsOptions = /*html*/`
   <div class="option contactList" onclick="checkContact(${i})">
@@ -272,6 +89,11 @@ function templateContactsOptions(contact,i) {
   return templateContactsOptions;
 }
 
+
+/**
+ * this function returns the HTML code for the last line the dropdown menu of contacts to invite a new contact
+ * @param - no parameter
+ */
 function templateNewContact() {
   let templateNewContact = /*html*/`
   <div class="option contactList">
@@ -281,6 +103,11 @@ function templateNewContact() {
   return templateNewContact;
 }
 
+
+/**
+ * this function checks if a contact has been assigned to the task and starts assigning of unassigning
+ * @param {number} i - index of the JSON contacts 
+ */
 function checkContact(i) { 
   if (assignedContactsStatus[i]===true) {
     unassignContact(i);
@@ -290,6 +117,11 @@ function checkContact(i) {
   updateAssignedContacts();
 }
 
+
+/**
+ * this function fills the box of an assigned contact and sets the i. value of assignedContactsStatus[] to true
+ * @param {number} i - index of the JSON contacts 
+ */
 function assignContact(i) {
   document.getElementById(`contactCheckBox${i}`).innerHTML = /*html*/`
     <div class="checkBoxChecked hover"></div>
@@ -297,11 +129,21 @@ function assignContact(i) {
   assignedContactsStatus[i] = true; 
   }
 
+
+/**
+ * this function clears the box of an assigned contact and sets the i. value of assignedContactsStatus[] to false
+ * @param {number} i - index of the JSON contacts 
+ */
 function unassignContact(i) {
   document.getElementById(`contactCheckBox${i}`).innerHTML = /*html*/``;
   assignedContactsStatus[i] = false; 
 }
 
+
+/**
+ * this function adds assigned contacts to the global array assignedContacts and enables/disables HTML5 validation
+ * @param - no parameter
+ */
 function updateAssignedContacts() {
   assignedContacts = [];
   document.getElementById('contactAlert').innerHTML = '';
@@ -319,10 +161,20 @@ function updateAssignedContacts() {
   }
 }
 
+
+/**
+ * this function links to the contact page to add a new contact
+ * @param - no parameter
+ */
 function inviteContact() {
   window.location.href = "contacts.html";
 }
 
+
+/**
+ * this function renders the field Due Date, enabling only future dates to be selected
+ * @param - no parameter
+ */
 function renderDueDate() {
   let currentDate = new Date();
   const year = currentDate.getFullYear();
@@ -331,6 +183,11 @@ function renderDueDate() {
   document.getElementById('dueDate').setAttribute('min', `${year}-${month}-${day}`);
 }
 
+
+/**
+ * this function renders the priorities
+ * @param - no parameter
+ */
   function renderPrio() {
     document.getElementById("prioContainer").innerHTML = /*html*/`
     <button id="urgent" type="button" onclick="assignPrio('urgent')" class="prio height51">
@@ -345,6 +202,10 @@ function renderDueDate() {
 }
 
 
+/**
+ * this function assigns the clicked-on priority to the global variable assignedPrio or unassigns it at the 2nd click
+ * @param {string} chosenPrio - id of clicked-on priority
+ */
 function assignPrio(chosenPrio) {
   document.getElementById('prioAlert').innerHTML ='';
   if (assignedPrio === chosenPrio) {
@@ -354,6 +215,11 @@ function assignPrio(chosenPrio) {
   renderAssignedPrio(chosenPrio);
 }
 
+
+/**
+ * this function either highlights or de-highlights the clicked-on priority depending on 1st or 2nd click as well as de-highlights all others
+ * @param {string} chosenPrio - id of clicked-on priority
+ */
 function renderAssignedPrio(chosenPrio) {
   for (let i = 0; i < prios.length; i++) {
     const prio = prios[i];
@@ -370,6 +236,11 @@ function renderAssignedPrio(chosenPrio) {
   }
 }
 
+
+/**
+ * this function renders the field for adding subtasks
+ * @param - no parameter
+ */
 function addSubTask() {
   let subTask = document.getElementById("inputSubtask").value;
   subTasksArray.push(subTask);
@@ -382,10 +253,21 @@ function addSubTask() {
   document.getElementById("inputSubtask").value = "";
 }
 
+
+/**
+ * this function returns the index of an item in an array
+ * @param {string} array - name of respective array
+ * @param {string} item - name of respective item
+ */
 function findIndexOfItem (array, item) {
     return array.indexOf(item);
 }
 
+
+/**
+ * this function add checksmarks to the subtaks if clicked on
+ * @param {value} index - index of the subtask in the global array subTasksArray
+ */
 function addCheck(index) {
     document.getElementById(`checkBox${index}`).innerHTML = /*html*/ `<img src="assets/img/done-30.png">`;
 }
