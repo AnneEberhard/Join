@@ -10,6 +10,8 @@ body {
   align-items: center;
   width: 100vw;
   height: 100vh;
+  position: relative;
+  overflow: hidden;
 }
 
 .signup-container {
@@ -36,8 +38,8 @@ body {
   top: 30px;
   left: 30px;
   background-color: #f6f7f8;
-  width: 96vw;
-  height: 96vh;
+  width: 100vw;
+  height: 100vh;
   opacity: 1;
   visibility: visible;
   z-index: 9999;
