@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="styles/style_template.css">
     <link rel="stylesheet" href="styles/board.css">
     <link rel="stylesheet" href="styles/board_edit.css">
+    <link rel="stylesheet" href="styles/board_responsiv.css">
     <link rel="stylesheet" href="styles/fonts.css">
     <link rel="stylesheet" href="styles/colorCodes.css">
     <link rel="stylesheet" href="styles/add_task_left.css" />
@@ -64,6 +65,15 @@
                 <button id="board_container_search_addtask" onclick="openAddTask()">
                     <div id="board_container_search_addtask_text">Add task</div>
                     <img src="/assets/img/Icon_plus_white.png" alt="">
+                </button>
+            </div>  
+        </div>
+        <div id="board_container_search_searchfield_mobile">
+            <div id="board_container_search_searchfield_inner_mobile">
+                <input id="board_input_mobile" type="text" placeholder="Find Task" onkeyup="searchTasksOnBoardMobile()">
+                <button id="board_search_btn_mobile">
+                    <div id="board_search_stroke_mobile"></div>
+                    <div id="board_search_icon_mobile"><img src="/assets/img/Icon_search.png" alt=""></div>
                 </button>
             </div>
         </div>

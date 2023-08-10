@@ -210,6 +210,22 @@ function searchTasksOnBoard() {
 }
 
 
+function searchTasksOnBoardMobile() {
+    let searchedTask = document.getElementById('board_input_mobile').value.toUpperCase();
+    let searchingElements = document.getElementsByClassName('board_task_container_title');
+
+    for (let p = 0; p < searchingElements.length; p++) {
+        let title = searchingElements[p];
+        searchValue = title.textContent || title.innerText;
+        if (searchValue.toUpperCase().indexOf(searchedTask) > -1) {
+            searchingElements[p].parentElement.parentElement.parentElement.style.display = "flex";
+        } else {
+            searchingElements[p].parentElement.parentElement.parentElement.style.display = "none";
+        }
+    }
+}
+
+
 /**
  * Drag and Drop functions
  * 

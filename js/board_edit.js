@@ -54,6 +54,10 @@ function renderEditOverviewTemplate(colorCode, prio, id) {
                     <div id="editTaskContainerAssignedText">Assigned to:</div>
                     <div id="editTaskContainerAssignedNames"></div>
                 </div>
+                <div id=editTaskContainerSubtasks>
+                <div id=editTaskContainerSubtasksText>Subtasks</div>
+                <div id=editTaskContainerSubtasksTasks></div>
+                </div>
             </div>
         </div>
     `
@@ -73,13 +77,13 @@ function renderAssignementsInTaskOverview(task, idContainer) {
         for (let k = 0; k < contacts.length; k++) {
             const contact = contacts[k];
 
-            renderAssignmentIconsInCard(assignedUser, contact);
+            renderAssignmentIconsInCard(assignedUser, contact, idContainer);
         }
     }
 }
 
 
-function renderAssignmentIconsInCard() {
+function renderAssignmentIconsInCard(assignedUser, contact, idContainer) {
     if (assignedUser.user_name === contact.user_name) {
 
         let newContainer = document.createElement('div');
