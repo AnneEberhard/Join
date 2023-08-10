@@ -128,9 +128,9 @@ function createGreetingPhrase(){
     if(5 < timeNow && timeNow < 12){
         greeting = "Good morning,"
     } else if (12 <= timeNow && timeNow < 18){
-        greeting = "Good Afternoon"
+        greeting = "Good Afternoon,"
     } else {
-        greeting = "Good Evening"
+        greeting = "Good Evening,"
     }
     document.getElementById('summary_container_bottom_right_greeting').innerHTML = /*html*/`
         ${greeting}
