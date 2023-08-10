@@ -1,3 +1,8 @@
+/**
+ * opens a card, which shows the detailed task
+ * @param {*} id index of task which was clicked
+ * @param {*} category category of the clicked task
+ */
 function openTaskOverview(id, category) {
     assignedCategory = category;
     let task = tasks[id];
@@ -16,8 +21,13 @@ function openTaskOverview(id, category) {
     renderAssignementsInTaskOverview(task, "editTaskContainerAssignedNames");
 }
 
-
-function renderEditOverviewTemplate(colorCode, prio, id){
+/**
+ * template of the card
+ * @param {*} colorCode colorCode of the category
+ * @param {*} prio prio of the task
+ * @param {*} id index of the task
+ */
+function renderEditOverviewTemplate(colorCode, prio, id) {
     document.getElementById('editTask').innerHTML = /*html*/`
         <div id="confirmDeleteTask" class="d-none">
         </div>
@@ -49,7 +59,11 @@ function renderEditOverviewTemplate(colorCode, prio, id){
     `
 }
 
-
+/**
+ * 
+ * @param {*} task 
+ * @param {*} idContainer 
+ */
 function renderAssignementsInTaskOverview(task, idContainer) {
     let assignedUsers = task['assignedContacts'];
     document.getElementById(`${idContainer}`).innerHTML = "";
@@ -59,7 +73,14 @@ function renderAssignementsInTaskOverview(task, idContainer) {
         for (let k = 0; k < contacts.length; k++) {
             const contact = contacts[k];
 
-            if (assignedUser.user_name === contact.user_name) {
+            renderAssignmentIconsInCard(assignedUser, contact);
+        }
+    }
+}
+
+
+function renderAssignmentIconsInCard() {
+    if (assignedUser.user_name === contact.user_name) {
 
         let newContainer = document.createElement('div');
         newContainer.classList.add('editTaskUsername');
@@ -74,11 +95,9 @@ function renderAssignementsInTaskOverview(task, idContainer) {
         newContainer.appendChild(newCircle);
         newContainer.appendChild(newName);
         newCircle.innerHTML = assignedUser.acronym;
-        
+
         newName.innerHTML = assignedUser.user_name;
         un.appendChild(newContainer);
-            }
-        }
     }
 }
 
@@ -115,14 +134,14 @@ function closeEditTask() {
 }
 
 
-function openEditMode(id){    
+function openEditMode(id) {
     let task = tasks[id];
     renderEditModeTemplates(task, id);
 }
 
 
-function renderEditModeTemplates(task, id){
-    
+function renderEditModeTemplates(task, id) {
+
     document.getElementById('editTask').innerHTML = "";
     document.getElementById('editTask').innerHTML = /*html*/`
         <div id="editTaskContainer">
@@ -181,54 +200,53 @@ function renderEditModeTemplates(task, id){
         </div>
     `
     let assignedCard = task['assignedContacts'];
-    
+
     renderContacts();
     renderContactsAssignContacts(assignedCard);
     createAssignmentIcons(assignedCard, "editTaskAssignedChangable");
     assignPrio(task["prio"]);
-    
 }
 
 
-function renderContactsAssignContacts(assContacts){
+function renderContactsAssignContacts(assContacts) {
     let searchArea = document.getElementsByClassName("contactList");
     for (let c = 0; c < assContacts.length; c++) {
         const assContact = assContacts[c];
         for (let d = 0; d < searchArea.length; d++) {
-            const searchElement = searchArea[d];            
+            const searchElement = searchArea[d];
             searchValue = searchElement.textContent || searchElement.innerText;
 
-            if(searchValue.indexOf(assContact.user_name) > -1){
+            if (searchValue.indexOf(assContact.user_name) > -1) {
                 classContainer = d;
                 assignContact(d)
-            }            
+            }
         }
     }
     updateAssignedContacts(); //Array mit assignedContacts wird geladen und somit die Fehlermeldung vemieden
 }
 
-async function saveEditedBoard(id){
-        
-        let prioFilled = checkPrio();
-        // let correctCategory = checkCorrectCategory();
-        let correctContact = checkCorrectContact();
-        if (prioFilled == true && correctContact == true){
-          let title = document.getElementById("editTaskTitleChangable").value;
-          let description = document.getElementById("editTaskDescriptionChangable").value;
-          let dueDate = document.getElementById("dueDate").value;
-          let task = {
-              'title': title,
-              'description': description,
-              'category': assignedCategory,
-              'assignedContacts': assignedContacts,
-              'dueDate': dueDate,
-              'prio': assignedPrio,
-              'column': column,
-              'subtasks': subTasksArray,
-                }
-            tasks[id] = task;
-            await saveTask();
-            closeEditTask();
-            await renderBoardCards();          
-        }      
+async function saveEditedBoard(id) {
+
+    let prioFilled = checkPrio();
+    // let correctCategory = checkCorrectCategory();
+    let correctContact = checkCorrectContact();
+    if (prioFilled == true && correctContact == true) {
+        let title = document.getElementById("editTaskTitleChangable").value;
+        let description = document.getElementById("editTaskDescriptionChangable").value;
+        let dueDate = document.getElementById("dueDate").value;
+        let task = {
+            'title': title,
+            'description': description,
+            'category': assignedCategory,
+            'assignedContacts': assignedContacts,
+            'dueDate': dueDate,
+            'prio': assignedPrio,
+            'column': column,
+            'subtasks': subTasksArray,
+        }
+        tasks[id] = task;
+        await saveTask();
+        closeEditTask();
+        await renderBoardCards();
+    }
 }
