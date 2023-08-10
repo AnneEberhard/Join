@@ -24,7 +24,7 @@ html {
 .dropdown_for_mobile {
   display: none;
   position: absolute;
-  bottom: 5vh;
+  bottom: 8vh;
   right: 20px;
   width: 60px;
   border-radius: 100px;
@@ -652,7 +652,15 @@ input[type="number"] {
   right: 50px;
 }
 
+#mobileHeader{
+  z-index: 1 !important;
+}
+
 @media (max-width: 900px) {
+
+  #sidebar{
+    display: none !important;
+  }
   .x {
     color: white;
   }
@@ -672,10 +680,10 @@ input[type="number"] {
   }
 
   #contactList {
-    top: 69px;
+    top: 140px;
     left: 0%;
     width: 100%;
-    height: 84vh;
+    height: 81.5vh;
   }
 
   #add_new_contact {
@@ -696,7 +704,7 @@ input[type="number"] {
   .contact_info_container {
     display: none;
     position: absolute;
-    margin-top: 66px;
+    margin-top: 99px;
     margin-left: 0;
     width: 100%;
     height: 82vh;
@@ -796,7 +804,7 @@ input[type="number"] {
       width: 70%;
     }
     .arrow {
-      top: 20px;
+      top: 88px;
     }
     .header_in_contact {
       flex-direction: column;
@@ -845,6 +853,10 @@ input[type="number"] {
     #cancel {
       display: none;
     }
+
+    #contactList{
+      height: 75.5vh;
+    }
   }
 
   @media (max-width: 400px) {
@@ -862,5 +874,13 @@ input[type="number"] {
       height: 80px;
       width: 80px;
     }
+    
+    #contactList {
+      height: 67.5vh;
+  }
+
+  .arrow{
+    bottom: 12vh;
+  }
   }
 }
