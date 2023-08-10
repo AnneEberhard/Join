@@ -1,8 +1,14 @@
 body,
 html {
   margin: 0 !important;
-  overflow: hidden;
   font-family: "inter";
+}
+
+.main_page{
+  width: 100vw;  
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
 }
 
 #sidebar {
@@ -178,8 +184,6 @@ html {
   color: #007cee;
 }
 
-#contacts_scrollbar {
-}
 
 .contact_info_container {
   display: flex;
@@ -187,7 +191,6 @@ html {
   margin-left: 49%;
   width: 49%;
   height: 90%;
-  justify-content: center;
   align-items: flex-start;
   margin-right: 0;
   flex-direction: column;
@@ -533,7 +536,7 @@ input[type="number"] {
 
 @keyframes slideInLeft {
   from {
-    transform: translateX(200%);
+    transform: translateX(100%);
   }
   to {
     transform: translateX(0);
@@ -553,7 +556,7 @@ input[type="number"] {
     transform: translateX(0%);
   }
   to {
-    transform: translateX(200%);
+    transform: translateX(100%);
   }
 }
 

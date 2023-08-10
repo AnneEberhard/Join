@@ -56,6 +56,7 @@ function openModal(id) {
   let modal = document.getElementById(id);
   modal.style = "display: flex;";
   modal.className = "slideIn";
+  
 }
 
 /**

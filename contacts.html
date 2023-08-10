@@ -17,6 +17,7 @@
   </head>
 
   <body onload="init();">
+    <div class="main_page">
     <div w3-include-html="assets/templates/desktop_template.html"></div>
     <div w3-include-html="assets/templates/mobile_template.html"></div>
     <div id="contactList">
@@ -86,7 +87,7 @@
           <div class="form_container">
           <form id="edit_form" onsubmit="saveEditedContact(); return false;">
             <div class="input-container">
-              <input id="edit_name" type="text" placeholder="Name" required/>
+              <input id="edit_name" type="text" placeholder="Name" required />
               <input id="edit_email" class="" type="email" placeholder="Email" required/>
               <input id="edit_phone" class="" type="number" placeholder="Phone"/>
             </div>
@@ -112,6 +113,7 @@
       <div class="renderContainer" id="render">
         
       </div>
+</div>
 </div>
 </div>
 <script src="js/contacts.js"></script>
