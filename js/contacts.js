@@ -42,7 +42,7 @@ function closeModal(id) {
   let modal = document.getElementById(id);
   modal.classList.remove("slideIn");
   modal.classList.add("slideOut");
-  modal.style.display = "none";
+  
 }
 
 /**

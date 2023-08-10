@@ -4,8 +4,8 @@ html {
   font-family: "inter";
 }
 
-.main_page{
-  width: 100vw;  
+.main_page {
+  width: 100vw;
   height: 100vh;
   overflow: hidden;
   position: relative;
@@ -183,7 +183,6 @@ html {
   line-height: 19px;
   color: #007cee;
 }
-
 
 .contact_info_container {
   display: flex;
@@ -536,7 +535,7 @@ input[type="number"] {
 
 @keyframes slideInLeft {
   from {
-    transform: translateX(100%);
+    transform: translateX(200%);
   }
   to {
     transform: translateX(0);
@@ -549,6 +548,7 @@ input[type="number"] {
 
 .slideOut {
   animation: slideOutRight 1s forwards;
+  display: none;
 }
 
 @keyframes slideOutRight {
@@ -556,7 +556,7 @@ input[type="number"] {
     transform: translateX(0%);
   }
   to {
-    transform: translateX(100%);
+    transform: translateX(200%);
   }
 }
 
@@ -655,13 +655,74 @@ input[type="number"] {
   right: 50px;
 }
 
-#mobileHeader{
+#mobileHeader {
   z-index: 1 !important;
 }
 
-@media (max-width: 900px) {
+#edit_form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-  #sidebar{
+@media (max-width: 1300px) {
+  #edit_save {
+    width: 135px;
+  }
+
+  #edit_form {
+    width: 90%;
+  }
+
+  #topbar {
+    width: 82% !important;
+    left: 18.5% !important;
+  }
+
+  #contactList {
+    left: 18.4%;
+  }
+
+  #sidebar {
+    width: 18.4% !important;
+  }
+
+  #create_contact {
+    width: 92%;
+  }
+}
+
+@media (max-width: 1100px) {
+  #topbar {
+    width: 79% !important;
+    left: 21.5% !important;
+  }
+
+  #contactList {
+    left: 21.4%;
+  }
+
+  #sidebar {
+    width: 21.4% !important;
+  }
+
+  .avatar {
+    margin-right: 25px;
+  }
+
+  .right_side img {
+    width: 80px;
+    height: 80px;
+  }
+  #edit_avatar {
+    height: 100px;
+    width: 100px;
+  }
+}
+
+@media (max-width: 900px) {
+  #sidebar {
     display: none !important;
   }
   .x {
@@ -857,7 +918,7 @@ input[type="number"] {
       display: none;
     }
 
-    #contactList{
+    #contactList {
       height: 75.5vh;
     }
   }
@@ -877,13 +938,13 @@ input[type="number"] {
       height: 80px;
       width: 80px;
     }
-    
+
     #contactList {
       height: 67.5vh;
-  }
+    }
 
-  .arrow{
-    bottom: 12vh;
-  }
+    .arrow {
+      bottom: 12vh;
+    }
   }
 }
