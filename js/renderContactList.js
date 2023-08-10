@@ -1,5 +1,10 @@
 let currentHighlightedDiv = null;
 
+/**
+ * 
+ * This function renders the Contact List.
+ */
+
 function renderContactList() {
   const contactsContainer = document.getElementById("contacts_container");
   contactsContainer.innerHTML = "";

@@ -1,3 +1,14 @@
+/**
+ * 
+ * This function creates the Contact.
+ * @constructor 
+ * @param {string} - name - Name of Contact
+ * @param {string} - phone - Phone of Contact
+ * @param {string} - email - Email of Contact
+ * @param {string} - acronym - Acronym of Contact
+ *
+ */
+
 class Contact {
   user_name;
   phone;
@@ -13,6 +24,12 @@ class Contact {
     this.color = this.getRandomColor();
   }
 
+/**
+ * 
+ * This function returns a random color for the Contact Profile Picture. 
+ *
+ *
+ */
   getRandomColor() {
     const letters = "0123456789ABCDEF";
     let color = "#";
