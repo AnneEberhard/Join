@@ -210,6 +210,7 @@ async function deleteContact(user) {
     loadContacts();
     renderContactList();
     document.getElementById("render").innerHTML = "";
+    window.location.href = "contacts.html";
   }
 }
 
