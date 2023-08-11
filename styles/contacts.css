@@ -947,4 +947,16 @@ input[type="number"] {
       bottom: 12vh;
     }
   }
+
+  @media (max-width: 375px){
+    #edit_avatar {
+      height: 70px;
+      width: 70px;
+    }
+
+    .avatar img {
+      width: 70px;
+      height: 70px;
+  }
+  }
 }
