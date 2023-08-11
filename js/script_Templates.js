@@ -100,7 +100,7 @@ function togglePopupBar() {
  */
 async function createNameCircle() {
   await loadUsers();
-  let acronym = createAcronym(currentUser);
+  let acronym = createAcronym();
   let topbar = document.getElementById("topbar_icons");
   let mobiletopbar = document.getElementById("mobile_topbar_icons");
   topbar.innerHTML += /*html*/ `
@@ -116,7 +116,7 @@ async function createNameCircle() {
 *
 * @param {} - no parameter
 */
-function createAcronym(currentUser) {
+function createAcronym() {
   let acronym;
   let matches = currentUser.match(/^(\w+)|(\w+)\W*$/g); //seperates first and last words of a string
   if (matches.length == 2) {

@@ -244,13 +244,18 @@ function renderAssignedPrio(chosenPrio) {
  * @param - no parameter
  */
 function addSubTask() {
-  let subTask = document.getElementById("inputSubtask").value;
-  subTasksArray.push(subTask);
+  let subTaskName = document.getElementById("inputSubtask").value;
+  let subTaskDone = 0;
+  let subTask = {
+    'subTaskName' : subTaskName,
+    'subTaskDone' : subTaskDone
+  }
+  subTasksArray.push(subTask); 
   let index = findIndexOfItem (subTasksArray, subTask);
   document.getElementById("subTasks").innerHTML += /*html*/ `
     <div class="subTaskBox">
         <div id="checkBox${index}" class="checkBox hover" onclick="addCheck(${index})"></div>
-        <div class="subtask">${subTask}</div>
+        <div class="subtask">${subTaskName}</div>
     </div>`;
   document.getElementById("inputSubtask").value = "";
 }
@@ -272,5 +277,6 @@ function findIndexOfItem (array, item) {
  */
 function addCheck(index) {
     document.getElementById(`checkBox${index}`).innerHTML = /*html*/ `<img src="assets/img/done-30.png">`;
+    subTasksArray[index].subTaskDone = 1;
 }
 
