@@ -48,10 +48,13 @@ function renderSummary() {
     document.getElementById('tasks_in_progress_number').innerHTML = `${summaryTasksInProgress}`;
     document.getElementById('awaiting_feedback_number').innerHTML = `${summaryAwaitingFeedback}`;
     document.getElementById('summary_bottom_stats_mid_left_container_number').innerHTML = `${summaryUrgentTasks}`;
-    document.getElementById('summary_bottom_stats_mid_right_date').innerHTML = `${newSummaryDueDate}`;
     document.getElementById('summary_bottom_stats_bottom_left_todo_number').innerHTML = `${summaryToDo}`;
     document.getElementById('summary_bottom_stats_bottom_right_done_number').innerHTML = `${summaryDone}`;
-   
+    if(newSummaryDueDate == undefined){
+        return
+    }else{
+    document.getElementById('summary_bottom_stats_mid_right_date').innerHTML = `${newSummaryDueDate}`;
+}
 }
 
 /**
