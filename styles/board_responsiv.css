@@ -8,7 +8,6 @@
     #board_container_bottom{
         width: calc(100% - 364px);
         gap: 2.4%;
-        height: ;
     }
 
     .board_container_bottom_category_background{
@@ -257,6 +256,11 @@
         width: 24px;
         height: 24px;
     }
+
+    .emptyColumnContainer{
+        margin: 16px 0;
+    }
+
 }
 
 

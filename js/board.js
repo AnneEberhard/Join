@@ -1,5 +1,5 @@
 /** für Drag&Drop  */
-let currentDraggedElement;      
+let currentDraggedElement;
 
 async function renderBoard() {
     await renderBoardCards();
@@ -15,10 +15,11 @@ async function renderBoardCards() {
     for (let i = 0; i < tasks.length; i++) {
         createBoardCard(i)
     }
+    fillEmptyColumns();
 }
 
 /** delete tasks Columns when refreshing Board */
-async function deleteBoard(){
+async function deleteBoard() {
     document.getElementById('board_container_bottom_todo').innerHTML = "";
     document.getElementById('board_container_bottom_inprogress').innerHTML = "";
     document.getElementById('board_container_bottom_awaitingfeedback').innerHTML = "";
@@ -38,7 +39,7 @@ async function createBoardCard(id) {
     let categoryCard = task['category'];
     let categoryColorCode = determineColorCategory(categoryCard);
     let assignedCard = task['assignedContacts'];
-    let prioCard = task['prio'];   
+    let prioCard = task['prio'];
     let cats = task['column'];
     let subtaskCard = task['subtasks'];
     let idContainerAssignements = `board_icons_username${id}`;
@@ -73,7 +74,7 @@ function determineColorCategory(category) {
  * @param {*} attributes passes attributes of the task to create the template of this taskCard
  */
 function renderBoardCard(categoryCard, titleCard, descriptionCard, ID, prioCard, cats, categoryColorCode) {
-    
+
     let board_todo = document.getElementById(`${cats}`);
     board_todo.innerHTML += /*html*/`
         <div id="${ID}" draggable="true" ondragstart="startDragging(${ID})" onclick="openTaskOverview(${ID}, '${categoryCard}')" class="board_task_container" >
@@ -99,15 +100,13 @@ function renderBoardCard(categoryCard, titleCard, descriptionCard, ID, prioCard,
 }
 
 /**
- * creates progresbar for subtasks
+ * creates progresbar for subtasks --> 138 is width of the complete Progressbar
  * @param {*} subtaskCard Array with all subtasks of the task
  * @param {*} id index of the task
  */
 function createProgressbar(subtaskCard, id) {
     let tasksNumber = subtaskCard.length;
     let done = countDoneSubtasks(subtaskCard);
-    
-          //nur zu Testzwecken ist die Hälfte der Aufgaben erfüllt
     let percentDoneTasks = done / tasksNumber;
     let filledprogressbar = 138 * percentDoneTasks;
 
@@ -116,17 +115,17 @@ function createProgressbar(subtaskCard, id) {
 }
 
 
-function countDoneSubtasks(subtaskCard){
+function countDoneSubtasks(subtaskCard) {
     let counter = 0;
     for (let s = 0; s < subtaskCard.length; s++) {
         const sub = subtaskCard[s];
-        if(sub.subTaskDone == 1){
+        if (sub.subTaskDone == 1) {
             counter++
-        } 
+        }
     }
     return counter
-    console.log(counter)
 }
+
 
 /**
  * creates the filled Part of the progressbar
@@ -137,6 +136,7 @@ function renderProgressBar(filledprogressbar, id) {
     let progresID = "progressbar" + id;
     document.getElementById(progresID).style = `width: ${filledprogressbar}px`;
 }
+
 
 /**
  * creates the text shich shows how many subtasks of all have been finished
@@ -150,6 +150,7 @@ function renderProgressText(doneTasksNumber, tasksNumber, id) {
         ${doneTasksNumber}/${tasksNumber} Done
     `
 }
+
 
 /**
  * 
@@ -168,13 +169,14 @@ function createAssignmentIcons(assignedCard, idContainer) {
     }
 }
 
+
 /**
  * compare if assignedUser is an contactand creates the IconCircle
  * @param {*} assignedUser user who is working on task  
  * @param {*} contact contact from the contact list
  * @param {*} idContainer 
  */
-function renderAssignmentIcons(assignedUser, contact, idContainer){
+function renderAssignmentIcons(assignedUser, contact, idContainer) {
     if (assignedUser === contact.user_name) {
 
         let acronym = createAcronym(assignedUser);
@@ -188,6 +190,7 @@ function renderAssignmentIcons(assignedUser, contact, idContainer){
         username.appendChild(newCircle);
     }
 }
+
 
 /**
  * 
@@ -204,10 +207,9 @@ function getColor(assignedUser) {
     }
 }
 
+
 /**
  * searching function, to show task who hast the searched word in title 
- * 
- * 
  */
 function searchTasksOnBoard() {
     let searchedTask = document.getElementById('board_input').value.toUpperCase();
@@ -259,16 +261,16 @@ async function moveTo(category) {
     let targetContainer = document.getElementById(category);
     let draggedCard = document.getElementById(currentDraggedElement); //ID
     targetContainer.appendChild(draggedCard);
-    targetContainer.style.backgroundColor = '';  
-    
+    targetContainer.style.backgroundColor = '';
     changeTaskColumn(currentDraggedElement, category)
 }
 
 
 async function changeTaskColumn(taskIndex, newColumn) {
     if (taskIndex >= 0 && taskIndex < tasks.length) {
-      tasks[taskIndex].column = newColumn;
-      await saveTask();
+        tasks[taskIndex].column = newColumn;
+        await saveTask();
+        renderBoard();
     }
 }
 
@@ -284,6 +286,41 @@ function removeHighlight(event) {
     event.preventDefault();
     let targetContainer = event.target;
     targetContainer.style.backgroundColor = '';
+}
+
+
+/**
+ * add "NoTasks Container" to empty columns
+ */
+function fillEmptyColumns() {
+    var columnsToCheck = [
+        "board_container_bottom_todo",
+        "board_container_bottom_inprogress",
+        "board_container_bottom_awaitingfeedback",
+        "board_container_bottom_done"
+    ];
+
+    for (let c = 0; c < columnsToCheck.length; c++) {
+        const column = columnsToCheck[c];
+        let isEmpty = isDivEmpty(column)
+        if(isEmpty){
+            console.log(column)
+            document.getElementById(column).innerHTML = /*html*/`
+                <div class="emptyColumnContainer">No Tasks</div>
+            `
+        }
+    }
+}
+
+
+/**
+ * 
+ * @param {*} checkedColumn 
+ * @returns true if div is empty or undefined is
+ */
+function isDivEmpty(checkedColumn) {
+    let div = document.getElementById(checkedColumn);
+    return !div || div.innerHTML.trim() === "";
 }
 
 

@@ -1,4 +1,3 @@
-//to be deleted once loadTasks() works
 let summaryTasksInBoard = 0;
 let summaryTasksInProgress = 0;
 let summaryAwaitingFeedback = 0;
@@ -8,6 +7,10 @@ let summaryUrgentTasks = 0;
 let summaryDueDate = "3000-12-31";
 let newSummaryDueDate;
 
+
+/**
+ * starts when summary.html is loads
+ */
 async function loadSummary(){    
     await loadItems();    
     await countTasks();       
@@ -15,6 +18,9 @@ async function loadSummary(){
 }
 
 
+/**
+ * determine amounts of tasks
+ */
 async function countTasks(){    
     for (let t = 0; t < tasks.length; t++) {
         const task = tasks[t];
@@ -33,6 +39,9 @@ async function countTasks(){
 }
 
 
+    /**
+     * render the tasks and amounts determined in function above
+     */
 function renderSummary() {
     //to be deleted once loadTasks() works
     document.getElementById('tasks_in_Board_number').innerHTML = `${summaryTasksInBoard}`;
@@ -45,47 +54,67 @@ function renderSummary() {
    
 }
 
-
+/**
+ * all tasks on board
+ */
 function countBoard(){
     summaryTasksInBoard++;
 }
 
-
+/**
+ * determine all tasks todo
+ * @param {*} column stage of an task in workflow --> column on board
+ */
 function countTodo(column){
     if(column === 'board_container_bottom_todo'){
         summaryToDo++
     }
 }
 
-
+/**
+ * determine all tasks in Progress
+ * @param {*} column stage of an task in workflow --> column on board
+ */
 function countInProgress(column){
     if(column === 'board_container_bottom_inprogress'){
         summaryTasksInProgress++
     }
 }
 
-
+/**
+ * determine all tasks waiting for feedback
+ * @param {*} column stage of an task in workflow --> column on board
+ */
 function countAwaitingFeedback(column){
     if(column === 'board_container_bottom_awaitingfeedback'){
         summaryAwaitingFeedback++
     }
 }
 
-
+/**
+ * determine all tasks done
+ * @param {*} column stage of an task in workflow --> column on board
+ */
 function countDone(column){
     if(column === 'board_container_bottom_done'){
         summaryDone++
     }
 }
 
-
+/**
+ * determine all tasks with prio urgent
+ * @param {*} prio of the task
+ */
 function countUrgent(prio){
     if(prio === 'urgent'){
         summaryUrgentTasks++
     }
 }
 
-
+/**
+ * determine the next dueDate
+ * @param {*} date of the task
+ */
 function checkDueDate(date){
     if(date < summaryDueDate || summaryDueDate == 'undefinded'){
         formatedDate = formatDate(date)      
@@ -94,35 +123,38 @@ function checkDueDate(date){
     }
 }
 
-
+/**
+ * formats the dueDate in another style
+ * @param {*} inputDate stage of an task in workflow --> column on board
+ */
 function formatDate(inputDate) {
     const months = [
       'January', 'February', 'March', 'April', 'May', 'June', 
       'July', 'August', 'September', 'October', 'November', 'December'
-    ];
+    ];    
+    let parts = inputDate.split('-');
+    let year = parts[0];
+    let month = parseInt(parts[1], 10);
+    let day = parseInt(parts[2], 10);
     
-    const parts = inputDate.split('-');
-    const year = parts[0];
-    const month = parseInt(parts[1], 10);
-    const day = parseInt(parts[2], 10);
-    
-    if (month >= 1 && month <= 12 && day >= 1 && day <= 31) {
-      const formattedDate = `${months[month - 1]} ${day}, ${year}`;
-      return formattedDate;
-    } else {
-      console.error('Ungültiges Datum.');
-      return null;
-    }
+    const formattedDate = `${months[month - 1]} ${day}, ${year}`;
+    return formattedDate;    
 }
 
 
-  function greetingSummary(){
+/**
+ * create Greeting
+ */
+function greetingSummary(){
     createGreetingPhrase();
     createNameGreating();
     fadeGreeting();
 }
 
 
+/**
+ * Greeting phrase depending on daytime
+ */
 function createGreetingPhrase(){
     let timeNow = new Date().getHours();
     let greeting;
@@ -138,15 +170,23 @@ function createGreetingPhrase(){
     `
 }
 
+/**
+ * 
+ * @returns Name of User or nothing when Guest is online
+ */
 async function createNameGreating(){
-    await loadUsers();
-    
-
-    document.getElementById('summary_container_bottom_right_Name').innerHTML = /*html*/`
+        await loadUsers();
+        if(currentUser == 'Guest'){
+            return
+        } else{
+        document.getElementById('summary_container_bottom_right_Name').innerHTML = /*html*/`
         ${currentUser}
-    `
+    `}
 }
 
+/**
+ * fading Greeting away if display is smaller 1200px 
+ */
 function fadeGreeting(){
     if (window.innerWidth < 1200) {
         // Warte 2 Sekunden, bevor das Ausblenden beginnt

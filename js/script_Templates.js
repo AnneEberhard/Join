@@ -83,13 +83,6 @@ async function showMobileCategory(categoryName) {
 function togglePopupBar() {
   let popupBar = document.getElementById("popupBar");
   popupBar.classList.toggle("d-none");
-  // if (popupBar.classList.contains('d-none')) {
-  //     popupBar.classList.remove('d-none');
-  //     popupBar.classList.add('d-flex');
-  // } else {
-  //     popupBar.classList.remove('d-flex');
-  //     popupBar.classList.add('d-none');
-  // }
 }
 
 
@@ -100,7 +93,7 @@ function togglePopupBar() {
  */
 async function createNameCircle() {
   await loadUsers();
-  let acronym = createAcronym();
+  let acronym = createAcronym(currentUser);
   let topbar = document.getElementById("topbar_icons");
   let mobiletopbar = document.getElementById("mobile_topbar_icons");
   topbar.innerHTML += /*html*/ `
@@ -116,9 +109,8 @@ async function createNameCircle() {
 *
 * @param {} - no parameter
 */
-function createAcronym() {
+function createAcronym(currentUser) {
   let acronym;
-  if(currentUser != null){
   let matches = currentUser.match(/^(\w+)|(\w+)\W*$/g); //seperates first and last words of a string
   if (matches.length == 2) {
     acronym = matches[0].charAt(0) + matches[1].charAt(0); //combine first letters of this words
@@ -126,11 +118,4 @@ function createAcronym() {
     acronym = matches[0].charAt(0);
   }
   return acronym; // passes the beginning letter(s) back to createNameCircle()
-  } else{
-    return "G"
-  }
 }
-
-
-
-// Hier nochmal rauslöschen if und return G
