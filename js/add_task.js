@@ -1,4 +1,9 @@
-//these will come from server and will need to be saved at the end
+//for includeHTML() and initTemplate('addTask') see script_Templates.js
+//for categories see add_task_categories.js
+//for saving see save_add_tasks.js
+//for backend see storage.js
+
+//these come from server and will be saved at the end
 let tasks = [];
 let contacts = [];
 let categories = [];
@@ -141,7 +146,7 @@ function unassignContact(i) {
 
 
 /**
- * this function adds assigned contacts to the global array assignedContacts and enables/disables HTML5 validation
+ * this function adds assigned contacts to the global array assignedContacts
  * @param - no parameter
  */
 function updateAssignedContacts() {
@@ -153,11 +158,6 @@ function updateAssignedContacts() {
     if (assignedStatus == true) {
       assignedContacts.push(contact);
     }
-  }
-  if (!assignedContacts.includes(true)) {
-    document.getElementById('contactSelection').removeAttribute('required');
-  } else {
-    document.getElementById('contactSelection').setAttribute('required', 'true');
   }
 }
 
