@@ -13,14 +13,14 @@ let freeColors = [];
 let assignedCategory;
 let assignedContacts = [];
 let assignedContactsStatus = new Array(contacts.length).fill(false);
-let assignedPrio ='';
+let assignedPrio = '';
 let subTasksArray = [];
 
 //these are needed for the site to function
 let prios = ['urgent', 'medium', 'low'];
 let newCategoryName;
 let newCategoryColor;
-let inputDone = false; 
+let inputDone = false;
 
 
 /**
@@ -29,7 +29,7 @@ let inputDone = false;
  * @param - no parameter
  */
 async function initTask() {
-  await includeHTML();  
+  await includeHTML();
   await loadItems();
   renderCategories();
   renderContacts();
@@ -43,13 +43,13 @@ async function initTask() {
  */
 async function loadItems() {
   try {
-  tasks = JSON.parse(await getItem("tasks")); 
-  contacts = JSON.parse(await getItem("contacts"));
-  categories = JSON.parse(await getItem("savedCategories")); 
-  freeColors = JSON.parse(await getItem("savedFreeColors")); 
-} catch (e) {
-  console.error("Loading error:", e);
-}
+    tasks = JSON.parse(await getItem("tasks"));
+    contacts = JSON.parse(await getItem("contacts"));
+    categories = JSON.parse(await getItem("savedCategories"));
+    freeColors = JSON.parse(await getItem("savedFreeColors"));
+  } catch (e) {
+    console.error("Loading error:", e);
+  }
 }
 
 
@@ -87,7 +87,7 @@ function templateContactSelection() {
  * @param {string} ccontact - the contact from the global JSON contacts
  * @param {number} i - index of the JSON contacts 
  */
-function templateContactsOptions(contact,i) {
+function templateContactsOptions(contact, i) {
   let templateContactsOptions = /*html*/`
   <div class="option contactList" onclick="checkContact(${i})">
     <div id="contact${i}">${contact}</div>
@@ -115,8 +115,8 @@ function templateNewContact() {
  * this function checks if a contact has been assigned to the task and starts assigning of unassigning
  * @param {number} i - index of the JSON contacts 
  */
-function checkContact(i) { 
-  if (assignedContactsStatus[i]===true) {
+function checkContact(i) {
+  if (assignedContactsStatus[i] === true) {
     unassignContact(i);
   } else {
     assignContact(i);
@@ -133,8 +133,8 @@ function assignContact(i) {
   document.getElementById(`contactCheckBox${i}`).innerHTML = /*html*/`
     <div class="checkBoxChecked hover"></div>
   </div>`;
-  assignedContactsStatus[i] = true; 
-  }
+  assignedContactsStatus[i] = true;
+}
 
 
 /**
@@ -143,7 +143,7 @@ function assignContact(i) {
  */
 function unassignContact(i) {
   document.getElementById(`contactCheckBox${i}`).innerHTML = /*html*/``;
-  assignedContactsStatus[i] = false; 
+  assignedContactsStatus[i] = false;
 }
 
 
@@ -190,8 +190,8 @@ function renderDueDate() {
  * this function renders the priorities
  * @param - no parameter
  */
-  function renderPrio() {
-    document.getElementById("prioContainer").innerHTML = /*html*/`
+function renderPrio() {
+  document.getElementById("prioContainer").innerHTML = /*html*/`
     <button id="urgent" type="button" onclick="assignPrio('urgent')" class="prio height51">
       Urgent <img src="../assets/img/urgent.png" />
     </button>
@@ -209,11 +209,12 @@ function renderDueDate() {
  * @param {string} chosenPrio - id of clicked-on priority
  */
 function assignPrio(chosenPrio) {
-  document.getElementById('prioAlert').innerHTML ='';
+  document.getElementById('prioAlert').innerHTML = '';
   if (assignedPrio === chosenPrio) {
     assignedPrio = '';
   } else {
-    assignedPrio = chosenPrio;}
+    assignedPrio = chosenPrio;
+  }
   renderAssignedPrio(chosenPrio);
 }
 
@@ -227,13 +228,13 @@ function renderAssignedPrio(chosenPrio) {
     const prio = prios[i];
     const prioBox = document.getElementById(`${prio}`);
     const capitalPrio = prio.charAt(0).toUpperCase() + prio.slice(1);
-     if (prio === chosenPrio && prioBox.classList.contains(prio) === false) {
-        prioBox.classList.add(`${prio}`);
-        prioBox.innerHTML = `${capitalPrio} <img src="../assets/img/${prio}_white.png" />`;
-    } 
+    if (prio === chosenPrio && prioBox.classList.contains(prio) === false) {
+      prioBox.classList.add(`${prio}`);
+      prioBox.innerHTML = `${capitalPrio} <img src="../assets/img/${prio}_white.png" />`;
+    }
     else {
-        prioBox.classList.remove(`${prio}`);
-        prioBox.innerHTML = `${capitalPrio} <img src="../assets/img/${prio}.png" />`;
+      prioBox.classList.remove(`${prio}`);
+      prioBox.innerHTML = `${capitalPrio} <img src="../assets/img/${prio}.png" />`;
     }
   }
 }
@@ -247,11 +248,11 @@ function addSubTask() {
   let subTaskName = document.getElementById("inputSubtask").value;
   let subTaskDone = 0;
   let subTask = {
-    'subTaskName' : subTaskName,
-    'subTaskDone' : subTaskDone
+    'subTaskName': subTaskName,
+    'subTaskDone': subTaskDone
   }
-  subTasksArray.push(subTask); 
-  let index = findIndexOfItem (subTasksArray, subTask);
+  subTasksArray.push(subTask);
+  let index = findIndexOfItem(subTasksArray, subTask);
   document.getElementById("subTasks").innerHTML += /*html*/ `
     <div class="subTaskBox">
         <div id="checkBox${index}" class="checkBox hover" onclick="addCheck(${index})"></div>
@@ -266,8 +267,8 @@ function addSubTask() {
  * @param {string} array - name of respective array
  * @param {string} item - name of respective item
  */
-function findIndexOfItem (array, item) {
-    return array.indexOf(item);
+function findIndexOfItem(array, item) {
+  return array.indexOf(item);
 }
 
 
@@ -276,7 +277,15 @@ function findIndexOfItem (array, item) {
  * @param {value} index - index of the subtask in the global array subTasksArray
  */
 function addCheck(index) {
+  const checkBoxElement = document.getElementById(`checkBox${index}`);
+  const existingImage = checkBoxElement.querySelector('img');
+
+  if (existingImage) {
+    checkBoxElement.removeChild(existingImage);
+    subTasksArray[index].subTaskDone = 0;
+  } else {
     document.getElementById(`checkBox${index}`).innerHTML = /*html*/ `<img src="assets/img/done-30.png">`;
     subTasksArray[index].subTaskDone = 1;
+  }
 }
 

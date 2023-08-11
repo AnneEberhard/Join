@@ -109,6 +109,11 @@
     .board_task_container_title_and_description{
         width: 207px
     }
+
+    #addTaskBoardContainer{
+        overflow: auto;
+        height: 90vh !important;
+    }
     
 }
 
@@ -288,13 +293,17 @@
     }
 
     #editTaskContainerAssigned{
-        gap: 0;
+        gap: 10px;
     }
 
     #editTaskUsernameCircle{
         width: 42px;
         height: 42px;
         font-size: 16px;
+    }
+
+    #editTaskContainerSubtasks{
+        gap:10px;
     }
 }
 
@@ -310,5 +319,22 @@
 
     #editTaskAssignedChangable{
         width: 70%;
+    }
+
+    #editTaskContainerAssignedNames, #editTaskContainerSubtasksTasks{       
+        overflow: scroll;
+    }
+
+    #editTaskContainerSubtasks{
+        margin-top: 0;
+       
+    }
+
+    #editTaskContainerSubtasksTasks::-webkit-scrollbar{
+        display: none;
+    }
+
+    #editTaskContainerAssignedNames::-webkit-scrollbar{
+        display: none;
     }
 }

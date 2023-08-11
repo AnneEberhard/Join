@@ -7,6 +7,7 @@ function openTaskOverview(id, category) {
     assignedCategory = category;
     let task = tasks[id];
     column = task.column;
+    subTasksArray = task['subtasks'];
     let colorCode = determineColorCategory(task['category']);
     renderEditOverviewTemplate(colorCode, task['prio'], id);
     let taskOverview = document.getElementById('editTask');
@@ -17,8 +18,9 @@ function openTaskOverview(id, category) {
     document.getElementById('editTaskContainerDueDateDate').innerHTML = `${task['dueDate']}`;
     document.getElementById('editTaskContainerDelete').innerHTML = `<img src="/assets/img/Icon_delete.png" onclick="askBeforeDelete(${id})">`;
     document.getElementById('editTaskContainerPrioPrio').innerHTML = `${task['prio']} <img src="../assets/img/${task['prio']}_white.png"/>`;
-
+    
     renderAssignementsInTaskOverview(task, "editTaskContainerAssignedNames");
+    renderSubtasksInTaskOverview(task);
 }
 
 /**
@@ -32,7 +34,7 @@ function renderEditOverviewTemplate(colorCode, prio, id) {
         <div id="confirmDeleteTask" class="d-none">
         </div>
         <div id="editTaskContainer">
-            <div id="editTaskContainerClose" onclick="closeEditTask()"><img src="/assets/img/Icon_close.png" alt="">
+            <div id="editTaskContainerClose" onclick="saveSubtasks(${id}), closeEditTask()"><img src="/assets/img/Icon_close.png" alt="">
             </div>
             <div id="editTaskContainerEditDelete">
                 <div id="editTaskContainerDelete"></div>
@@ -106,6 +108,67 @@ function renderAssignmentIconsInCard(assignedUser, contact, idContainer) {
 }
 
 
+async function renderSubtasksInTaskOverview(){
+    document.getElementById('editTaskContainerSubtasksTasks').innerHTML = "";
+    
+    for (let s = 0; s < subTasksArray.length; s++) { 
+        if(subTasksArray[s].subTaskDone == 0){
+            renderSubtasksWithoutHook(s);
+        } else{
+            renderSubtasksWithHook(s);
+        }
+           
+    }
+        document.getElementById('editTaskContainerSubtasksTasks').innerHTML += /*html*/`
+                <div class="subtaskEdit">
+                    <input id="inputSubtaskEdit" placeholder="Add new subtask" />
+                    <div class="buttonAddSubTask hover" onclick="addSubTask()">
+                    <img src="assets/img/plus.png" />
+                    </div>
+                </div>
+            `           
+}
+
+
+function renderSubtasksWithoutHook(index){
+    document.getElementById('editTaskContainerSubtasksTasks').innerHTML += /*html*/`
+            <div class="subtaskInOverview">
+                <div id="checkBox${index}" class="checkBox hover" onclick="addCheck(${index})"></div>
+                <div>${subTasksArray[index].subTaskName}</div>
+            </div>
+        `     
+}
+
+
+function renderSubtasksWithHook(index){
+    document.getElementById('editTaskContainerSubtasksTasks').innerHTML += /*html*/`
+            <div class="subtaskInOverview">
+                <div id="checkBox${index}" class="checkBox hover" onclick="addCheck(${index})"><img src="assets/img/done-30.png"></div>
+                <div>${subTasksArray[index].subTaskName}</div>
+            </div>
+        `     
+}
+
+
+/**
+ * this function renders the field for adding subtasks
+ * @param - no parameter
+ */
+async function addSubTask() {
+    let subTaskName = document.getElementById("inputSubtaskEdit").value;
+    let subTaskDone = 0;
+    let subTask = {
+      'subTaskName': subTaskName,
+      'subTaskDone': subTaskDone
+    }
+    subTasksArray.push(subTask);
+    renderSubtasksInTaskOverview();
+    await saveTask();
+    renderBoard();
+    document.getElementById("inputSubtaskEdit").value = "";
+}
+
+
 function askBeforeDelete(a) {
     let confirmDelete = document.getElementById('confirmDeleteTask');
     confirmDelete.classList.remove('d-none');
@@ -116,6 +179,11 @@ function askBeforeDelete(a) {
                 <div id="confirmDeleteTaskAnswersNo" onclick="closeDeleteRequest()">Back</div>
         </div>
     `
+}
+
+
+async function checkEdit(){
+    await saveTask()
 }
 
 
@@ -253,4 +321,9 @@ async function saveEditedBoard(id) {
         closeEditTask();
         await renderBoardCards();
     }
+}
+
+
+async function saveSubtasks(id){
+
 }

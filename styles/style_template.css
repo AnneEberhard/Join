@@ -4,6 +4,7 @@ body{
 
 #sidebar{
     font-family: "Inter";
+    z-index: 8;
     background-color: #2A3647;
     color: #A4A7AB;
     position: fixed;

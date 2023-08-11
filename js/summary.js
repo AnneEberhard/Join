@@ -119,6 +119,7 @@ function formatDate(inputDate) {
   function greetingSummary(){
     createGreetingPhrase();
     createNameGreating();
+    fadeGreeting();
 }
 
 
@@ -126,11 +127,11 @@ function createGreetingPhrase(){
     let timeNow = new Date().getHours();
     let greeting;
     if(5 < timeNow && timeNow < 12){
-        greeting = "Good morning,"
+        greeting = "Good morning"
     } else if (12 <= timeNow && timeNow < 18){
-        greeting = "Good Afternoon,"
+        greeting = "Good Afternoon"
     } else {
-        greeting = "Good Evening,"
+        greeting = "Good Evening"
     }
     document.getElementById('summary_container_bottom_right_greeting').innerHTML = /*html*/`
         ${greeting}
@@ -144,5 +145,27 @@ async function createNameGreating(){
     document.getElementById('summary_container_bottom_right_Name').innerHTML = /*html*/`
         ${currentUser}
     `
+}
+
+function fadeGreeting(){
+    if (window.innerWidth < 1200) {
+        // Warte 2 Sekunden, bevor das Ausblenden beginnt
+        setTimeout(function() {
+            // Restlicher Code für die Animation, wie zuvor
+            var container = document.getElementById("summary_container_bottom_right");
+            var fadeDuration = 3000;
+            var fadeInterval = 10;
+            var opacity = 1;
+            var deltaOpacity = 1 / (fadeDuration / fadeInterval);
+            var fadeOut = setInterval(function() {
+                opacity -= deltaOpacity;
+                container.style.opacity = opacity;
+                if (opacity <= 0) {
+                    clearInterval(fadeOut);
+                    container.style.display = "none";
+                }
+            }, fadeInterval);
+        }, 1000);
+    }
 }
 

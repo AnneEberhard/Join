@@ -105,12 +105,27 @@ function renderBoardCard(categoryCard, titleCard, descriptionCard, ID, prioCard,
  */
 function createProgressbar(subtaskCard, id) {
     let tasksNumber = subtaskCard.length;
-    let doneTasksNumber = (tasksNumber / 2).toFixed(0)        //nur zu Testzwecken ist die Hälfte der Aufgaben erfüllt
-    let percentDoneTasks = doneTasksNumber / tasksNumber;
+    let done = countDoneSubtasks(subtaskCard);
+    
+          //nur zu Testzwecken ist die Hälfte der Aufgaben erfüllt
+    let percentDoneTasks = done / tasksNumber;
     let filledprogressbar = 138 * percentDoneTasks;
 
     renderProgressBar(filledprogressbar, id);
-    renderProgressText(doneTasksNumber, tasksNumber, id);
+    renderProgressText(done, tasksNumber, id);
+}
+
+
+function countDoneSubtasks(subtaskCard){
+    let counter = 0;
+    for (let s = 0; s < subtaskCard.length; s++) {
+        const sub = subtaskCard[s];
+        if(sub.subTaskDone == 1){
+            counter++
+        } 
+    }
+    return counter
+    console.log(counter)
 }
 
 /**

@@ -243,6 +243,7 @@ input:focus{
     align-items: center;
     font-size: 12px;
     line-height: 14px;
+    gap:10px;
 }
 
 .board_task_progressbar{    

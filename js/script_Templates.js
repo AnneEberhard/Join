@@ -118,6 +118,7 @@ async function createNameCircle() {
 */
 function createAcronym() {
   let acronym;
+  if(currentUser != null){
   let matches = currentUser.match(/^(\w+)|(\w+)\W*$/g); //seperates first and last words of a string
   if (matches.length == 2) {
     acronym = matches[0].charAt(0) + matches[1].charAt(0); //combine first letters of this words
@@ -125,4 +126,11 @@ function createAcronym() {
     acronym = matches[0].charAt(0);
   }
   return acronym; // passes the beginning letter(s) back to createNameCircle()
+  } else{
+    return "G"
+  }
 }
+
+
+
+// Hier nochmal rauslöschen if und return G
