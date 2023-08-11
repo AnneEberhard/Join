@@ -23,12 +23,13 @@ let editingContact;
  * After its loaded from the Backend. The Contactlist is getting rendered.
  * 
  */
-async function init() {
+async function init(categoryName) {
   await includeHTML();
   showCategory("contacts");
   createNameCircle();
   await loadContacts();
   renderContactList();
+  showMobileCategory(categoryName);
 }
 
 /**
