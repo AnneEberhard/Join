@@ -7,6 +7,7 @@ async function initTemplate(categoryName) {
   await includeHTML();
   showCategory(categoryName);
   showMobileCategory(categoryName);
+  currentUser = localStorage.getItem("currentUser");
   createNameCircle();
 }
 
@@ -99,7 +100,6 @@ function togglePopupBar() {
  */
 async function createNameCircle() {
   await loadUsers();
-  currentUser = users[0].name;
   let acronym = createAcronym(currentUser);
   let topbar = document.getElementById("topbar_icons");
   let mobiletopbar = document.getElementById("mobile_topbar_icons");

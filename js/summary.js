@@ -139,7 +139,7 @@ function createGreetingPhrase(){
 
 async function createNameGreating(){
     await loadUsers();
-    currentUser = users[0].name;
+    
 
     document.getElementById('summary_container_bottom_right_Name').innerHTML = /*html*/`
         ${currentUser}

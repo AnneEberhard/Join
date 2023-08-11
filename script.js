@@ -20,7 +20,7 @@ function loginUser() {
     password.classList.remove("border-red");
     error.style = "display: none;";
     window.location.href = "summary.html";
-    currentUser = users[0].name;
+    localStorage.setItem(`currentUser`, `${users[0].name}`);
     cacheData();
   } else {
     password.classList.add("border-red");
@@ -30,8 +30,9 @@ function loginUser() {
 }
 
 function guestUser() {
-  currentUser = "Guest";
+  localStorage.setItem(`currentUser`, `Guest`);
   window.location.href = "summary.html";
+  
 }
 
 function cacheData() {
@@ -39,6 +40,7 @@ function cacheData() {
   if (check.checked == true) {
     localStorage.setItem("email", `${email.value}`);
     localStorage.setItem(`password`, `${password.value}`);
+    
   }
 }
 
