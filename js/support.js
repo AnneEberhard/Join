@@ -1,4 +1,4 @@
-//for includeHTML (initTemplat()) check script_Templates.js
+//for includeHTML (initTemplat()) see script_Templates.js
 
   /**
    * this function closes the window

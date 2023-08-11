@@ -22,6 +22,7 @@ let newCategoryName;
 let newCategoryColor;
 let inputDone = false; 
 
+
 /**
  * this function starts loading the page
  *
@@ -34,6 +35,7 @@ async function initTask() {
   renderContacts();
   renderDueDate();
 }
+
 
 /**
  * this function loads the needed items from the backend

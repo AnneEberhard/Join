@@ -1,3 +1,9 @@
+//for includeHTML() and initTemplate('addTask') see script_Templates.js
+//for overall functions of the site see add_task.js
+//for saving see save_add_tasks.js
+//for backend see storage.js
+
+
 /**
  * this function begins the rendering of the categories
  * @param - no parameter
@@ -11,6 +17,7 @@ function renderCategories() {
   document.getElementById('categoryAlert').innerHTML ='';
 
 }
+
 
 /**
  * this function returns the main template for categories
@@ -34,6 +41,7 @@ function templateCategory() {
   return templateCategory;
 }
 
+
 /**
  * this function renders the options for the dropdown menu of categories
  * @param - no parameter
@@ -53,6 +61,7 @@ function renderCategoryOptions() {
   }
 }
 
+
 /**
  * this function returns the first line for new category
  * @param {string} category - first item from the JSON categories and set to 'New Category'
@@ -65,6 +74,7 @@ function templateCategoryOptionsFirst(category, i) {
   </div>`;
   return templateCategoryOptionsFirst;
 }
+
 
 /**
  * this function returns the template for further lines of category option
@@ -84,6 +94,7 @@ function templateCategoryOptionsFurther(category, i, colorCode) {
   return templateCategoryOptionsFurther;
 }
 
+
 /**
  * this function toggles the dropdown menu of cetagories and contacts
  * @param {string} id - id of either categories or contacts
@@ -93,6 +104,7 @@ function toggleOptions(id) {
   optionsDiv.classList.toggle("hidden");
   document.getElementById("categoryAlert").innerHTML = "";
 }
+
 
 /**
  * this function selects the clicked-on category, writes it into the input field and adds the respective color dot
@@ -108,6 +120,7 @@ function selectCategory(i) {
   toggleOptions("categoryOptions");
 }
 
+
 /**
  * this function resets NewCategories and respective color code to empty
  * @param - no parameter
@@ -116,6 +129,7 @@ function resetCategories() {
   newCategoryName = "";
   newCategoryColor = "";
 }
+
 
 /**
  * this function renders the line for adding a New Category and adds the color dots to choose from
@@ -136,6 +150,7 @@ function renderAddNewCategory() {
   toggleOptions("categoryOptions");
 }
 
+
 /**
  * this function returns the HTML code for the cancel button in the adding New Category line
  * @param - no parameter
@@ -146,6 +161,7 @@ function templateCategorySelectionLeft() {
   return templateCategorySelectionLeft;
 }
 
+
 /**
  * this function returns the HTML code for the small divider in the adding New Category line
  * @param - no parameter
@@ -154,6 +170,7 @@ function templatedividerSmall() {
   let templatedividerSmall = `<div class="dividerSmall"></div>`;
   return templatedividerSmall;
 }
+
 
 /**
  * this function returns the HTML code for the checkmark in the adding New Category line
@@ -165,6 +182,7 @@ function templateCategorySelectionRight() {
   return templateCategorySelectionRight;
 }
 
+
 /**
  * this function returns the HTML code for the color dots to choose from beneath the New Category line
  * @param {number} i - index of the array freeColors
@@ -175,6 +193,7 @@ function templateNewCategoryDots(i) {
       <div class="circle hover" id="newCategoryDot${i}" style="background-color: ${colorCode}" onclick="addColor(${i})"></div>`;
   return templateNewCategoryDots;
 }
+
 
 /**
  * this function checks if a category name has been entered plus a color code selected and then enables the click function addCategory
@@ -219,6 +238,7 @@ function createFreecolors() {
   }
 }
 
+
 /**
  * this function creates random colors in hexcode
  * @param - no parameter
@@ -232,6 +252,7 @@ function getRandomColor() {
   return color;
 }
 
+
 /**
  * this function highlights the selected free color and checks if the button to add can bei disabled
  * @param {number} i - index of the array freeColors
@@ -244,6 +265,7 @@ function addColor(i) {
   document.getElementById(`newCategoryDot${i}`).classList.add("selected");
   checkIfNewCategoryReady();
 }
+
 
 /**
  * this function adds the new category with its respective color to the JSON categories and removes the selected color from the array freeColors
@@ -265,6 +287,7 @@ function addCategory() {
   toggleOptions("categoryOptions");
 }
 
+
 /**
  * this function deletes a category if it's not in use in the board
  * @param {string} categoryToDelete - this category has been selected to be deleted
@@ -282,6 +305,7 @@ function deleteCategory(categoryToDelete, i) {
   }
 }
 
+
 /**
  * this function checks if the category to delete is not in use in the board.html
  * @param {string} categoryToDelete - this category has been selected to be deleted
@@ -295,6 +319,7 @@ function checkCategoryToDelete(categoryToDelete) {
   }
   return false;
 }
+
 
 /**
  * this function checks if an entered category name is part of the list 
@@ -315,6 +340,7 @@ function pickExistingCategory(event) {
     }
   }
 }
+
 
 /**
  * this function adds the respective color dot to  the written-in, existing category; due to onkeydown a letter needs to be sliced

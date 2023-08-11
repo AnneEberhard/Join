@@ -1,9 +1,15 @@
+/**
+ * this function starts the page templates
+ *
+ * @param - no parameter
+ */
 async function initTemplate(categoryName) {
   await includeHTML();
   showCategory(categoryName);
   showMobileCategory(categoryName);
   createNameCircle();
 }
+
 
 /**
  * this function includes the templates for Sitebar, Topbar, mobile Bars & task_form
@@ -23,6 +29,7 @@ async function includeHTML() {
     }
   }
 }
+
 
 /**
  * function will highlight the active category on sitebar
@@ -48,6 +55,11 @@ async function showCategory(categoryName) {
   }
 }
 
+/**
+ * function will highlight the active category on the mobile bar
+ *
+ * @param {string} categoryName - gives the last string-part of the ID conatainer
+ */
 async function showMobileCategory(categoryName) {
   let allCategories = document.getElementsByClassName("active_category");
   if (allCategories.length != 0) {
@@ -62,6 +74,11 @@ async function showMobileCategory(categoryName) {
 }
 
 
+/**
+ * function will show toggle bar when clicking on the name circle
+ *
+ * @param {} - no parameter
+ */
 function togglePopupBar() {
   let popupBar = document.getElementById("popupBar");
   popupBar.classList.toggle("d-none");
@@ -73,6 +90,7 @@ function togglePopupBar() {
   //     popupBar.classList.add('d-none');
   // }
 }
+
 
 /**
  * function create a namecircle with the first letters of first and last name of the User
@@ -93,6 +111,11 @@ async function createNameCircle() {
  `;
 }
 
+/**
+* function creates an acronym using the first letter of the first name and first letter of the last name, if existing
+*
+* @param {} - no parameter
+*/
 function createAcronym(currentUser) {
   let acronym;
   let matches = currentUser.match(/^(\w+)|(\w+)\W*$/g); //seperates first and last words of a string
