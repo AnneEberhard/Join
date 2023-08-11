@@ -201,7 +201,6 @@ function templateNewCategoryDots(i) {
  */
 function checkIfNewCategoryReady() {
   newCategoryName = document.getElementById("categorySelection").value;
-  //on writing category
   let categoryExists = checkIfNewcategoryExists(newCategoryName);
   if (newCategoryName !== "" && newCategoryColor !== null && categoryExists == false) {
     const addCategoryButton = document.getElementById("addCategory");
@@ -217,7 +216,7 @@ function checkIfNewCategoryReady() {
  */
 function checkIfNewcategoryExists(newCategoryName) {
   for (let i = 0; i < categories.length; i++) {
-    if (newCategoryName == categories[i]["name"]) {
+    if (newCategoryName.toUpperCase == categories[i]["name"].toUpperCase) {
       document.getElementById('categoryAlert').innerHTML ='This category already exists, please choose from Dropdown Menu';
       return true;
     } 
