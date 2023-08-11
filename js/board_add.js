@@ -1,7 +1,11 @@
 function openAddTask() {
-    document.getElementById('addTaskBoard').classList.remove('d-none');
-    initTask();
-    document.getElementById('addTaskBoardContainer').classList.add('slideIn');
+    if (window.innerWidth < 900) {
+        window.location.href = "add_task.html";
+    } else {
+        document.getElementById('addTaskBoard').classList.remove('d-none');
+        initTask();
+        document.getElementById('addTaskBoardContainer').classList.add('slideIn');
+    }
 }
 
 function closeAddTask() {
