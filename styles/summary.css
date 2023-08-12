@@ -1,11 +1,10 @@
 body {
     background-color: #F6F7F8;
+    font-family: "Inter";
 }
 
 #summary {
-    font-family: "Inter";
     height: 100vh;
-
     display: flex;
     flex-direction: column;
     gap: 40px;
@@ -71,6 +70,13 @@ body {
     height: 168px;
     background-color: #FFFFFF;
     border-radius: 30px;
+    transition: width 0.5s ease, height 0.5s ease;
+}
+
+.summary_bottom_stats_container:hover > div, .summary_bottom_stats_container:hover{ 
+    background-color: #2A3647;
+    color: #FFFFFF !important;
+    cursor: pointer;
 }
 
 .summary_number {
@@ -94,6 +100,7 @@ body {
     line-height: 21px;
 }
 
+
 #summary_bottom_stats_mid {
     display: flex;
     justify-content: space-evenly;
@@ -102,6 +109,7 @@ body {
     width: 100%;
     background-color: #FFFFFF;
     border-radius: 30px;
+    transition: width 0.5s ease, height 0.5s ease;
 }
 
 #summary_bottom_stats_mid_left {
@@ -162,6 +170,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    
 }
 
 .summary_bottom_stats_bottom_container img {
@@ -202,12 +211,27 @@ body {
     font-weight: 700;
     color: #29ABE2;
     display: flex;
-    white-space: nowrap;
 }
 
+.hoverStatContainer:hover > div, #summary_bottom_stats_mid:hover, .hoverStatContainer:hover{
+    background-color: #2A3647;
+    color: #FFFFFF;
+    cursor: pointer;
+}
 
+.hoverStatContainer:hover #summary_bottom_stats_mid_mid{
+    border-color: #FFFFFF;
+}
 
+.summary_bottom_stats_bottom_container:hover > div, .summary_bottom_stats_bottom_container:hover{
+    background-color: #2A3647;
+    color: #FFFFFF;
+    cursor: pointer;
+}
 
+.summary_bottom_stats_bottom_container:hover > img{
+    filter: invert(1);
+}
 
 
 /* Responsiv Design */
@@ -228,23 +252,23 @@ body {
 
 
     
-        #summary_container_bottom_right{
-            position: fixed;
-            z-index: 4;
-            padding: 0;
-            top: 96px;
-            left: 115px;
-            right: 0;
-            bottom: 0;
-            height: 100%;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background-color: #FFFFFF;    
-            gap: 50px;
-        }
+     #summary_container_bottom_right{
+        position: fixed;
+        z-index: 4;
+        padding: 0;
+        top: 96px;
+        left: 115px;
+        right: 0;
+        bottom: 0;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: #FFFFFF;    
+        gap: 50px;
+    }
     
 
 
@@ -304,8 +328,6 @@ body {
         right: 0;
         bottom: 0px;
     }
-   
-
 
     #summary_container_bottom_right_greeting, #summary_container_bottom_right_Name{
         font-size: 50px;

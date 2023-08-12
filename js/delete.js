@@ -27,16 +27,3 @@ async function deleteContact(contactNameToDelete) {
   }
 }
 
-
-
-// async function deleteTask(titleTaskToDelete) {
-//   await loadToDelete();
-//    for (let i = 0; i < tasks.length; i++) {
-//      const taskToDelete = tasks[i];
-//      const titleOfTask = taskToDelete["title"];
-//      if (titleTaskToDelete === titleOfTask) {
-//        tasks.splice(i, 1);
-//      }
-//    }
-//    await setItem("tasks", JSON.stringify(tasks));
-//  }
