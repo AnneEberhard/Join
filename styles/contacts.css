@@ -971,5 +971,9 @@ input[type="number"] {
       width: 70px;
       height: 70px;
     }
+
+    .header_in_contact {
+      margin-top: unset;
+    }
   }
 }
