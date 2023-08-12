@@ -16,56 +16,49 @@ let contacts = [
 
 let editingContact;
 
-
 /**
  * This function is used to first load the Templates, then it will load the Contacts from
- * the Backend. 
+ * the Backend.
  * After its loaded from the Backend. The Contactlist is getting rendered.
- * 
+ *
  */
-async function init(categoryName) {
-  await includeHTML();
-  showCategory("contacts");
-  createNameCircle();
+async function init() {
   await loadContacts();
   renderContactList();
-  showMobileCategory(categoryName);
 }
 
 /**
- * 
- * This function takes the ID of the Modal as a paramter and closes it.  
- * @param {string} - id of the Modal 
- * 
+ *
+ * This function takes the ID of the Modal as a paramter and closes it.
+ * @param {string} - id of the Modal
+ *
  *
  */
 function closeModal(id) {
   let modal = document.getElementById(id);
   modal.classList.remove("slideIn");
   modal.classList.add("slideOut");
-  
 }
 
 /**
- * 
- * This function takes the ID of the Modal as a paramter and opens it.  
- * @param {string} - id of the Modal 
- * 
+ *
+ * This function takes the ID of the Modal as a paramter and opens it.
+ * @param {string} - id of the Modal
+ *
  *
  */
 function openModal(id) {
   let modal = document.getElementById(id);
   modal.style = "display: flex;";
   modal.className = "slideIn";
-  
 }
 
 /**
- * 
+ *
  * This function calls another function that resets the input of the user
- * and closes the Modal with the given ID.  
- * @param {string} - id of the Modal 
- * 
+ * and closes the Modal with the given ID.
+ * @param {string} - id of the Modal
+ *
  *
  */
 function cancelContact(id) {
@@ -73,12 +66,11 @@ function cancelContact(id) {
   closeModal(id);
 }
 
-
 /**
- * 
+ *
  * This function creates the Contact.
- * @param {string} - id of the Modal 
- * 
+ * @param {string} - id of the Modal
+ *
  *
  */
 async function createContact(id) {
@@ -98,8 +90,8 @@ async function createContact(id) {
 }
 
 /**
- * 
- * This function loads the Contacts from the Backend.  
+ *
+ * This function loads the Contacts from the Backend.
  *
  */
 async function loadContacts() {
@@ -111,9 +103,9 @@ async function loadContacts() {
 }
 
 /**
- * 
- * This help function resets the User Input. 
- * 
+ *
+ * This help function resets the User Input.
+ *
  *
  */
 function resetForm() {
@@ -123,10 +115,10 @@ function resetForm() {
 }
 
 /**
- * 
- * This function renders the Contact Details in the render Element ID.  
+ *
+ * This function renders the Contact Details in the render Element ID.
  * @param {string} - the contact that should be rendered is taken as a parameter.
- * 
+ *
  *
  */
 function renderContact(username) {
@@ -141,10 +133,10 @@ function renderContact(username) {
 }
 
 /**
- * 
- * This help function finds the wanted contact. 
+ *
+ * This help function finds the wanted contact.
  * @param {string} - @param {string} - the contact that should be found is taken as a parameter.
- * 
+ *
  *
  */
 function findContactByUserName(userName) {
@@ -152,10 +144,10 @@ function findContactByUserName(userName) {
 }
 
 /**
- * 
+ *
  * This function edits the Contact Info of the User.
  * @param {string} - the contact that should be found is taken as a parameter.
- * 
+ *
  *
  */
 function editContact(user) {
@@ -170,10 +162,10 @@ function editContact(user) {
 }
 
 /**
- * 
+ *
  * This function saves the edited Contact in the Backend.
- * 
- * 
+ *
+ *
  *
  */
 async function saveEditedContact() {
@@ -190,12 +182,11 @@ async function saveEditedContact() {
   renderContact(editingContact.user_name);
 }
 
-
 /**
- * 
+ *
  * This function deletes the Contact and saves the Contactlist in the Backend again.
  * @param {string} - the contact that should be deleted is taken as a parameter.
- * 
+ *
  *
  */
 
@@ -216,10 +207,10 @@ async function deleteContact(user) {
 }
 
 /**
- * 
+ *
  * This function deletes the Contact inside of a Modal.
- * @param {string} - the Modal that should be closed. 
- * 
+ * @param {string} - the Modal that should be closed.
+ *
  *
  */
 async function deleteContactInModal(id) {
@@ -238,9 +229,9 @@ async function deleteContactInModal(id) {
 }
 
 /**
- * 
+ *
  * This help function deletes User Input inside the Edit Modal.
- * 
+ *
  *
  */
 function resetEditForm() {
@@ -250,9 +241,9 @@ function resetEditForm() {
 }
 
 /**
- * 
+ *
  * This function is for highlighting the current chosen User
- * 
+ *
  *
  */
 function changeDisplay() {
@@ -262,15 +253,15 @@ function changeDisplay() {
 }
 
 /**
- * 
+ *
  * This help function is used for the HTML Template to render Contact Details.
  * @param {string} - email - email of Contact
  * @param {string} - phone - phone of Contact
  * @param {string} - name - name of Contact
  * @param {string} - acronym - acronym of Contact
  * @param {string} - color - color of Contact
- * 
- * 
+ *
+ *
  */
 
 function htmlUserTemplate(email, phone, name, acronym, color) {
