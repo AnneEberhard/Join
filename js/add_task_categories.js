@@ -138,7 +138,7 @@ function resetCategories() {
 function renderAddNewCategory() {
   document.getElementById("categorySelection").value = "";
   document.getElementById("categorySelection").setAttribute("placeholder", "New category Name");
-  document.getElementById("categorySelection").setAttribute("onkeydown", "checkIfNewCategoryReady()");
+  document.getElementById("categorySelection").setAttribute("onkeyup", "checkIfNewCategoryReady()");
   document.getElementById("categorySelectionCircle").innerHTML = "";
   document.getElementById("categorySelectionLeft").innerHTML = templateCategorySelectionLeft();
   document.getElementById("dividerSmall").innerHTML = templatedividerSmall();
@@ -202,7 +202,7 @@ function templateNewCategoryDots(i) {
 function checkIfNewCategoryReady() {
   newCategoryName = document.getElementById("categorySelection").value;
   let categoryExists = checkIfNewcategoryExists(newCategoryName);
-  if (newCategoryName !== "" && newCategoryColor !== null && categoryExists == false) {
+  if (newCategoryName !== "" && newCategoryColor !== null && categoryExists === false) {
     const addCategoryButton = document.getElementById("addCategory");
     addCategoryButton.addEventListener("click", addCategory);
     addCategoryButton.classList.add("hover");
@@ -215,14 +215,14 @@ function checkIfNewCategoryReady() {
  * @param {string} newCategoryName - is the entered name for a potential new category
  */
 function checkIfNewcategoryExists(newCategoryName) {
-  for (let i = 0; i < categories.length; i++) {
-    if (newCategoryName.toUpperCase == categories[i]["name"].toUpperCase) {
-      document.getElementById('categoryAlert').innerHTML ='This category already exists, please choose from Dropdown Menu';
-      return true;
-    } 
-  }
-  return false;
+
+  if (categories.find(  (element) => element.name.toUpperCase() == newCategoryName.toUpperCase())) {
+    document.getElementById('categoryAlert').innerHTML ='This category already exists, please choose from Dropdown Menu';
+    return true;
+  } 
+return false;
 }
+
 
 
 /**
@@ -327,10 +327,10 @@ function checkCategoryToDelete(categoryToDelete) {
 function pickExistingCategory(event) {
   const disallowedKeys = ['Backspace', 'Delete'];
   if (!disallowedKeys.includes(event.key)) {
-    let enteredCategoryName = document.getElementById("categorySelection").value.trim();
+    let enteredCategoryName = document.getElementById("categorySelection").value;
   
     for (let i = 0; i < categories.length; i++) {
-      let existingCategory = categories[i]['name'].trim();
+      let existingCategory = categories[i]['name'];
       existingCategory = existingCategory.slice(0, -1);
       if (enteredCategoryName === existingCategory) {
         document.getElementById("categorySelection").value ='';
