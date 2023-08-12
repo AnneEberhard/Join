@@ -5,8 +5,11 @@
  */
 async function initTemplate(categoryName) {
   await includeHTML();
-  showCategory(categoryName);
-  showMobileCategory(categoryName);
+  if(window.innerWidth > 900){
+    showCategory(categoryName);
+  } else {
+    showMobileCategory(categoryName);
+  } 
   currentUser = localStorage.getItem("currentUser");
   createNameCircle();
 }

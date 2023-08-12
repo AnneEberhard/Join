@@ -675,18 +675,18 @@ input[type="number"] {
     width: 90%;
   }
 
-  #topbar {
+  /* #topbar {
     width: 82% !important;
     left: 18.5% !important;
-  }
+  } */
 
   #contactList {
     left: 18.4%;
   }
 
-  #sidebar {
+  /* #sidebar {
     width: 18.4% !important;
-  }
+  } */
 
   #create_contact {
     width: 92%;
@@ -703,9 +703,9 @@ input[type="number"] {
     left: 21.4%;
   }
 
-  #sidebar {
+  /* #sidebar {
     width: 21.4% !important;
-  }
+  } */
 
   .avatar {
     margin-right: 25px;
@@ -726,9 +726,9 @@ input[type="number"] {
   #popupBar {
     z-index: 10;
    }
-  #sidebar {
+  /* #sidebar {
     display: none !important;
-  }
+  } */
   .x {
     color: white;
   }
