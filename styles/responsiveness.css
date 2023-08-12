@@ -180,4 +180,8 @@
   .visible {
     bottom: 200px !important;
   }
+
+  #popupNotice {
+    left: 25%;
+   }
 }

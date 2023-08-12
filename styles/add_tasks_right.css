@@ -187,11 +187,22 @@
    color: white;
    margin-right: 16px;
    position: fixed;
-   left: 20%;
-   bottom: -150px;
+   left: 33%;
+   bottom: -1500px;
+   display: none;
   }
   
   .visible {
     bottom: 116px !important;
-    transition: bottom 0.5s ease-in-out;
+    display:flex !important;
+    animation: slideInBottom 0.5s forwards;
+  }
+
+  @keyframes slideInBottom {
+    from {
+      transform: translateY(200%);
+    }
+    to {
+      transform: translateY(0);
+    }
   }

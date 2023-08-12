@@ -44,7 +44,7 @@ function renderEditOverviewTemplate(colorCode, prio, id) {
         <div id="confirmDeleteTask" class="d-none">
         </div>
         <div id="editTaskContainer">
-            <div id="editTaskContainerClose" onclick="saveSubtasks(${id}), closeEditTask()"><img src="/assets/img/Icon_close.png" alt="">
+            <div id="editTaskContainerClose" onclick="closeEditTask()"><img src="/assets/img/Icon_close.png" alt="">
             </div>
             <div id="editTaskContainerEditDelete">
                 <div id="editTaskContainerDelete"></div>
