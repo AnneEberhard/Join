@@ -50,8 +50,8 @@ function renderContactList() {
         if (currentHighlightedDiv !== null) {
           currentHighlightedDiv.classList.remove("highlighted"); // Remove highlighting
         }
-        contactInnerContainer.classList.toggle("highlighted");
-        currentHighlightedDiv = contactInnerContainer;
+        contactContainer.classList.toggle("highlighted");
+        currentHighlightedDiv = contactContainer;
         renderContact(contact.user_name);
       });
 
