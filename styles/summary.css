@@ -173,11 +173,20 @@ body {
     
 }
 
-.summary_bottom_stats_bottom_container img {
+.imgBottomContainer{
+    background-color: #2A3647;
     width: 69px;
     height: 69px;
     display: flex;
-    justify-content: flex-end;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+
+}
+
+.summary_bottom_stats_bottom_container img {    
+    display: flex;
+    justify-content: flex-end;    
 }
 
 .summary_bottom_stats_bottom_stat {
@@ -229,8 +238,12 @@ body {
     cursor: pointer;
 }
 
-.summary_bottom_stats_bottom_container:hover > img{
-    filter: invert(1);
+.summary_bottom_stats_bottom_container:hover > .imgBottomContainer{
+    background-color: #FFFFFF;
+}
+
+.summary_bottom_stats_bottom_container:hover > .imgBottomContainer img{
+    filter: brightness(0) saturate(100%) invert(20%) sepia(15%) saturate(1037%) hue-rotate(175deg) brightness(94%) contrast(94%);
 }
 
 
