@@ -13,8 +13,8 @@ function openTaskOverview(id, category) {
     let taskOverview = document.getElementById('editTask');
     taskOverview.classList.remove('d-none');
     renderTaskOverview(task, id);
-    
-    
+
+
     renderAssignementsInTaskOverview(task, "editTaskContainerAssignedNames");
     renderSubtasksInTaskOverview(task, id);
 }
@@ -24,7 +24,7 @@ function openTaskOverview(id, category) {
  * @param {*} task which is opened
  * @param {*} id task id
  */
-function renderTaskOverview(task, id){
+function renderTaskOverview(task, id) {
     document.getElementById('editTaskContainerCategory').innerHTML = `${task['category']}`;
     document.getElementById('editTaskContainerTitle').innerHTML = `${task['title']}`;
     document.getElementById('editTaskContainerDescription').innerHTML = `${task['description']}`;
@@ -73,6 +73,7 @@ function renderEditOverviewTemplate(colorCode, prio, id) {
             </div>
         </div>
     `
+    disableBackgroundScroll();
 }
 
 /**
@@ -124,23 +125,23 @@ function renderAssignmentIconsInCard(assignedUser, contact, idContainer) {
 /**
  * renders Subtasks in Overview
  */
-async function renderSubtasksInTaskOverview(){
+async function renderSubtasksInTaskOverview() {
     document.getElementById('editTaskContainerSubtasksTasks').innerHTML = "";
-    
-    for (let s = 0; s < subTasksArray.length; s++) { 
-        if(subTasksArray[s].subTaskDone == 0){
+
+    for (let s = 0; s < subTasksArray.length; s++) {
+        if (subTasksArray[s].subTaskDone == 0) {
             renderSubtasksWithoutHook(s);
-        } else{
+        } else {
             renderSubtasksWithHook(s);
-        }           
+        }
     }
-    renderAddSubtasksInOverview();          
+    renderAddSubtasksInOverview();
 }
 
 /**
  * Subtask Input and Add Button in Overview
  */
-function renderAddSubtasksInOverview(){
+function renderAddSubtasksInOverview() {
     document.getElementById('editTaskContainerSubtasksTasks').innerHTML += /*html*/`
         <div class="subtaskEdit">
             <input id="inputSubtaskEdit" placeholder="Add new subtask" />
@@ -148,33 +149,33 @@ function renderAddSubtasksInOverview(){
                 <img src="assets/img/plus.png" />
             </div>
         </div>
-    `     
+    `
 }
 
 /**
  * render checkbox without hook
  * @param {*} index 
  */
-function renderSubtasksWithoutHook(index){
+function renderSubtasksWithoutHook(index) {
     document.getElementById('editTaskContainerSubtasksTasks').innerHTML += /*html*/`
             <div class="subtaskInOverview">
                 <div id="checkBox${index}" class="checkBox hover" onclick="addCheck(${index})"></div>
                 <div>${subTasksArray[index].subTaskName}</div>
             </div>
-        `     
+        `
 }
 
 /**
  * render checkbox with hook
  * @param {*} index 
  */
-function renderSubtasksWithHook(index){
+function renderSubtasksWithHook(index) {
     document.getElementById('editTaskContainerSubtasksTasks').innerHTML += /*html*/`
             <div class="subtaskInOverview">
                 <div id="checkBox${index}" class="checkBox hover" onclick="addCheck(${index})"><img src="assets/img/done-30.png"></div>
                 <div>${subTasksArray[index].subTaskName}</div>
             </div>
-        `     
+        `
 }
 
 
@@ -186,8 +187,8 @@ async function addSubTaskEdit() {
     let subTaskName = document.getElementById("inputSubtaskEdit").value;
     let subTaskDone = 0;
     let subTask = {
-      'subTaskName': subTaskName,
-      'subTaskDone': subTaskDone
+        'subTaskName': subTaskName,
+        'subTaskDone': subTaskDone
     }
     subTasksArray.push(subTask);
     renderSubtasksInTaskOverview();
@@ -232,7 +233,9 @@ function closeDeleteRequest() {
 
 
 function closeEditTask() {
+    enableBackgroundScroll();
     document.getElementById('editTask').classList.add('d-none');
+
 }
 
 
@@ -356,4 +359,49 @@ async function saveEditedBoard(id) {
         closeEditTask();
         await renderBoardCards();
     }
+}
+
+
+function preventBackgroundScroll() {
+    if (isMobileDevice()) {
+        document.getElementById('board_container_bottom').style.overflow = 'hidden'; 
+        
+    }
+}
+
+
+function enableBackgroundScroll() {
+    document.getElementById('board_container_bottom').style.overflow = ''; 
+}
+
+
+function disableBackgroundScroll() {
+    if (isMobileDevice()) {
+        preventBackgroundScroll();
+    }
+}
+
+
+function handleDragOver(ev) {
+    ev.preventDefault();
+}
+
+function handleDragLeave(ev) {
+    removeHighlight(ev);
+}
+
+function handleDrop(category, ev) {
+    ev.preventDefault();
+    moveTo(category);
+}
+
+function handleTouchMove(ev) {
+    ev.preventDefault();
+    allowDrop(ev);
+    highlight(ev);
+}
+
+function handleTouchEnd(category, ev) {
+    removeHighlight(ev);
+    moveTo(category);
 }

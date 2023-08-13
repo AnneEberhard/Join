@@ -1,6 +1,6 @@
 function openAddTask(column) {
     localStorage.setItem('column', column);
-    if (window.innerWidth < 900) {
+    if (isMobileDevice()) {
         window.location.href = "add_task.html";
     } else {
         document.getElementById('addTaskBoard').classList.remove('d-none');

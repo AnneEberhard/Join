@@ -80,6 +80,7 @@
 
 #editTaskContainer{
     height: 798px;
+    max-height: 90%;
     width: 623px;
     background-color: white;
     border-radius: 30px;
