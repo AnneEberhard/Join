@@ -105,9 +105,10 @@ function clearTask() {
    * this function shows popUp Notice when task is added and saved
    * @param - no param
 */
-  function popUpNotice() {
-    document.getElementById('popupNotice').classList.add('visible');
-  }
+function popUpNotice() {
+  document.getElementById('popupNotice').classList.add('visible');
+  setTimeout(function() { switchToBoard();}, 1000);
+}
   
 
 /**
