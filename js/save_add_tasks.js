@@ -50,12 +50,11 @@ function clearTask() {
           'dueDate': dueDate,
           'prio': assignedPrio,
           'subtasks': subTasksArray,
-          'column': 'board_container_bottom_todo'
+          'column': column,
             }
         tasks.push(task);
         saveTask();
         popUpNotice();
-        
     }
   }
 
@@ -107,6 +106,7 @@ function clearTask() {
 */
   function popUpNotice() {
     document.getElementById('popupNotice').classList.add('visible');
+    setTimeout(function() { switchToBoard();}, 1000);
   }
   
 

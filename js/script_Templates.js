@@ -122,3 +122,13 @@ function createAcronym(currentUser) {
   }
   return acronym; // passes the beginning letter(s) back to createNameCircle()
 }
+
+
+/**
+* function saves paaremter for categories
+*
+* @param {string} - no parameter
+*/
+function saveColumn(clickColumn) {
+  column = localStorage.setItem('column', clickColumn);
+}
