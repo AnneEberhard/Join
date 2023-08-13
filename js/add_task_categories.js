@@ -101,7 +101,7 @@ function templateCategoryOptionsFurther(category, i, colorCode) {
  * @param {event} - no parameter
  */
 function handleCategoriesOptionsClick(event) {
-  event.stopPropagation(); // Stoppe das Ereignis, bevor es die toggleOptions()-Funktion auslöst
+  event.stopPropagation(); 
   toggleOptions('categoryOptions');
 }
 

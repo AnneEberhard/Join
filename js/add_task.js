@@ -128,7 +128,7 @@ function templateNewContact() {
  * @param {event} - no parameter
  */
 function handlecheckContactClick(event,i) {
-  event.stopPropagation(); // Stoppe das Ereignis, bevor es die toggleOptions()-Funktion auslöst
+  event.stopPropagation(); 
   checkContact(i);
 }
 

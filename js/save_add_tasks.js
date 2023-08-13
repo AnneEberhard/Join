@@ -60,7 +60,7 @@ function clearTask() {
 
   
 /**
-  * this function checks if a prioritiy is assigned to task and writes an alert otherwise
+  * this function checks if a priority is assigned to task and writes an alert otherwise
   * @param - no param
 */
   function checkPrio() {
