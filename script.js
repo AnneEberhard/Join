@@ -21,6 +21,7 @@ function loginUser() {
     error.style = "display: none;";
     window.location.href = "summary.html";
     localStorage.setItem(`currentUser`, `${users[0].name}`);
+    localStorage.setItem(`loggedIn`, true);
     cacheData();
   } else {
     password.classList.add("border-red");
@@ -32,7 +33,17 @@ function loginUser() {
 function guestUser() {
   localStorage.setItem(`currentUser`, `Guest`);
   window.location.href = "summary.html";
+  localStorage.setItem(`loggedIn`, true);
   
+}
+
+
+function checkLogIn(){
+  let LogInStatus = localStorage.getItem(`loggedIn`);
+  if(LogInStatus == 'false'){
+    alert('Please Log In to view this Page.');
+    setTimeout(window.location.href = "index.html", 2000);
+  }
 }
 
 function cacheData() {

@@ -11,7 +11,8 @@ let newSummaryDueDate;
 /**
  * starts when summary.html is loads
  */
-async function loadSummary(){    
+async function loadSummary(){
+    checkLogIn();
     await loadItems();    
     await countTasks();       
     greetingSummary(); 

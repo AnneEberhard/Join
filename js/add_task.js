@@ -32,6 +32,7 @@ let column;
  * @param - no parameter
  */
 async function initTask() {
+  checkLogIn();
   await includeHTML();
   await loadItems();
   column = localStorage.getItem('column');

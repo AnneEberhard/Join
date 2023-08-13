@@ -23,6 +23,7 @@ let editingContact;
  *
  */
 async function init() {
+  checkLogIn();
   await loadContacts();
   renderContactList();
 }

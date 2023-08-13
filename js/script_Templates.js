@@ -107,6 +107,19 @@ async function createNameCircle() {
  `;
 }
 
+
+
+/**
+* This function logs that the user is logged out from the Website
+*
+* 
+*/
+function logoutUser(){
+  localStorage.setItem(`loggedIn`, false);
+}
+
+
+
 /**
 * function creates an acronym using the first letter of the first name and first letter of the last name, if existing
 *
