@@ -196,7 +196,7 @@ function fadeGreeting(){
         setTimeout(function() {
             // Restlicher Code für die Animation, wie zuvor
             var container = document.getElementById("summary_container_bottom_right");
-            var fadeDuration = 3000;
+            var fadeDuration = 1000;
             var fadeInterval = 10;
             var opacity = 1;
             var deltaOpacity = 1 / (fadeDuration / fadeInterval);

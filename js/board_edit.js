@@ -12,7 +12,7 @@ function openTaskOverview(id, category) {
     renderEditOverviewTemplate(colorCode, task['prio'], id);
     let taskOverview = document.getElementById('editTask');
     taskOverview.classList.remove('d-none');
-    renderTaskOverview(task);
+    renderTaskOverview(task, id);
     
     
     renderAssignementsInTaskOverview(task, "editTaskContainerAssignedNames");
@@ -25,6 +25,7 @@ function openTaskOverview(id, category) {
  * @param {*} id task id
  */
 function renderTaskOverview(task, id){
+    console.log(id)
     document.getElementById('editTaskContainerCategory').innerHTML = `${task['category']}`;
     document.getElementById('editTaskContainerTitle').innerHTML = `${task['title']}`;
     document.getElementById('editTaskContainerDescription').innerHTML = `${task['description']}`;
@@ -144,7 +145,7 @@ function renderAddSubtasksInOverview(){
     document.getElementById('editTaskContainerSubtasksTasks').innerHTML += /*html*/`
         <div class="subtaskEdit">
             <input id="inputSubtaskEdit" placeholder="Add new subtask" />
-            <div class="buttonAddSubTask hover" onclick="addSubTask()">
+            <div class="buttonAddSubTask hover" onclick="addSubTaskEdit()">
                 <img src="assets/img/plus.png" />
             </div>
         </div>
@@ -182,7 +183,7 @@ function renderSubtasksWithHook(index){
  * this function renders the field for adding subtasks
  * @param - no parameter
  */
-async function addSubTask() {
+async function addSubTaskEdit() {
     let subTaskName = document.getElementById("inputSubtaskEdit").value;
     let subTaskDone = 0;
     let subTask = {
@@ -201,13 +202,13 @@ async function addSubTask() {
  * confirm Container if task should be deleted
  * @param {*} a 
  */
-function askBeforeDelete(a) {
+function askBeforeDelete(id) {
     let confirmDelete = document.getElementById('confirmDeleteTask');
     confirmDelete.classList.remove('d-none');
     confirmDelete.innerHTML += /*html*/`
         <div id="confirmDeleteTaskQuestion">Delete Task?</div>
         <div id="confirmDeleteTaskAnswers">
-                <div id="confirmDeleteTaskAnswersYes" onclick="deleteTaskFinally(${a})">Delete</div>
+                <div id="confirmDeleteTaskAnswersYes" onclick="deleteTaskFinally(${id})">Delete</div>
                 <div id="confirmDeleteTaskAnswersNo" onclick="closeDeleteRequest()">Back</div>
         </div>
     `
@@ -217,9 +218,9 @@ function askBeforeDelete(a) {
  * look at className 
  * @param {*} a 
  */
-async function deleteTaskFinally(a) {
+async function deleteTaskFinally(id) {
     closeDeleteRequest();
-    await deleteTask(a);
+    await deleteTask(id);
     renderBoardCards();
     closeEditTask();
 }
