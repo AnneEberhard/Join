@@ -2,6 +2,7 @@
 let currentDraggedElement;
 
 async function renderBoard() {
+    checkLogIn();
     await renderBoardCards();
 }
 
