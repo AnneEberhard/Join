@@ -1,4 +1,5 @@
-function openAddTask() {
+function openAddTask(column) {
+    localStorage.setItem('column', column);
     if (window.innerWidth < 900) {
         window.location.href = "add_task.html";
     } else {

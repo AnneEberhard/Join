@@ -22,6 +22,9 @@ let newCategoryName;
 let newCategoryColor;
 let inputDone = false;
 
+//stored in local storage
+let column;
+
 
 /**
  * this function starts loading the page
@@ -31,11 +34,11 @@ let inputDone = false;
 async function initTask() {
   await includeHTML();
   await loadItems();
+  column = localStorage.getItem('column');
   renderCategories();
   renderContacts();
   renderDueDate();
 }
-
 
 /**
  * this function loads the needed items from the backend
