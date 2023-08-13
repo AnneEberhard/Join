@@ -77,7 +77,7 @@ function renderBoardCard(categoryCard, titleCard, descriptionCard, ID, prioCard,
 
     let board_todo = document.getElementById(`${cats}`);
     board_todo.innerHTML += /*html*/`
-        <div id="${ID}" draggable="true" ondragstart="startDragging(${ID})"  ontouchstart="startDragging(${ID})" onclick="openTaskOverview(${ID}, '${categoryCard}')" class="board_task_container" >
+        <div id="${ID}" draggable="true" ondragstart="startDragging(${ID})"  onclick="openTaskOverview(${ID}, '${categoryCard}')" class="board_task_container" >
             <div class="board_task_container_inner">
                 <div class="board_task_container_category" style="background-color: ${categoryColorCode}">${categoryCard}</div>
                 <div class="board_task_container_title_and_description">
