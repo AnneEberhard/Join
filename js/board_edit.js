@@ -25,7 +25,6 @@ function openTaskOverview(id, category) {
  * @param {*} id task id
  */
 function renderTaskOverview(task, id){
-    console.log(id)
     document.getElementById('editTaskContainerCategory').innerHTML = `${task['category']}`;
     document.getElementById('editTaskContainerTitle').innerHTML = `${task['title']}`;
     document.getElementById('editTaskContainerDescription').innerHTML = `${task['description']}`;

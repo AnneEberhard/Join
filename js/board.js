@@ -304,7 +304,6 @@ function fillEmptyColumns() {
         const column = columnsToCheck[c];
         let isEmpty = isDivEmpty(column)
         if(isEmpty){
-            console.log(column)
             document.getElementById(column).innerHTML = /*html*/`
                 <div class="emptyColumnContainer">No Tasks</div>
             `
