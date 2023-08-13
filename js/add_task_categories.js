@@ -32,7 +32,7 @@ function templateCategory() {
       </div>
     <div id="categorySelectionLeft"></div>
     <div id="dividerSmall"></div>
-    <div id="categorySelectionRight" onclick="toggleOptions('categoryOptions')">
+    <div id="categorySelectionRight" onclick="handleCategoriesOptionsClick(event)">
       <img src="assets/img/dropdown.svg" class="hover" />
    </div>
   </div>
@@ -95,14 +95,46 @@ function templateCategoryOptionsFurther(category, i, colorCode) {
 }
 
 
+
 /**
- * this function toggles the dropdown menu of cetagories and contacts
+ * this function ensures the onlick-Funktion of closing the options isn't carried out
+ * @param {event} - no parameter
+ */
+function handleCategoriesOptionsClick(event) {
+  event.stopPropagation(); // Stoppe das Ereignis, bevor es die toggleOptions()-Funktion auslöst
+  toggleOptions('categoryOptions');
+}
+
+
+/**
+ * this function toggles the dropdown menu of categories and contacts
  * @param {string} id - id of either categories or contacts
  */
 function toggleOptions(id) {
   const optionsDiv = document.getElementById(`${id}`);
   optionsDiv.classList.toggle("hidden");
   document.getElementById("categoryAlert").innerHTML = "";
+}
+
+
+/**
+ * this function ensures the onlick Funktion is not forwarded to others
+ * @param {event} - on click
+ */
+function closeOptionsOnClick(event) {
+  closeOptions();
+  event.stopPropagation();
+}
+
+
+
+/**
+ * this function closes the dropdown menu of categories and contacts
+ * @param {string} id - id of either categories or contacts
+ */
+function closeOptions() {
+  categoryOptions.classList.add("hidden");
+  contactsOptions.classList.add("hidden");
 }
 
 

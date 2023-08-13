@@ -77,13 +77,22 @@ function renderContacts() {
 function templateContactSelection() {
   let templateContactSelection = /*html*/`
   <div class="inputWithList">
-  <input id="contactSelection" class="selection" required disabled placeholder="Select contacts to assign">
-  <img src="assets/img/dropdown.svg" class="hover" onclick="toggleOptions('contactsOptions')"/>
+    <input id="contactSelection" class="selection" required disabled placeholder="Select contacts to assign">
+    <img src="assets/img/dropdown.svg" class="hover" onclick="handleContactOptionsClick(event)"/>
   </div>
   <div class="hidden roundedBorder" id="contactsOptions"></div>`;
   return templateContactSelection;
 }
 
+
+/**
+ * this function ensures the onlick-Funktion of closing the options isn't carried out
+ * @param {event} - no parameter
+ */
+function handleContactOptionsClick(event) {
+  event.stopPropagation();
+  toggleOptions('contactsOptions');
+}
 
 /**
  * this function returns the regular lines for the dropdown menu of contacts
@@ -92,7 +101,7 @@ function templateContactSelection() {
  */
 function templateContactsOptions(contact, i) {
   let templateContactsOptions = /*html*/`
-  <div class="option contactList" onclick="checkContact(${i})">
+  <div class="option contactList" onclick="handlecheckContactClick(event,${i})">
     <div id="contact${i}">${contact}</div>
     <div class="checkBox hover" id="contactCheckBox${i}"></div>
   </div>`;
@@ -111,6 +120,16 @@ function templateNewContact() {
     <div class="newContact roundedBorder"><img src="assets/img/Icon_Contacts_white.png" onclick="inviteContact()"></div>
   </div>`;
   return templateNewContact;
+}
+
+
+/**
+ * this function ensures the onlick-Funktion of closing the options isn't carried out
+ * @param {event} - no parameter
+ */
+function handlecheckContactClick(event,i) {
+  event.stopPropagation(); // Stoppe das Ereignis, bevor es die toggleOptions()-Funktion auslöst
+  checkContact(i);
 }
 
 
