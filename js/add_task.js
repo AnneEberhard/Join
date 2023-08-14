@@ -62,13 +62,12 @@ async function loadItems() {
  * @param - no parameter
  */
 function renderContacts(idContactContainer, mode) {
-  debugger;
-  document.getElementById(idContactContainer).innerHTML = templateContactSelection();
+  document.getElementById(idContactContainer).innerHTML = templateContactSelection(mode);
   for (let i = 0; i < contacts.length; i++) {
     const contact = contacts[i]['user_name'];
-    document.getElementById('contactsOptions').innerHTML += templateContactsOptions(contact, i, mode);
+    document.getElementById(`contactsOptions${mode}`).innerHTML += templateContactsOptions(contact, i, mode);
   }
-  document.getElementById('contactsOptions').innerHTML += templateNewContact();
+  document.getElementById(`contactsOptions${mode}`).innerHTML += templateNewContact();
 }
 
 
@@ -76,13 +75,13 @@ function renderContacts(idContactContainer, mode) {
  * this function returns the main template for contacts
  * @param - no parameter
  */
-function templateContactSelection() {
+function templateContactSelection(mode) {
   let templateContactSelection = /*html*/`
   <div class="inputWithList">
-    <input id="contactSelection" class="selection" required disabled placeholder="Select contacts to assign">
-    <img src="assets/img/dropdown.svg" class="hover" onclick="handleContactOptionsClick(event)"/>
+    <input id="contactSelection${mode}" class="selection" required disabled placeholder="Select contacts to assign">
+    <img src="assets/img/dropdown.svg" class="hover" onclick="handleContactOptionsClick(event,'${mode}')"/>
   </div>
-  <div class="hidden roundedBorder" id="contactsOptions"></div>`;
+  <div class="hidden roundedBorder" id="contactsOptions${mode}"></div>`;
   return templateContactSelection;
 }
 
@@ -91,9 +90,9 @@ function templateContactSelection() {
  * this function ensures the onlick-Funktion of closing the options isn't carried out
  * @param {event} - no parameter
  */
-function handleContactOptionsClick(event) {
+function handleContactOptionsClick(event, mode) {
   event.stopPropagation();
-  toggleOptions('contactsOptions');
+  toggleOptions(`contactsOptions${mode}`);
 }
 
 /**
@@ -170,7 +169,6 @@ function assignContact(i, mode) {
  * @param {number} i - index of the JSON contacts 
  */
 function unassignContact(i, mode) {
-
   boxId = 'contactCheckBox'+mode+i;
   document.getElementById(boxId).innerHTML = /*html*/``;
   assignedContactsStatus[i] = false;

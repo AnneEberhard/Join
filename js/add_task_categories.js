@@ -121,20 +121,19 @@ function toggleOptions(id) {
  * this function ensures the onlick Funktion is not forwarded to others
  * @param {event} - on click
  */
-function closeOptionsOnClick(event) {
-  closeOptions();
+function closeOptionsOnClick(event, mode) {
+  closeOptions(mode);
   event.stopPropagation();
 }
-
 
 
 /**
  * this function closes the dropdown menu of categories and contacts
  * @param {string} id - id of either categories or contacts
  */
-function closeOptions() {
+function closeOptions(mode) {
   document.getElementById('categoryOptions').classList.add("hidden");
-  document.getElementById('contactsOptions').classList.add("hidden");
+  document.getElementById(`contactsOptions${mode}`).classList.add("hidden");
 }
 
 
