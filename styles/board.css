@@ -263,18 +263,20 @@ input:focus{
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 12px;
 }
 
 .icons_container{
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    margin-left: 8px;
+    padding-left: 8px;
+    overflow:hidden
 }
 
 
 .board_Icons_Username{
-    width: 34px;
+    min-width: 34px;
     height: 34px;
     border-radius: 58px;
     border: 1px solid #ffffff;

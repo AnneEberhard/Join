@@ -2,7 +2,6 @@
 let currentDraggedElement;
 
 async function renderBoard() {
-    checkLogIn();
     await renderBoardCards();
 }
 
@@ -78,7 +77,7 @@ function renderBoardCard(categoryCard, titleCard, descriptionCard, ID, prioCard,
 
     let board_todo = document.getElementById(`${cats}`);
     board_todo.innerHTML += /*html*/`
-        <div id="${ID}" draggable="true" ondragstart="startDragging(${ID})"  onclick="openTaskOverview(${ID}, '${categoryCard}')" class="board_task_container" >
+        <div id="${ID}" draggable="true" ondragstart="startDragging(${ID})" ontouchstart= "startDragging(${ID})" onclick="openTaskOverview(${ID}, '${categoryCard}')" class="board_task_container" >
             <div class="board_task_container_inner">
                 <div class="board_task_container_category" style="background-color: ${categoryColorCode}">${categoryCard}</div>
                 <div class="board_task_container_title_and_description">
@@ -162,11 +161,12 @@ function createAssignmentIcons(assignedCard, idContainer) {
     for (let i = 0; i < assignedCard.length; i++) {
         const assignedUser = assignedCard[i].user_name;
 
+        if(i < 6){
         for (let k = 0; k < contacts.length; k++) {
             const contact = contacts[k];
-
             renderAssignmentIcons(assignedUser, contact, idContainer)
         }
+    }
     }
 }
 
@@ -250,6 +250,14 @@ function searchTasksOnBoardMobile() {
  */
 function startDragging(id) {
     currentDraggedElement = id;
+    let draggedCard = document.getElementById(currentDraggedElement);
+    draggedCard.addEventListener('touchstart', touchStart);
+}
+
+function touchStart(event) {
+    event.preventDefault();
+    currentDraggedElement = event.target.id;
+    console.log("Yeah")
 }
 
 
@@ -264,6 +272,7 @@ async function moveTo(category) {
     targetContainer.appendChild(draggedCard);
     targetContainer.style.backgroundColor = '';
     changeTaskColumn(currentDraggedElement, category)
+    console.log("moveit")
 }
 
 
