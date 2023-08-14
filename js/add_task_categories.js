@@ -132,7 +132,9 @@ function closeOptionsOnClick(event, mode) {
  * @param {string} id - id of either categories or contacts
  */
 function closeOptions(mode) {
-  document.getElementById('categoryOptions').classList.add("hidden");
+  if (mode == 'Add') {
+    document.getElementById('categoryOptions').classList.add("hidden");
+  }  
   document.getElementById(`contactsOptions${mode}`).classList.add("hidden");
 }
 

@@ -106,7 +106,6 @@ function templateContactsOptions(contact, i, mode) {
     <div id="contact${mode}${i}">${contact}</div>
     <div class="checkBox hover" id="contactCheckBox${mode}${i}"></div>
   </div>`;
-    console.log('contactCheckBox', mode, i)
   return templateContactsOptions;
 }
 
@@ -155,12 +154,10 @@ function checkContact(i, mode) {
  */
 function assignContact(i, mode) {
   boxId = 'contactCheckBox'+mode+i;
-  console.log(boxId);
   document.getElementById(boxId).innerHTML = /*html*/`
     <div class="checkBoxChecked hover"></div>
   </div>`;
   assignedContactsStatus[i] = true;
-  console.log(boxId);
 }
 
 
@@ -237,7 +234,6 @@ function renderPrio() {
  * @param {string} chosenPrio - id of clicked-on priority
  */
 function assignPrio(chosenPrio, modus) {
-  console.log(modus);
   document.getElementById('prioAlert').innerHTML = '';
   if (assignedPrio === chosenPrio) {
     assignedPrio = '';
@@ -256,7 +252,6 @@ function renderAssignedPrio(chosenPrio, modus) {
   for (let i = 0; i < prios.length; i++) {
     const prio = prios[i];
     priomode = prio+modus;
-    console.log(priomode);
     const prioBox = document.getElementById(`${priomode}`);
     const capitalPrio = prio.charAt(0).toUpperCase() + prio.slice(1);
     if (prio === chosenPrio && prioBox.classList.contains(prio) === false) {

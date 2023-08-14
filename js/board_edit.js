@@ -43,7 +43,7 @@ function renderEditOverviewTemplate(colorCode, prio, id) {
     document.getElementById('editTask').innerHTML = /*html*/`
         <div id="confirmDeleteTask" class="d-none">
         </div>
-        <div id="editTaskContainer">
+        <div id="editTaskContainer" >
             <div id="editTaskContainerClose" onclick="closeEditTask()"><img src="/assets/img/Icon_close.png" alt="">
             </div>
             <div id="editTaskContainerEditDelete">
@@ -260,7 +260,7 @@ function renderEditModeTemplates(task, id) {
                 <div id="editTaskContainerSaveText">Ok</div>
                 <div id="editTaskContainerSaveIcon"><img src="assets/img/done-30.png"></div>
             </div>
-            <div id="editTaskContainerInner" class="editContainerInner">
+            <div id="editTaskContainerInner" class="editContainerInner" onclick="closeOptionsOnClick(event, 'Edit')">
                 <div id="editTaskTitle" class="editTaskTitleFixed editTasksWidth80">
                     <div id="editTaskTitleFixed">Title</div>
                     <input id="editTaskTitleChangable" class="inputsAddTask" value="${task['title']}" maxlength="30">
@@ -307,7 +307,7 @@ function renderEditModeTemplates(task, id) {
     renderContacts('editContactContainer', 'Edit');
     renderContactsAssignContacts(assignedCard);
     createAssignmentIcons(assignedCard, "editTaskAssignedChangable");
-    assignPrio(task["prio"], 'Edit');
+    renderAssignedPrio(task["prio"], 'Edit');
 }
 
 /**
