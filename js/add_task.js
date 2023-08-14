@@ -37,7 +37,7 @@ async function initTask() {
   await loadItems();
   column = localStorage.getItem('column');
   renderCategories();
-  renderContacts('contactContainer');
+  renderContacts('contactContainer', 'Add');
   renderDueDate();
 }
 
@@ -61,11 +61,12 @@ async function loadItems() {
  * this function begins the rendering of the contacts
  * @param - no parameter
  */
-function renderContacts(idContactContainer) {
+function renderContacts(idContactContainer, mode) {
+  debugger;
   document.getElementById(idContactContainer).innerHTML = templateContactSelection();
   for (let i = 0; i < contacts.length; i++) {
     const contact = contacts[i]['user_name'];
-    document.getElementById('contactsOptions').innerHTML += templateContactsOptions(contact, i);
+    document.getElementById('contactsOptions').innerHTML += templateContactsOptions(contact, i, mode);
   }
   document.getElementById('contactsOptions').innerHTML += templateNewContact();
 }
@@ -100,12 +101,13 @@ function handleContactOptionsClick(event) {
  * @param {string} ccontact - the contact from the global JSON contacts
  * @param {number} i - index of the JSON contacts 
  */
-function templateContactsOptions(contact, i) {
+function templateContactsOptions(contact, i, mode) {
   let templateContactsOptions = /*html*/`
-  <div class="option contactList" onclick="handlecheckContactClick(event,${i})">
-    <div id="contact${i}">${contact}</div>
-    <div class="checkBox hover" id="contactCheckBox${i}"></div>
+  <div class="option contactList" onclick="handlecheckContactClick(event,${i},'${mode}')">
+    <div id="contact${mode}${i}">${contact}</div>
+    <div class="checkBox hover" id="contactCheckBox${mode}${i}"></div>
   </div>`;
+    console.log('contactCheckBox', mode, i)
   return templateContactsOptions;
 }
 
@@ -117,7 +119,7 @@ function templateContactsOptions(contact, i) {
 function templateNewContact() {
   let templateNewContact = /*html*/`
   <div class="option contactList">
-    <div id="newContact">Invite new contact</div>
+    <div id="newContactAdd">Invite new contact</div>
     <div class="newContact roundedBorder"><img src="assets/img/Icon_Contacts_white.png" onclick="inviteContact()"></div>
   </div>`;
   return templateNewContact;
@@ -128,9 +130,9 @@ function templateNewContact() {
  * this function ensures the onlick-Funktion of closing the options isn't carried out
  * @param {event} - no parameter
  */
-function handlecheckContactClick(event,i) {
+function handlecheckContactClick(event,i, mode) {
   event.stopPropagation(); 
-  checkContact(i);
+  checkContact(i, mode);
 }
 
 
@@ -138,11 +140,11 @@ function handlecheckContactClick(event,i) {
  * this function checks if a contact has been assigned to the task and starts assigning of unassigning
  * @param {number} i - index of the JSON contacts 
  */
-function checkContact(i) {
+function checkContact(i, mode) {
   if (assignedContactsStatus[i] === true) {
-    unassignContact(i);
+    unassignContact(i, mode);
   } else {
-    assignContact(i);
+    assignContact(i, mode);
   }
   updateAssignedContacts();
 }
@@ -152,11 +154,14 @@ function checkContact(i) {
  * this function fills the box of an assigned contact and sets the i. value of assignedContactsStatus[] to true
  * @param {number} i - index of the JSON contacts 
  */
-function assignContact(i) {
-  document.getElementById(`contactCheckBox${i}`).innerHTML = /*html*/`
+function assignContact(i, mode) {
+  boxId = 'contactCheckBox'+mode+i;
+  console.log(boxId);
+  document.getElementById(boxId).innerHTML = /*html*/`
     <div class="checkBoxChecked hover"></div>
   </div>`;
   assignedContactsStatus[i] = true;
+  console.log(boxId);
 }
 
 
@@ -164,8 +169,10 @@ function assignContact(i) {
  * this function clears the box of an assigned contact and sets the i. value of assignedContactsStatus[] to false
  * @param {number} i - index of the JSON contacts 
  */
-function unassignContact(i) {
-  document.getElementById(`contactCheckBox${i}`).innerHTML = /*html*/``;
+function unassignContact(i, mode) {
+
+  boxId = 'contactCheckBox'+mode+i;
+  document.getElementById(boxId).innerHTML = /*html*/``;
   assignedContactsStatus[i] = false;
 }
 

@@ -304,7 +304,7 @@ function renderEditModeTemplates(task, id) {
         </div>
     `
     let assignedCard = task['assignedContacts'];
-    renderContacts('editContactContainer');
+    renderContacts('editContactContainer', 'Edit');
     renderContactsAssignContacts(assignedCard);
     createAssignmentIcons(assignedCard, "editTaskAssignedChangable");
     assignPrio(task["prio"], 'Edit');
@@ -324,7 +324,7 @@ function renderContactsAssignContacts(assContacts) {
 
             if (searchValue.indexOf(assContact.user_name) > -1) {
                 classContainer = d;
-                assignContact(d)
+                assignContact(d, 'Edit')
             }
         }
     }
