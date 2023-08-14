@@ -282,13 +282,13 @@ function renderEditModeTemplates(task, id) {
                 <div id="editTaskPrio" class="editTaskTitleFixed editTasksWidth80">
                     <div id="editTaskPrioFixed">Priority</div>
                     <div id="editTaskPrioChangable"> 
-                        <button id="urgent" type="button" onclick="assignPrio('urgent')" class="prio height51 hover">
+                        <button id="urgentEdit" type="button" onclick="assignPrio('urgent', 'Edit')" class="prio height51 hover">
                         Urgent <img src="assets/img/urgent.png" />
                         </button>
-                        <button id="medium" type="button" onclick="assignPrio('medium')" class="prio height51 hover">
+                        <button id="mediumEdit" type="button" onclick="assignPrio('medium', 'Edit')" class="prio height51 hover">
                             Medium <img src="assets/img/medium.png" />
                         </button>
-                        <button id="low" type="button" onclick="assignPrio('low')" class="prio height51 hover">
+                        <button id="lowEdit" type="button" onclick="assignPrio('low', 'Edit')" class="prio height51 hover">
                             Low <img src="assets/img/low.png" />
                         </button>
                     </div>
@@ -296,19 +296,18 @@ function renderEditModeTemplates(task, id) {
                 </div>
                 <div id="editTaskAssigned" class="editTaskTitleFixed">
                     <div id="editTaskAssignedFix">Assigned to</div>
-                    <div id="contactContainer" class="inputsAddTask editAssignment"></div>
-                    <div id="contactAlert" class="alert"></div>
+                    <div id="editContactContainer" class="inputsAddTask editAssignment"></div>
+                    <div id="editContactAlert" class="alert"></div>
                     <div id="editTaskAssignedChangable"></div>
                 </div>
             </div>
         </div>
     `
     let assignedCard = task['assignedContacts'];
-
-    renderContacts();
+    renderContacts('editContactContainer');
     renderContactsAssignContacts(assignedCard);
     createAssignmentIcons(assignedCard, "editTaskAssignedChangable");
-    assignPrio(task["prio"]);
+    assignPrio(task["prio"], 'Edit');
 }
 
 /**

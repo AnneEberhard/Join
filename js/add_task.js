@@ -37,7 +37,7 @@ async function initTask() {
   await loadItems();
   column = localStorage.getItem('column');
   renderCategories();
-  renderContacts();
+  renderContacts('contactContainer');
   renderDueDate();
 }
 
@@ -61,8 +61,8 @@ async function loadItems() {
  * this function begins the rendering of the contacts
  * @param - no parameter
  */
-function renderContacts() {
-  document.getElementById('contactContainer').innerHTML = templateContactSelection();
+function renderContacts(idContactContainer) {
+  document.getElementById(idContactContainer).innerHTML = templateContactSelection();
   for (let i = 0; i < contacts.length; i++) {
     const contact = contacts[i]['user_name'];
     document.getElementById('contactsOptions').innerHTML += templateContactsOptions(contact, i);
@@ -215,13 +215,13 @@ function renderDueDate() {
  */
 function renderPrio() {
   document.getElementById("prioContainer").innerHTML = /*html*/`
-    <button id="urgent" type="button" onclick="assignPrio('urgent')" class="prio height51">
+    <button id="urgentAdd" type="button" onclick="assignPrio('urgent', 'add')" class="prio height51">
       Urgent <img src="../assets/img/urgent.png" />
     </button>
-    <button id="medium" type="button" onclick="assignPrio('medium')" class="prio height51">
+    <button id="mediumAdd" type="button" onclick="assignPrio('medium', 'add')" class="prio height51">
       Medium <img src="../assets/img/medium.png" />
     </button>
-    <button id="low" type="button" onclick="assignPrio('low')" class="prio height51">
+    <button id="lowAdd" type="button" onclick="assignPrio('low', 'add')" class="prio height51">
       Low <img src="../assets/img/low.png" />
     </button>`;
 }
@@ -231,14 +231,15 @@ function renderPrio() {
  * this function assigns the clicked-on priority to the global variable assignedPrio or unassigns it at the 2nd click
  * @param {string} chosenPrio - id of clicked-on priority
  */
-function assignPrio(chosenPrio) {
+function assignPrio(chosenPrio, modus) {
+  console.log(modus);
   document.getElementById('prioAlert').innerHTML = '';
   if (assignedPrio === chosenPrio) {
     assignedPrio = '';
   } else {
     assignedPrio = chosenPrio;
   }
-  renderAssignedPrio(chosenPrio);
+  renderAssignedPrio(chosenPrio, modus);
 }
 
 
@@ -246,10 +247,12 @@ function assignPrio(chosenPrio) {
  * this function either highlights or de-highlights the clicked-on priority depending on 1st or 2nd click as well as de-highlights all others
  * @param {string} chosenPrio - id of clicked-on priority
  */
-function renderAssignedPrio(chosenPrio) {
+function renderAssignedPrio(chosenPrio, modus) {
   for (let i = 0; i < prios.length; i++) {
     const prio = prios[i];
-    const prioBox = document.getElementById(`${prio}`);
+    priomode = prio+modus;
+    console.log(priomode);
+    const prioBox = document.getElementById(`${priomode}`);
     const capitalPrio = prio.charAt(0).toUpperCase() + prio.slice(1);
     if (prio === chosenPrio && prioBox.classList.contains(prio) === false) {
       prioBox.classList.add(`${prio}`);
