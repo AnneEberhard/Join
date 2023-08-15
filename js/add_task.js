@@ -59,7 +59,8 @@ async function loadItems() {
 
 /**
  * this function begins the rendering of the contacts
- * @param - no parameter
+ * @param {string} idContactContainer - div id
+ * @param {string} mode - mode of either add or edit
  */
 function renderContacts(idContactContainer, mode) {
   document.getElementById(idContactContainer).innerHTML = templateContactSelection(mode);
@@ -73,7 +74,7 @@ function renderContacts(idContactContainer, mode) {
 
 /**
  * this function returns the main template for contacts
- * @param - no parameter
+ * @param {string} mode - mode of either add or edit
  */
 function templateContactSelection(mode) {
   let templateContactSelection = /*html*/`
@@ -97,8 +98,9 @@ function handleContactOptionsClick(event, mode) {
 
 /**
  * this function returns the regular lines for the dropdown menu of contacts
- * @param {string} ccontact - the contact from the global JSON contacts
+ * @param {string} contact - the contact from the global JSON contacts
  * @param {number} i - index of the JSON contacts 
+ * @param {string} mode - mode of either add or edit
  */
 function templateContactsOptions(contact, i, mode) {
   let templateContactsOptions = /*html*/`
@@ -127,6 +129,8 @@ function templateNewContact() {
 /**
  * this function ensures the onlick-Funktion of closing the options isn't carried out
  * @param {event} - no parameter
+ * @param {number} i - index of the JSON contacts 
+ * @param {string} mode - mode of either add or edit
  */
 function handlecheckContactClick(event,i, mode) {
   event.stopPropagation(); 
@@ -137,6 +141,7 @@ function handlecheckContactClick(event,i, mode) {
 /**
  * this function checks if a contact has been assigned to the task and starts assigning of unassigning
  * @param {number} i - index of the JSON contacts 
+ * @param {string} mode - mode of either add or edit
  */
 function checkContact(i, mode) {
   if (assignedContactsStatus[i] === true) {
@@ -151,6 +156,7 @@ function checkContact(i, mode) {
 /**
  * this function fills the box of an assigned contact and sets the i. value of assignedContactsStatus[] to true
  * @param {number} i - index of the JSON contacts 
+ * @param {string} mode - mode of either add or edit
  */
 function assignContact(i, mode) {
   boxId = 'contactCheckBox'+mode+i;
@@ -164,6 +170,7 @@ function assignContact(i, mode) {
 /**
  * this function clears the box of an assigned contact and sets the i. value of assignedContactsStatus[] to false
  * @param {number} i - index of the JSON contacts 
+ * @param {string} mode - mode of either add or edit
  */
 function unassignContact(i, mode) {
   boxId = 'contactCheckBox'+mode+i;
@@ -200,7 +207,7 @@ function inviteContact() {
 
 /**
  * this function renders the field Due Date, enabling only future dates to be selected
- * @param - no parameter
+ * @param {string} mode - mode of either add or edit
  */
 function renderDueDate(mode) {
   let currentDate = new Date();
@@ -232,26 +239,28 @@ function renderPrio() {
 /**
  * this function assigns the clicked-on priority to the global variable assignedPrio or unassigns it at the 2nd click
  * @param {string} chosenPrio - id of clicked-on priority
+ * @param {string} mode - either add or edit
  */
-function assignPrio(chosenPrio, modus) {
-  document.getElementById(`prioAlert${modus}`).innerHTML = '';
+function assignPrio(chosenPrio, mode) {
+  document.getElementById(`prioAlert${mode}`).innerHTML = '';
   if (assignedPrio === chosenPrio) {
     assignedPrio = '';
   } else {
     assignedPrio = chosenPrio;
   }
-  renderAssignedPrio(chosenPrio, modus);
+  renderAssignedPrio(chosenPrio, mode);
 }
 
 
 /**
  * this function either highlights or de-highlights the clicked-on priority depending on 1st or 2nd click as well as de-highlights all others
  * @param {string} chosenPrio - id of clicked-on priority
+ * @param {string} mode - either add or edit
  */
-function renderAssignedPrio(chosenPrio, modus) {
+function renderAssignedPrio(chosenPrio, mode) {
   for (let i = 0; i < prios.length; i++) {
     const prio = prios[i];
-    priomode = prio+modus;
+    priomode = prio+mode;
     const prioBox = document.getElementById(`${priomode}`);
     const capitalPrio = prio.charAt(0).toUpperCase() + prio.slice(1);
     if (prio === chosenPrio && prioBox.classList.contains(prio) === false) {
@@ -265,7 +274,11 @@ function renderAssignedPrio(chosenPrio, modus) {
   }
 }
 
-
+/**
+ * this function checks if field of adding subTasks is empty or not
+ * @param {number} id - id of task in edit modus, by default 0 for add task
+ * @param {string} mode - mode of either add or edit
+ */
 function checkAddSubTask(id, mode) {
   const subTaskName = document.getElementById(`inputSubtask${mode}`).value.trim();
   
@@ -279,8 +292,8 @@ function checkAddSubTask(id, mode) {
 
 /**
  * this function renders the field for adding subtasks
- * @param {id} - id of task in edit modus, by default 0 for add task
- * @param {mode} - mode of either add or edit
+ * @param {number} id - id of task in edit modus, by default 0 for add task
+ * @param {string} mode - mode of either add or edit
  */
 function addSubTask(id, mode) {
   let subTaskName = document.getElementById(`inputSubtask${mode}`).value;
@@ -313,6 +326,8 @@ function findIndexOfItem(array, item) {
 /**
  * this function add checksmarks to the subtaks if clicked on
  * @param {value} index - index of the subtask in the global array subTasksArray
+ * @param {number} id - id of task in edit modus, by default 0 for add task
+ * @param {string} mode - mode of either add or edit
  */
 function addCheck(index, id, mode) {
   const checkBoxElement = document.getElementById(`checkBox${mode}${id}${index}`);

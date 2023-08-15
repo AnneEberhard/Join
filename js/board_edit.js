@@ -124,6 +124,7 @@ function renderAssignmentIconsInCard(assignedUser, contact, idContainer) {
 
 /**
  * renders Subtasks in Overview
+ * @param {*} id index of task which was clicked
  */
 async function renderSubtasksInTaskOverview(id) {
     document.getElementById('editTaskContainerSubtasksTasks').innerHTML = "";
@@ -140,6 +141,7 @@ async function renderSubtasksInTaskOverview(id) {
 
 /**
  * Subtask Input and Add Button in Overview
+ * @param {*} id index of task which was clicked
  */
 function renderAddSubtasksInOverview(id) {
     document.getElementById('editTaskContainerSubtasksTasks').innerHTML += /*html*/`
@@ -155,6 +157,7 @@ function renderAddSubtasksInOverview(id) {
 /**
  * render checkbox without hook
  * @param {*} index 
+ * @param {*} id index of task which was clicked
  */
 function renderSubtasksWithoutHook(index, id) {
     document.getElementById('editTaskContainerSubtasksTasks').innerHTML += /*html*/`
@@ -168,6 +171,7 @@ function renderSubtasksWithoutHook(index, id) {
 /**
  * render checkbox with hook
  * @param {*} index 
+ * @param {*} id index of task which was clicked
  */
 function renderSubtasksWithHook(index, id) {
     document.getElementById('editTaskContainerSubtasksTasks').innerHTML += /*html*/`
@@ -181,7 +185,7 @@ function renderSubtasksWithHook(index, id) {
 
 /**
  * this function renders the field for adding subtasks
- * @param - no parameter
+ * @param {*} id index of task which was clicked
  */
 async function addSubTaskEdit(id) {
     let subTaskName = document.getElementById("inputSubtaskEdit").value;
@@ -196,14 +200,6 @@ async function addSubTaskEdit(id) {
     renderBoard();
     document.getElementById("inputSubtaskEdit").value = "";
 }
-/**
- * confirm Container if task should be deleted
- * @param {*} a 
- */
-function addCheckEdit(index, id) {
-    console.log('addCheck');
-}
-
 
 
 /**
