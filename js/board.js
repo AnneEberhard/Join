@@ -161,7 +161,7 @@ function createAssignmentIcons(assignedCard, idContainer) {
     for (let i = 0; i < assignedCard.length; i++) {
         const assignedUser = assignedCard[i].user_name;
 
-        if(i < 6){
+        if(i < 5){
         for (let k = 0; k < contacts.length; k++) {
             const contact = contacts[k];
             renderAssignmentIcons(assignedUser, contact, idContainer)
@@ -248,18 +248,12 @@ function searchTasksOnBoardMobile() {
  * Drag and Drop functions
  * 
  */
+
 function startDragging(id) {
     currentDraggedElement = id;
     let draggedCard = document.getElementById(currentDraggedElement);
-    draggedCard.addEventListener('touchstart', touchStart);
+    console.log("touchstart")
 }
-
-function touchStart(event) {
-    event.preventDefault();
-    currentDraggedElement = event.target.id;
-    console.log("Yeah")
-}
-
 
 function allowDrop(ev) {
     ev.preventDefault();
@@ -272,7 +266,7 @@ async function moveTo(category) {
     targetContainer.appendChild(draggedCard);
     targetContainer.style.backgroundColor = '';
     changeTaskColumn(currentDraggedElement, category)
-    console.log("moveit")
+    console.log("moveitto: ", targetContainer)
 }
 
 
