@@ -144,7 +144,7 @@ async function renderSubtasksInTaskOverview(id) {
 function renderAddSubtasksInOverview(id) {
     document.getElementById('editTaskContainerSubtasksTasks').innerHTML += /*html*/`
         <div class="subtaskEdit">
-            <input id="inputSubtaskEdit" placeholder="Add new subtask" />
+            <input id="inputSubtaskEdit" class="inputSubtask" placeholder="Add new subtask" />
             <div class="buttonAddSubTask hover" onclick="addSubTask(${id}, 'Edit')">
                 <img src="assets/img/plus.png" />
             </div>

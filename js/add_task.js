@@ -272,7 +272,7 @@ function renderAssignedPrio(chosenPrio, modus) {
  * @param {mode} - mode of either add or edit
  */
 function addSubTask(id, mode) {
-  let subTaskName = document.getElementById("inputSubtask").value;
+  let subTaskName = document.getElementById(`inputSubtask${mode}`).value;
   let subTaskDone = 0;
   let subTask = {
     'subTaskName': subTaskName,
@@ -280,12 +280,12 @@ function addSubTask(id, mode) {
   }
   subTasksArray.push(subTask);
   let index = findIndexOfItem(subTasksArray, subTask);
-  document.getElementById("subTasks").innerHTML += /*html*/ `
+  document.getElementById(`subTasks${mode}`).innerHTML += /*html*/ `
     <div class="subTaskBox">
         <div id="checkBox${mode}${id}${index}" class="checkBox hover" onclick="addCheck(${index}, ${id}, '${mode}')"></div>
         <div class="subtask">${subTaskName}</div>
     </div>`;
-  document.getElementById("inputSubtask").value = "";
+  document.getElementById(`inputSubtask${mode}`).value = "";
 }
 
 
