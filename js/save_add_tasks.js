@@ -67,7 +67,7 @@ function clearTask() {
     if (typeof assignedPrio !== 'undefined' && assignedPrio !== null && assignedPrio !== '') {
       return true;
     } else {
-     document.getElementById(`prioAlerAdd`).innerHTML ='Please select a priority!';
+     document.getElementById(`prioAlertAdd`).innerHTML ='Please select a priority!';
     }
   }
   

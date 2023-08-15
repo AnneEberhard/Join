@@ -268,9 +268,10 @@ function renderAssignedPrio(chosenPrio, modus) {
 
 /**
  * this function renders the field for adding subtasks
- * @param - no parameter
+ * @param {id} - id of task in edit modus, by default 0 for add task
+ * @param {mode} - mode of either add or edit
  */
-function addSubTask() {
+function addSubTask(id, mode) {
   let subTaskName = document.getElementById("inputSubtask").value;
   let subTaskDone = 0;
   let subTask = {
@@ -281,7 +282,7 @@ function addSubTask() {
   let index = findIndexOfItem(subTasksArray, subTask);
   document.getElementById("subTasks").innerHTML += /*html*/ `
     <div class="subTaskBox">
-        <div id="checkBox${index}" class="checkBox hover" onclick="addCheck(${index})"></div>
+        <div id="checkBox${mode}${id}${index}" class="checkBox hover" onclick="addCheck(${index}, ${id}, '${mode}')"></div>
         <div class="subtask">${subTaskName}</div>
     </div>`;
   document.getElementById("inputSubtask").value = "";
@@ -302,15 +303,15 @@ function findIndexOfItem(array, item) {
  * this function add checksmarks to the subtaks if clicked on
  * @param {value} index - index of the subtask in the global array subTasksArray
  */
-function addCheck(index) {
-  const checkBoxElement = document.getElementById(`checkBox${index}`);
+function addCheck(index, id, mode) {
+  const checkBoxElement = document.getElementById(`checkBox${mode}${id}${index}`);
   const existingImage = checkBoxElement.querySelector('img');
 
   if (existingImage) {
     checkBoxElement.removeChild(existingImage);
     subTasksArray[index].subTaskDone = 0;
   } else {
-    document.getElementById(`checkBox${index}`).innerHTML = /*html*/ `<img src="assets/img/done-30.png">`;
+    document.getElementById(`checkBox${mode}${id}${index}`).innerHTML = /*html*/ `<img src="assets/img/done-30.png">`;
     subTasksArray[index].subTaskDone = 1;
   }
 }

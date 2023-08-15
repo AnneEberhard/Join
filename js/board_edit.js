@@ -15,10 +15,8 @@ function openTaskOverview(id, category) {
     let taskOverview = document.getElementById('editTask');
     taskOverview.classList.remove('d-none');
     renderTaskOverview(task, id);
-
-
     renderAssignementsInTaskOverview(task, "editTaskContainerAssignedNames");
-    renderSubtasksInTaskOverview(task, id);
+    renderSubtasksInTaskOverview(id);
 }
 
 /**
@@ -127,27 +125,27 @@ function renderAssignmentIconsInCard(assignedUser, contact, idContainer) {
 /**
  * renders Subtasks in Overview
  */
-async function renderSubtasksInTaskOverview() {
+async function renderSubtasksInTaskOverview(id) {
     document.getElementById('editTaskContainerSubtasksTasks').innerHTML = "";
 
     for (let s = 0; s < subTasksArray.length; s++) {
         if (subTasksArray[s].subTaskDone == 0) {
-            renderSubtasksWithoutHook(s);
+            renderSubtasksWithoutHook(s, id);
         } else {
-            renderSubtasksWithHook(s);
+            renderSubtasksWithHook(s, id);
         }
     }
-    renderAddSubtasksInOverview();
+    renderAddSubtasksInOverview(id);
 }
 
 /**
  * Subtask Input and Add Button in Overview
  */
-function renderAddSubtasksInOverview() {
+function renderAddSubtasksInOverview(id) {
     document.getElementById('editTaskContainerSubtasksTasks').innerHTML += /*html*/`
         <div class="subtaskEdit">
             <input id="inputSubtaskEdit" placeholder="Add new subtask" />
-            <div class="buttonAddSubTask hover" onclick="addSubTaskEdit()">
+            <div class="buttonAddSubTask hover" onclick="addSubTask(${id}, 'Edit')">
                 <img src="assets/img/plus.png" />
             </div>
         </div>
@@ -158,10 +156,10 @@ function renderAddSubtasksInOverview() {
  * render checkbox without hook
  * @param {*} index 
  */
-function renderSubtasksWithoutHook(index) {
+function renderSubtasksWithoutHook(index, id) {
     document.getElementById('editTaskContainerSubtasksTasks').innerHTML += /*html*/`
             <div class="subtaskInOverview">
-                <div id="checkBox${index}" class="checkBox hover" onclick="addCheck(${index})"></div>
+                <div id="checkBoxEdit${id}${index}" class="checkBox hover" onclick="addCheck(${index}, ${id},'Edit')"></div>
                 <div>${subTasksArray[index].subTaskName}</div>
             </div>
         `
@@ -171,10 +169,10 @@ function renderSubtasksWithoutHook(index) {
  * render checkbox with hook
  * @param {*} index 
  */
-function renderSubtasksWithHook(index) {
+function renderSubtasksWithHook(index, id) {
     document.getElementById('editTaskContainerSubtasksTasks').innerHTML += /*html*/`
             <div class="subtaskInOverview">
-                <div id="checkBox${index}" class="checkBox hover" onclick="addCheck(${index})"><img src="assets/img/done-30.png"></div>
+                <div id="checkBoxEdit${id}${index}" class="checkBox hover" onclick="addCheck(${index},${id},'Edit')"><img src="assets/img/done-30.png"></div>
                 <div>${subTasksArray[index].subTaskName}</div>
             </div>
         `
@@ -185,7 +183,7 @@ function renderSubtasksWithHook(index) {
  * this function renders the field for adding subtasks
  * @param - no parameter
  */
-async function addSubTaskEdit() {
+async function addSubTaskEdit(id) {
     let subTaskName = document.getElementById("inputSubtaskEdit").value;
     let subTaskDone = 0;
     let subTask = {
@@ -193,11 +191,19 @@ async function addSubTaskEdit() {
         'subTaskDone': subTaskDone
     }
     subTasksArray.push(subTask);
-    renderSubtasksInTaskOverview();
+    renderSubtasksInTaskOverview(id);
     await saveTask();
     renderBoard();
     document.getElementById("inputSubtaskEdit").value = "";
 }
+/**
+ * confirm Container if task should be deleted
+ * @param {*} a 
+ */
+function addCheckEdit(index, id) {
+    console.log('addCheck');
+}
+
 
 
 /**
