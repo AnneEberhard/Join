@@ -256,21 +256,21 @@ function renderEditModeTemplates(task, id) {
     let editTask = document.getElementById('editTask');
     editTask.innerHTML = "";
     editTask.innerHTML = /*html*/`
-        <div id="editTaskContainer">
+        <form id="editTaskContainer" onsubmit="saveEditedBoard(${id}); return false;">
             <div id="editTaskContainerClose" onclick="closeEditTask()"><img src="assets/img/Icon_close.png" alt="">
             </div>
-            <div id="editTaskContainerSave" onclick="saveEditedBoard(${id})">
+            <button id="editTaskContainerSave" type="submit">
                 <div id="editTaskContainerSaveText">Ok</div>
                 <div id="editTaskContainerSaveIcon"><img src="assets/img/done-30.png"></div>
-            </div>
+            </button>
             <div id="editTaskContainerInner" class="editContainerInner" onclick="closeOptionsOnClick(event, 'Edit')">
                 <div id="editTaskTitle" class="editTaskTitleFixed editTasksWidth80">
                     <div id="editTaskTitleFixed">Title</div>
-                    <input id="editTaskTitleChangable" class="inputsAddTask" value="${task['title']}" maxlength="30">
+                    <input id="editTaskTitleChangable" required class="inputsAddTask" value="${task['title']}" maxlength="30">
                 </div>
                 <div id="editTaskDescription" class="editTaskTitleFixed editTasksWidth80">
                     <div id="editTaskDescriptionFixed">Description</div>
-                    <textarea id="editTaskDescriptionChangable" class="inputsAddTask" maxlength="100">${task['description']}</textarea>
+                    <textarea id="editTaskDescriptionChangable" class="inputsAddTask" required maxlength="100">${task['description']}</textarea>
                 </div>
                 <div id="editTaskDueDate" class="editTaskTitleFixed editTasksWidth80">
                     <div id="editTaskDueDateFixed">Due Date</div>
@@ -304,7 +304,7 @@ function renderEditModeTemplates(task, id) {
                     <div id="editTaskAssignedChangable"></div>
                 </div>
             </div>
-        </div>
+</form>
     `
     let assignedCard = task['assignedContacts'];
     renderContacts('editContactContainer', 'Edit');
