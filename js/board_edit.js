@@ -44,7 +44,7 @@ function renderEditOverviewTemplate(colorCode, prio, id) {
         <div id="confirmDeleteTask" class="d-none">
         </div>
         <div id="editTaskContainer" >
-            <div id="editTaskContainerClose" onclick="closeEditTask()"><img src="/assets/img/Icon_close.png" alt="">
+            <div id="editTaskContainerClose" onclick="saveBoard(${id})"><img src="/assets/img/Icon_close.png" alt="">
             </div>
             <div id="editTaskContainerEditDelete">
                 <div id="editTaskContainerDelete"></div>
@@ -200,6 +200,7 @@ async function addSubTaskEdit(id) {
     renderBoard();
     document.getElementById("inputSubtaskEdit").value = "";
 }
+
 
 
 /**
@@ -380,6 +381,13 @@ async function saveEditedBoard(id) {
     }
 }
 
+async function saveBoard(id) {
+        tasks[id]['subtasks'] = subTasksArray;
+        console.log(tasks[id]);
+        await saveTask();
+        closeEditTask();
+        await renderBoardCards();
+}
 
 /**
   * this function checks if a priority is assigned to task and writes an alert otherwise
