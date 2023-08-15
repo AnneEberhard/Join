@@ -23,11 +23,13 @@ function renderCategories() {
  * this function returns the main template for categories
  * @param - no parameter
  */
+
+//excluded: onkeydown ="pickExistingCategory(event)"
 function templateCategory() {
   let templateCategory = /*html*/ `
     <div class="inputWithList">
       <div class="inputCategory">
-        <input id="categorySelection" class="selection" required placeholder="Select task category" onkeydown ="pickExistingCategory(event)">
+        <input id="categorySelection" class="selection" required placeholder="Select task category" >
         <div id="categorySelectionCircle"></div> 
       </div>
     <div id="categorySelectionLeft"></div>
@@ -235,8 +237,9 @@ function templateNewCategoryDots(i) {
 function checkIfNewCategoryReady() {
   newCategoryName = document.getElementById("categorySelection").value;
   let categoryExists = checkIfNewcategoryExists(newCategoryName);
+  const addCategoryButton = document.getElementById("addCategory");
+  addCategoryButton.removeEventListener("click", addCategory);
   if (newCategoryName !== "" && newCategoryColor !== null && categoryExists === false) {
-    const addCategoryButton = document.getElementById("addCategory");
     addCategoryButton.addEventListener("click", addCategory);
     addCategoryButton.classList.add("hover");
   }

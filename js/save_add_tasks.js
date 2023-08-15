@@ -17,9 +17,9 @@ function clearTask() {
     document.getElementById("dueDateAdd").value = "";
     document.getElementById("inputSubtask").value = "";
     document.getElementById("subTasks").innerHTML = "";
-    document.getElementById("urgent").classList.remove("urgent");
-    document.getElementById("medium").classList.remove("medium");
-    document.getElementById("low").classList.remove("low");
+    document.getElementById("urgentAdd").classList.remove("urgent");
+    document.getElementById("mediumAdd").classList.remove("medium");
+    document.getElementById("lowAdd").classList.remove("low");
     document.getElementById("popupNotice").classList.remove("visible");
     renderCategories();
     renderContacts();
