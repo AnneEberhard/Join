@@ -252,12 +252,12 @@ function searchTasksOnBoardMobile() {
 function startDragging(id) {
     currentDraggedElement = id;
     let draggedCard = document.getElementById(currentDraggedElement);
-    console.log("touchstart")    
+    // console.log("touchstart")    
 }
 
 function allowDrop(ev) {
     ev.preventDefault();
-    console.log("postion", ev)
+    // console.log("postion", ev)
 }
 
 
@@ -267,7 +267,7 @@ async function moveTo(category) {
     targetContainer.appendChild(draggedCard);
     targetContainer.style.backgroundColor = '';
     changeTaskColumn(currentDraggedElement, category)
-    console.log("moveitto: ", targetContainer)
+    // console.log("moveitto: ", targetContainer)
 }
 
 
@@ -335,9 +335,3 @@ function isDivEmpty(checkedColumn) {
 function isMobileDevice() {
     return window.innerWidth < 900;
 }
-
-
-
-
-
-
