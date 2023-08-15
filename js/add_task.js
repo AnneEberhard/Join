@@ -266,6 +266,17 @@ function renderAssignedPrio(chosenPrio, modus) {
 }
 
 
+function checkAddSubTask(id, mode) {
+  const subTaskName = document.getElementById(`inputSubtask${mode}`).value.trim();
+  
+  if (subTaskName === "") {
+    document.getElementById('subTaskAlertAdd').innerHTML = "Bitte einen Wert hinzufügen";
+  } else {
+    document.getElementById('subTaskAlertAdd').innerHTML = "";
+    addSubTask(id, mode);
+  }
+}
+
 /**
  * this function renders the field for adding subtasks
  * @param {id} - id of task in edit modus, by default 0 for add task
