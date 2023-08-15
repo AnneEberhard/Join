@@ -1,3 +1,5 @@
+let prioToEdit;
+
 /**
  * opens a card, which shows the detailed task
  * @param {*} id index of task which was clicked
@@ -241,6 +243,7 @@ function closeEditTask() {
 
 function openEditMode(id) {
     let task = tasks[id];
+    prioToEdit = task['prio'];
     renderEditModeTemplates(task, id);
 }
 
@@ -282,17 +285,17 @@ function renderEditModeTemplates(task, id) {
                 <div id="editTaskPrio" class="editTaskTitleFixed editTasksWidth80">
                     <div id="editTaskPrioFixed">Priority</div>
                     <div id="editTaskPrioChangable"> 
-                        <button id="urgentEdit" type="button" onclick="assignPrio('urgent', 'Edit')" class="prio height51 hover">
+                        <button id="urgentEdit" type="button" onclick="editPrio('urgent', 'Edit', ${id})" class="prio height51 hover">
                         Urgent <img src="assets/img/urgent.png" />
                         </button>
-                        <button id="mediumEdit" type="button" onclick="assignPrio('medium', 'Edit')" class="prio height51 hover">
+                        <button id="mediumEdit" type="button" onclick="editPrio('medium', 'Edit', ${id})" class="prio height51 hover">
                             Medium <img src="assets/img/medium.png" />
                         </button>
-                        <button id="lowEdit" type="button" onclick="assignPrio('low', 'Edit')" class="prio height51 hover">
+                        <button id="lowEdit" type="button" onclick="editPrio('low', 'Edit', ${id})" class="prio height51 hover">
                             Low <img src="assets/img/low.png" />
                         </button>
                     </div>
-                    <div id="prioAlert" class="alert"></div>
+                    <div id="prioAlertEdit" class="alert"></div>
                 </div>
                 <div id="editTaskAssigned" class="editTaskTitleFixed">
                     <div id="editTaskAssignedFix">Assigned to</div>
@@ -309,6 +312,20 @@ function renderEditModeTemplates(task, id) {
     createAssignmentIcons(assignedCard, "editTaskAssignedChangable");
     renderAssignedPrio(task["prio"], 'Edit');
 }
+
+/**
+ * this function assigns the clicked-on priority to the global variable assignedPrio or unassigns it at the 2nd click
+ * @param {string} chosenPrio - id of clicked-on priority
+ */
+function editPrio(chosenPrio, modus, id) {
+    document.getElementById(`prioAlert${modus}`).innerHTML = '';
+    if (prioToEdit === chosenPrio) {
+        prioToEdit = '';
+    } else {
+        prioToEdit = chosenPrio;
+    }
+    renderAssignedPrio(chosenPrio, modus);
+  }
 
 /**
  * 
@@ -337,7 +354,7 @@ function renderContactsAssignContacts(assContacts) {
  * @param {*} id 
  */
 async function saveEditedBoard(id) {
-    let prioFilled = checkPrio();
+    let prioFilled = checkEditedPrio();
     let correctContact = checkCorrectContact();
     if (prioFilled == true && correctContact == true) {
         let title = document.getElementById("editTaskTitleChangable").value;
@@ -349,7 +366,7 @@ async function saveEditedBoard(id) {
             'category': assignedCategory,
             'assignedContacts': assignedContacts,
             'dueDate': dueDate,
-            'prio': assignedPrio,
+            'prio': prioToEdit,
             'column': column,
             'subtasks': subTasksArray,
         }
@@ -360,6 +377,18 @@ async function saveEditedBoard(id) {
     }
 }
 
+
+/**
+  * this function checks if a priority is assigned to task and writes an alert otherwise
+  * @param - no param
+*/
+function checkEditedPrio() {
+    if (typeof prioToEdit !== 'undefined' && prioToEdit !== null && prioToEdit !== '') {
+      return true;
+    } else {
+     document.getElementById(`prioAlertEdit`).innerHTML ='Please select a priority!';
+    }
+  }
 
 function preventBackgroundScroll() {
     if (isMobileDevice()) {

@@ -13,7 +13,7 @@ function clearTask() {
     document.getElementById("categoryOptions").innerHTML = "";
     document.getElementById("categoryAlert").innerHTML = "";
     document.getElementById("contactAlert").innerHTML = "";
-    document.getElementById("prioAlert").innerHTML = "";
+    document.getElementById(`prioAlertAdd`).innerHTML = "";
     document.getElementById("dueDate").value = "";
     document.getElementById("inputSubtask").value = "";
     document.getElementById("subTasks").innerHTML = "";
@@ -67,7 +67,7 @@ function clearTask() {
     if (typeof assignedPrio !== 'undefined' && assignedPrio !== null && assignedPrio !== '') {
       return true;
     } else {
-     document.getElementById('prioAlert').innerHTML ='Please select a priority!';
+     document.getElementById(`prioAlerAdd`).innerHTML ='Please select a priority!';
     }
   }
   

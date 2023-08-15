@@ -234,7 +234,7 @@ function renderPrio() {
  * @param {string} chosenPrio - id of clicked-on priority
  */
 function assignPrio(chosenPrio, modus) {
-  document.getElementById('prioAlert').innerHTML = '';
+  document.getElementById(`prioAlert${modus}`).innerHTML = '';
   if (assignedPrio === chosenPrio) {
     assignedPrio = '';
   } else {
