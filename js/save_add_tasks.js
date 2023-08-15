@@ -14,7 +14,7 @@ function clearTask() {
     document.getElementById("categoryAlert").innerHTML = "";
     document.getElementById("contactAlert").innerHTML = "";
     document.getElementById(`prioAlertAdd`).innerHTML = "";
-    document.getElementById("dueDate").value = "";
+    document.getElementById("dueDateAdd").value = "";
     document.getElementById("inputSubtask").value = "";
     document.getElementById("subTasks").innerHTML = "";
     document.getElementById("urgent").classList.remove("urgent");
@@ -41,7 +41,7 @@ function clearTask() {
     if (prioFilled == true && correctCategory == true && correctContact == true){
       let title = document.getElementById("title").value;
       let description = document.getElementById("description").value;
-      let dueDate = document.getElementById("dueDate").value;
+      let dueDate = document.getElementById("dueDateAdd").value;
       let task = {
           'title': title,
           'description': description,

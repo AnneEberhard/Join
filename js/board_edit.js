@@ -275,7 +275,7 @@ function renderEditModeTemplates(task, id) {
                 <div id="editTaskDueDate" class="editTaskTitleFixed editTasksWidth80">
                     <div id="editTaskDueDateFixed">Due Date</div>
                         <input
-                            id="dueDate"
+                            id="dueDateEdit"
                             class="inputsAddTask height51 padding hover"
                             type="date"
                             required
@@ -308,6 +308,7 @@ function renderEditModeTemplates(task, id) {
     `
     let assignedCard = task['assignedContacts'];
     renderContacts('editContactContainer', 'Edit');
+    renderDueDate('Edit');
     renderContactsAssignContacts(assignedCard);
     createAssignmentIcons(assignedCard, "editTaskAssignedChangable");
     renderAssignedPrio(task["prio"], 'Edit');
@@ -359,7 +360,7 @@ async function saveEditedBoard(id) {
     if (prioFilled == true && correctContact == true) {
         let title = document.getElementById("editTaskTitleChangable").value;
         let description = document.getElementById("editTaskDescriptionChangable").value;
-        let dueDate = document.getElementById("dueDate").value;
+        let dueDate = document.getElementById("dueDateEdit").value;
         let task = {
             'title': title,
             'description': description,

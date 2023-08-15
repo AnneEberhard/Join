@@ -38,7 +38,7 @@ async function initTask() {
   column = localStorage.getItem('column');
   renderCategories();
   renderContacts('contactContainer', 'Add');
-  renderDueDate();
+  renderDueDate('Add');
 }
 
 /**
@@ -202,12 +202,12 @@ function inviteContact() {
  * this function renders the field Due Date, enabling only future dates to be selected
  * @param - no parameter
  */
-function renderDueDate() {
+function renderDueDate(mode) {
   let currentDate = new Date();
   const year = currentDate.getFullYear();
   const month = String(currentDate.getMonth() + 1).padStart(2, '0');
   const day = String(currentDate.getDate()).padStart(2, '0');
-  document.getElementById('dueDate').setAttribute('min', `${year}-${month}-${day}`);
+  document.getElementById(`dueDate${mode}`).setAttribute('min', `${year}-${month}-${day}`);
 }
 
 
