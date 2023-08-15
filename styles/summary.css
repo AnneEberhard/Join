@@ -380,7 +380,7 @@ body {
     }
 
     #summary_container_bottom{
-        padding: 0px 16px;
+        padding-bottom: 90px;
         width: calc(100% - 32px);
         justify-content: center;
         align-items: center;
@@ -462,7 +462,7 @@ body {
     }
 
     #summary_container_bottom{
-        padding: 0px 8px;
+        padding-bottom: 90px;
         width: calc(100% - 16px);
         justify-content: center;
         align-items: center;

@@ -402,22 +402,17 @@ function checkEditedPrio() {
   }
 
 function preventBackgroundScroll() {
-    if (isMobileDevice()) {
-        document.getElementById('board_container_bottom').style.overflow = 'hidden'; 
-        
-    }
+        document.getElementById('board').style.overflow = 'hidden'; 
 }
 
 
 function enableBackgroundScroll() {
-    document.getElementById('board_container_bottom').style.overflow = ''; 
+    document.getElementById('board').style.overflow = ''; 
 }
 
 
 function disableBackgroundScroll() {
-    if (isMobileDevice()) {
         preventBackgroundScroll();
-    }
 }
 
 

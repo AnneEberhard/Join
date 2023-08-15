@@ -1,3 +1,7 @@
+html{
+    background-color: #F6F7F8;
+}
+
 body{
     background-color: #F6F7F8;
     width: 100%;
@@ -6,7 +10,6 @@ body{
 
 #board{
     font-family: 'Inter';
-    height: 100vh;
     width: 100vw;
     background-color: #F6F7F8;
 }

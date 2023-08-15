@@ -132,7 +132,7 @@
     }
 
     .board_container_bottom_category_background{
-        width: calc(100% - 34px)
+        width: 100%
     }
 
     .board_container_bottom_category{       
@@ -177,7 +177,7 @@
     }
 
     #board_container_top{
-        padding: 150px 0 0 0;
+        padding: 128px 0 0 0;
         width: calc(100% - 34px)
     }
 
@@ -308,6 +308,10 @@
 
     #editTaskContainerSubtasks{
         gap:10px;
+    }
+
+    #contactsOptionsEdit{
+        max-height: 120px;
     }
 }
 
