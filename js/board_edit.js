@@ -135,7 +135,7 @@ async function renderSubtasksInTaskOverview(id) {
             renderSubtasksWithHook(s, id);
         }
     }
-    renderAddSubtasksInOverview(id);
+    //renderAddSubtasksInOverview(id);
 }
 
 /**
