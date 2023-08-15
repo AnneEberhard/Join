@@ -152,6 +152,7 @@ textarea:focus-visible {
   display: flex;
   justify-content: flex-start;
   gap: 10px;
+  width: 100%;
 }
 
 /*specific for category only*/
