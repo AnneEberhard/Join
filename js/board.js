@@ -252,11 +252,12 @@ function searchTasksOnBoardMobile() {
 function startDragging(id) {
     currentDraggedElement = id;
     let draggedCard = document.getElementById(currentDraggedElement);
-    console.log("touchstart")
+    console.log("touchstart")    
 }
 
 function allowDrop(ev) {
     ev.preventDefault();
+    console.log("postion", ev)
 }
 
 
