@@ -232,9 +232,7 @@ async function deleteTaskFinally(id) {
     
 }
 
-function flushSubtasks(){
-    subTasksArray = [];
-}
+
 
 function closeDeleteRequest() {
     document.getElementById('confirmDeleteTask').innerHTML = "";
