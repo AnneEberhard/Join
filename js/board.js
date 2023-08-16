@@ -77,8 +77,9 @@ function renderBoardCard(categoryCard, titleCard, descriptionCard, ID, prioCard,
 
     let board_todo = document.getElementById(`${cats}`);
     board_todo.innerHTML += /*html*/`
-        <div id="${ID}" draggable="true" ondragstart="startDragging(${ID})" ontouchstart= "startDragging(${ID})" onclick="openTaskOverview(${ID}, '${categoryCard}')" class="board_task_container" >
-            <div class="board_task_container_inner">
+        <div id="${ID}" draggable="true" ondragstart="startDragging(${ID})" 
+        onclick="openTaskOverview(${ID}, '${categoryCard}')" class="board_task_container" >
+            <div id="innerContainer${ID}" class="board_task_container_inner">
                 <div class="board_task_container_category" style="background-color: ${categoryColorCode}">${categoryCard}</div>
                 <div class="board_task_container_title_and_description">
                     <div class="board_task_container_title">${titleCard}</div>
@@ -97,7 +98,65 @@ function renderBoardCard(categoryCard, titleCard, descriptionCard, ID, prioCard,
             </div>
         </div> 
     `
+    if(isMobileDevice()){
+    renderMoveBtns(cats, ID);
+    }
 }
+
+
+
+function renderMoveBtns(cats, id){    
+        document.getElementById(`${id}`).innerHTML += /*html*/`
+            <div class="lastCategory" onclick="moveToLastCat(${cats}, ${id}); stopPropagation(event)"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#FFFFFF"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M7 14l5-5 5 5H7z"/></svg></div>
+            <div class="nextCategory" onclick="moveToNextCat(${cats}, ${id}); stopPropagation(event)"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#FFFFFF"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M7 10l5 5 5-5H7z"/></svg></div>
+        `
+        if(cats == "board_container_bottom_todo"){
+            let lastCat = document.getElementById(`${id}`).getElementsByClassName("lastCategory");
+            lastCat[0].classList.add("d-none")
+        }
+
+        if(cats == "board_container_bottom_done"){
+            let lastCat = document.getElementById(`${id}`).getElementsByClassName("nextCategory");
+            lastCat[0].classList.add("d-none")
+        }
+}
+
+
+function stopPropagation(event) {
+    event.stopPropagation();
+}
+
+
+function moveToLastCat(column, id){
+    if(column.id == "board_container_bottom_inprogress"){
+        newColumn = "board_container_bottom_todo"
+    }
+    if(column.id == "board_container_bottom_awaitingfeedback"){
+        newColumn = "board_container_bottom_inprogress"
+    }
+    if(column.id == "board_container_bottom_done"){
+        newColumn = "board_container_bottom_awaitingfeedback"
+    }
+    changeTaskColumn(id, newColumn)
+}
+
+
+function moveToNextCat(column, id){
+    if(column.id == "board_container_bottom_inprogress"){
+        newColumn = "board_container_bottom_awaitingfeedback"
+    }
+    if(column.id == "board_container_bottom_todo"){
+        newColumn = "board_container_bottom_inprogress"
+    }
+    if(column.id == "board_container_bottom_awaitingfeedback"){
+        newColumn = "board_container_bottom_done"
+    }
+    changeTaskColumn(id, newColumn)
+}
+
+// function renderMoveBtns(){
+
+// }
 
 /**
  * creates progresbar for subtasks --> 138 is width of the complete Progressbar
@@ -252,12 +311,10 @@ function searchTasksOnBoardMobile() {
 function startDragging(id) {
     currentDraggedElement = id;
     let draggedCard = document.getElementById(currentDraggedElement);
-    // console.log("touchstart")    
 }
 
 function allowDrop(ev) {
     ev.preventDefault();
-    // console.log("postion", ev)
 }
 
 
@@ -267,7 +324,6 @@ async function moveTo(category) {
     targetContainer.appendChild(draggedCard);
     targetContainer.style.backgroundColor = '';
     changeTaskColumn(currentDraggedElement, category)
-    // console.log("moveitto: ", targetContainer)
 }
 
 
@@ -333,5 +389,22 @@ function isDivEmpty(checkedColumn) {
  * @returns breakpoint, when screen is in mobile Modus
  */
 function isMobileDevice() {
-    return window.innerWidth < 900;
+    return window.innerWidth<900;
+}
+
+
+
+
+/**
+ * Eventlistner to render board if screen changes between desktop and MobileMode
+ */
+window.addEventListener('resize', handleScreenResize);
+
+
+function handleScreenResize() {
+    if (window.innerWidth < 900) {
+        renderBoard();
+    } else if (window.innerWidth >= 900) {
+        renderBoard();
+    }
 }

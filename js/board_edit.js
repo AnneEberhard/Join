@@ -424,26 +424,3 @@ function disableBackgroundScroll() {
 }
 
 
-function handleDragOver(ev) {
-    ev.preventDefault();
-}
-
-function handleDragLeave(ev) {
-    removeHighlight(ev);
-}
-
-function handleDrop(category, ev) {
-    ev.preventDefault();
-    moveTo(category);
-}
-
-function handleTouchMove(ev) {
-    ev.preventDefault();
-    allowDrop(ev);
-    highlight(ev);
-}
-
-function handleTouchEnd(category, ev) {
-    removeHighlight(ev);
-    moveTo(category);
-}
