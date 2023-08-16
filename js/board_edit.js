@@ -228,8 +228,13 @@ async function deleteTaskFinally(id) {
     await deleteTask(id);
     renderBoardCards();
     closeEditTask();
+    flushSubtasks();
+    
 }
 
+function flushSubtasks(){
+    subTasksArray = [];
+}
 
 function closeDeleteRequest() {
     document.getElementById('confirmDeleteTask').innerHTML = "";
@@ -240,6 +245,7 @@ function closeDeleteRequest() {
 function closeEditTask() {
     enableBackgroundScroll();
     document.getElementById('editTask').classList.add('d-none');
+    flushSubtasks();
 
 }
 
@@ -378,6 +384,7 @@ async function saveEditedBoard(id) {
         await saveTask();
         closeEditTask();
         await renderBoardCards();
+        flushSubtasks();
     }
 }
 
@@ -387,6 +394,7 @@ async function saveBoard(id) {
         await saveTask();
         closeEditTask();
         await renderBoardCards();
+        flushSubtasks();
 }
 
 /**

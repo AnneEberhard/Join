@@ -55,6 +55,7 @@ function clearTask() {
         tasks.push(task);
         saveTask();
         popUpNotice();
+        flushSubtasks();
     }
   }
 
