@@ -287,16 +287,16 @@ function checkAddSubTask(id, mode) {
     document.getElementById('subTaskAlertAdd').innerHTML = "Bitte einen Wert hinzufügen";
   } else {
     document.getElementById('subTaskAlertAdd').innerHTML = "";
-    renderAddSubTask(id, mode);
+    addSubTask(id, mode);
   }
 }
 
 /**
- * this function renders the field for adding subtasks
+ * this function adds subtasks to the array and renders the added subtasks
  * @param {number} id - id of task in edit modus, by default 0 for add task
  * @param {string} mode - mode of either add or edit
  */
-function renderAddSubTask(id, mode) {
+function addSubTask(id, mode) {
   let subTaskName = document.getElementById(`inputSubtask${mode}`).value;
   let subTaskDone = 0;
   let subTask = {
