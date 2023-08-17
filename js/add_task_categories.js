@@ -91,7 +91,7 @@ function templateCategoryOptionsFurther(category, i, colorCode) {
         <div>${category}</div>
         <div class="circle" style="background-color: ${colorCode}"></div>
       </div>
-      <img src="assets/img/delete.png" class="hover" onclick="deleteCategory('${category}', '${i}')"/>
+      <img src="assets/img/delete.png" class="hover" onclick="askBeforeDeleteCategory('${category}', '${i}')"/>
     </div>`;
   return templateCategoryOptionsFurther;
 }
@@ -115,7 +115,6 @@ function handleCategoriesOptionsClick(event) {
 function toggleOptions(id) {
   const optionsDiv = document.getElementById(`${id}`);
   optionsDiv.classList.toggle("hidden");
-  document.getElementById("categoryAlert").innerHTML = "";
 }
 
 
@@ -239,12 +238,20 @@ function checkIfNewCategoryReady() {
   let categoryExists = checkIfNewcategoryExists(newCategoryName);
   const addCategoryButton = document.getElementById("addCategory");
   addCategoryButton.removeEventListener("click", addCategory);
-  if (newCategoryName !== "" && newCategoryColor !== null && categoryExists === false) {
+  if (newCategoryName !== "" && newCategoryColor == "") {
+    addCategoryButton.addEventListener("click", alertNewColor);
+    addCategoryButton.classList.add("hover");
+  }
+  if (newCategoryName !== "" && newCategoryColor !== "" && categoryExists === false) {
     addCategoryButton.addEventListener("click", addCategory);
     addCategoryButton.classList.add("hover");
   }
 }
 
+
+function alertNewColor() {
+  document.getElementById('categoryAlert').innerHTML ='Please choose a color before saving';
+}
 
 /**
  * this function checks if a new category name already exists and gives an alert if yes
@@ -323,37 +330,6 @@ function addCategory() {
 }
 
 
-/**
- * this function deletes a category if it's not in use in the board
- * @param {string} categoryToDelete - this category has been selected to be deleted
- * @param {number} i - index of the JSON categories
- */
-function deleteCategory(categoryToDelete, i) {
-  checkCategoryIfUsed = checkCategoryToDelete(categoryToDelete);
-  if (checkCategoryIfUsed === false) {
-    categories.splice(i, 1);
-    document.getElementById("categoryAlert").innerHTML = "";
-    renderCategories();
-    saveOnlyCategories();
-  } else {
-    document.getElementById("categoryAlert").innerHTML = "Category is in use";
-  }
-}
-
-
-/**
- * this function checks if the category to delete is not in use in the board.html
- * @param {string} categoryToDelete - this category has been selected to be deleted
- */
-function checkCategoryToDelete(categoryToDelete) {
-  for (let i = 0; i < tasks.length; i++) {
-    const categoryToCheck = tasks[i]["category"];
-    if (categoryToDelete === categoryToCheck) {
-      return true;
-    }
-  }
-  return false;
-}
 
 
 /**
