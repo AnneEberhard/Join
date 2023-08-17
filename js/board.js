@@ -389,7 +389,7 @@ function isDivEmpty(checkedColumn) {
  * @returns breakpoint, when screen is in mobile Modus
  */
 function isMobileDevice() {
-    return window.innerWidth<900;
+    return window.innerWidth < 900;
 }
 
 
@@ -402,9 +402,9 @@ window.addEventListener('resize', handleScreenResize);
 
 
 function handleScreenResize() {
-    if (window.innerWidth < 900) {
+    if (window.innerWidth < 900 && window.location.pathname === '/board.html') {
         renderBoard();
-    } else if (window.innerWidth >= 900) {
+    } else if (window.innerWidth >= 900 && window.location.pathname === '/board.html') {
         renderBoard();
     }
 }
