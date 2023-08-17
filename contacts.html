@@ -55,7 +55,7 @@
           <div class="form_container">
           <form id="create_contact" onsubmit="createContact('new_contact_modal'); return false;">
             <div class="input-container">
-              <input id="name" type="text" placeholder="Name" required/>
+              <input id="name" type="text" placeholder="Name" oninput="capitalizeName('name');" required/>
               <input id="email" class="" type="email" placeholder="Email" required/>
               <input id="phone" class="" type="number" placeholder="Phone"/>
             </div>
@@ -88,7 +88,7 @@
           <div class="form_container">
           <form id="edit_form" onsubmit="saveEditedContact(); return false;">
             <div class="input-container">
-              <input id="edit_name" type="text" placeholder="Name" required />
+              <input id="edit_name" type="text" placeholder="Name" required oninput="capitalizeName('edit_name');" />
               <input id="edit_email" class="" type="email" placeholder="Email" required/>
               <input id="edit_phone" class="" type="number" placeholder="Phone"/>
             </div>

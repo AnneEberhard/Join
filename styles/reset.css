@@ -76,6 +76,7 @@ body {
   font-weight: bold;
   font-size: 16px;
   margin-top: 20px;
+  border-style: unset;
 }
 
 #login:hover {

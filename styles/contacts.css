@@ -82,12 +82,13 @@ html {
   line-height: 25px;
   flex-shrink: 0;
   cursor: pointer;
+  border-style: unset;
 }
 
 #new_contact_btn:hover {
   background-color: #29abe2;
   border: none;
-  box-shadow: 0 4px 4px #29abe2;
+  box-shadow: 0 0px 0px #29abe2;
 }
 
 .contact_list_letter_container {
@@ -420,6 +421,7 @@ html {
   background-image: url("../assets/img/check.svg");
   background-repeat: no-repeat;
   background-position: center right 10px;
+  border-style: unset;
 }
 
 .avatar {
@@ -605,6 +607,7 @@ input[type="number"] {
   background-image: url("../assets/img/check.svg");
   background-repeat: no-repeat;
   background-position: center right 10px;
+  border-style: unset;
 }
 
 #edit_save:hover {
@@ -693,6 +696,11 @@ input[type="number"] {
   #contactList {
     left: 19.5%;
   }
+
+  #new_contact_modal{
+    left: 26%;
+    min-width: 68vw;
+  }
 }
 
 @media (max-width: 1100px) {
@@ -718,10 +726,24 @@ input[type="number"] {
   #contactList {
     left: 22.2%;
   }
+  #new_contact_modal{
+    left: 25%;
+    min-width: 50vw;
+  }
 }
 @media (max-width: 1000px) {
   #contactList {
     left: 23.2%;
+  }
+
+  #new_contact_modal{
+    z-index: 17;
+    left: 14%;
+
+  }
+
+  #edit_contact_modal{
+    z-index: 11;
   }
 }
 
@@ -729,6 +751,7 @@ input[type="number"] {
   #contactList {
     left: 24.2%;
   }
+  
 }
 
 @media (max-width: 900px) {
@@ -781,7 +804,7 @@ input[type="number"] {
   .contact_info_container {
     display: none;
     position: absolute;
-    margin-top: 99px;
+    margin-top: 82px;
     margin-left: 0;
     width: 100%;
     height: 82vh;
@@ -803,7 +826,7 @@ input[type="number"] {
 
   #edit_contact_modal {
     flex-direction: column;
-    top: 6vh;
+    top: 13vh;
     left: 0;
     box-shadow: unset;
     height: 80vh;
@@ -865,7 +888,7 @@ input[type="number"] {
 
   #new_contact_modal {
     flex-direction: column;
-    top: 6vh;
+    top: 13vh;
     left: 0;
     box-shadow: unset;
     height: 80vh;

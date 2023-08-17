@@ -253,6 +253,27 @@ function changeDisplay() {
   currentHighlightedDiv.classList.remove("highlighted");
 }
 
+
+
+/**
+ *
+ * This function puts a upper case on the first and last Name as the user types
+ *
+ *
+ */
+
+function capitalizeName(modal) {
+  let nameOnInput = document.getElementById(modal).value;
+  let arr = nameOnInput.split(" ");
+  for(let i = 0; i < arr.length; i++){
+    arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
+    let fullName = arr.join(" ");
+    document.getElementById(modal).value = fullName;
+  }
+}
+
+
+
 /**
  *
  * This help function is used for the HTML Template to render Contact Details.

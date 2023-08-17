@@ -32,6 +32,7 @@ body {
   color: white;
   font-weight: bold;
   font-size: 16px;
+  border-style: unset;
 }
 
 .loading-screen {
@@ -102,6 +103,7 @@ body {
   font-weight: bold;
   font-size: 16px;
   transition: 0s background-color;
+  border-style: unset;
 }
 
 #login:hover {
@@ -120,6 +122,10 @@ body {
   background: #29abe2;
 }
 
+#guest-login:hover{
+  color: #29abe2;
+  border-color: #29abe2;
+}
 #guest-login {
   border-radius: 8px;
   height: 45px;
