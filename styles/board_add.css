@@ -17,7 +17,8 @@
 #addTaskBoardContainer {
   height: 95vh;
   width: 70%;
-  overflow:auto;
+  position: relative;
+  overflow:hidden;
   padding: 64px;
   border-radius: 30px;
   background: #fff;
