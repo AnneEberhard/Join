@@ -330,8 +330,6 @@ function addCategory() {
 }
 
 
-
-
 /**
  * this function checks if an entered category name is part of the list 
  * @param - no parameter

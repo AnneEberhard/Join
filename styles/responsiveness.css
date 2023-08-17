@@ -184,4 +184,9 @@
   #popupNotice {
     left: 25%;
    }
+
+   #addTaskBoardContainer {
+    width: 100%;
+    padding:0;
+   }
 }

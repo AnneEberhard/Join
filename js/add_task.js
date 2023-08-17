@@ -96,6 +96,7 @@ function handleContactOptionsClick(event, mode) {
   toggleOptions(`contactsOptions${mode}`);
 }
 
+
 /**
  * this function returns the regular lines for the dropdown menu of contacts
  * @param {string} contact - the contact from the global JSON contacts
@@ -286,7 +287,7 @@ function checkAddSubTask(id, mode) {
     document.getElementById('subTaskAlertAdd').innerHTML = "Bitte einen Wert hinzufügen";
   } else {
     document.getElementById('subTaskAlertAdd').innerHTML = "";
-    addSubTask(id, mode);
+    renderAddSubTask(id, mode);
   }
 }
 
@@ -295,7 +296,7 @@ function checkAddSubTask(id, mode) {
  * @param {number} id - id of task in edit modus, by default 0 for add task
  * @param {string} mode - mode of either add or edit
  */
-function addSubTask(id, mode) {
+function renderAddSubTask(id, mode) {
   let subTaskName = document.getElementById(`inputSubtask${mode}`).value;
   let subTaskDone = 0;
   let subTask = {
