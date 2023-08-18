@@ -33,9 +33,12 @@
 .addTaskContainer {
   width: calc(100%-232px);
 }
-
+.divider {
+  margin-left: 20px;
+  margin-right: 20px;
+}
   .addTaskContainerSides {
-    width: 90%;
+    width: 50%;
   }
 }
 

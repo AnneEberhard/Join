@@ -15,7 +15,7 @@ function clearTask() {
   document.getElementById("contactAlert").innerHTML = "";
   document.getElementById(`prioAlertAdd`).innerHTML = "";
   document.getElementById("dueDateAdd").value = "";
-  document.getElementById("inputSubtask").value = "";
+  document.getElementById("inputSubtaskAdd").value = "";
   document.getElementById("subTasks").innerHTML = "";
   document.getElementById("urgentAdd").classList.remove("urgent");
   document.getElementById("mediumAdd").classList.remove("medium");
